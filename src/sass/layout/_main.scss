@@ -1,0 +1,12 @@
+/* Main */
+
+.main {
+    width: 96%;
+    margin: 0 auto;
+    padding: 0;
+
+    @include respond(desktop) {
+        width: 76%;
+        padding: 0 3.5rem;
+    }
+}

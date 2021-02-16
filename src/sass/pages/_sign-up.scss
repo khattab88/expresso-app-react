@@ -1,0 +1,181 @@
+/* Sign Up */
+
+.register-page__main {
+    
+    @include respond(tab-land) {
+        padding: 0;
+    }
+}
+
+.register-page__wrapper {
+    width: 94%;
+    margin: 0 auto;
+    margin-top: 10rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @include respond(phone-land) {
+        width: 98%;
+    }
+
+    @include respond(tab-land) {
+        width: 82%;
+        margin-top: 13rem;
+        margin-bottom: 5rem;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.register-page__sign-in,
+.register-page__register {
+    @include box;
+
+    @include respond(tab-land) {
+        height: 62rem !important;
+    }
+}
+
+.sign-in__heading,
+.register__heading {
+    @include heading;
+}
+
+.sign-in__btn,
+.register__btn {
+    @include btn;
+}
+
+.sign-in__link {
+    text-decoration: none;
+    color: $color-white;
+}
+
+.register-page__sign-in {
+    height: 20rem;
+    background: url(../img/photo-1484659619207-9165d119dafe.jpg) no-repeat center center transparent;
+    justify-content: space-between;
+    border-radius: .5rem .5rem 0 0;
+
+    @include respond(tab-land) {
+        margin-top: -3rem;
+        width: 30%;
+        justify-content: center;
+        border-radius: .5rem 0 0 .5rem;
+    }
+}
+.sign-in {
+
+    &__btn {
+        background-color: $color-main;
+        color: $color-white;
+        transition: 0.3s;
+
+        &:hover {
+            background-color: $color-font-dark;
+            cursor: pointer;
+            border: 1px solid $color-font-light;
+        }
+    }
+}
+
+.register-page__register {
+    height: 77rem;
+    background-color: $color-font-dark;
+    margin-bottom: 3rem;
+    border-radius: 0 0 .5rem .5rem;
+
+    @include respond(tab-land) {
+        width: 70%;
+        height: 50rem;
+        border-radius: 0 .5rem .5rem 0;
+    }
+}
+.register {
+    
+    &__heading {
+        margin-bottom: 3rem;
+
+        animation: moveInDown-short .65s ease-out .2s;
+        animation-fill-mode: backwards;
+    }
+
+    &__form {
+        animation: moveInDown-short .65s ease-out .2s;
+        animation-fill-mode: backwards;
+
+        @include respond(tab-land) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    }
+
+    &__btn {
+        transition: 0.3s;
+        animation: moveInUp-short .65s ease-out .2s;
+        animation-fill-mode: backwards;
+
+        &:hover {
+            background-color: $color-main;
+            color: $color-font-light;
+            border: 1px solid $color-font-light;
+            cursor: pointer;
+        }
+    }
+}
+
+.form-group {
+    margin-bottom: 3rem;
+    min-height: 1px;
+
+    @include respond(tab-land) {
+        min-width: 48%;
+    }
+
+    &__input-text {
+        background: none;
+        color: $color-white;
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        transition: all 0.2s ease-in-out;
+        -webkit-transition: all 0.2s ease-in-out;
+        font-size: 1.8rem;
+        font-weight: 300;
+        padding: .75em;
+        border: 0;
+        border-bottom: 0.5px solid rgba($color-black, .9);
+        letter-spacing: 0.75px;
+    }
+
+    &__select {
+        width: 100%;
+        height: 4rem;
+        outline: none;
+        border: 0;
+        background-color: transparent;
+        color: $color-gray-light;
+        font-size: 2rem;
+        font-weight: 100;
+        padding: 0 1rem 1rem 1.5rem;
+        line-height: 2rem;
+        letter-spacing: 1px;
+
+        option {
+            color: $color-font-dark;
+        } 
+    }
+
+    &--email,
+    &--country {
+
+        @include respond(tab-land) {
+            width: 100%;
+        }
+    }
+}

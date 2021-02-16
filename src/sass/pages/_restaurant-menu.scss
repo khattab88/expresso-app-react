@@ -1,0 +1,342 @@
+/* Restaurant Menu */
+
+/* header */
+.restaurant-menu-page__header {
+    background: url(../img/restaurant-cover-2.jpg);
+    background-size: cover;
+    background-position: center;
+    
+    height: 45rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    @include respond(tab-land) {
+        padding: 0 3rem;
+        justify-content: space-around;
+    }
+}
+
+.restaurant-info-box {
+    color: $color-white;
+    width: 100%;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+
+    @include respond(tab-land) {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 20rem;
+        width: 66%;
+    }
+
+    @include respond(desktop) {
+        padding: 0 5rem 0 12rem;
+    }
+
+    &__head {
+
+        @include respond(tab-land) {
+            align-self: flex-end;
+        }
+
+        &-title {
+            font-size: 3rem;
+            line-height: 3.6rem;
+            text-shadow: 2px 2px 1px rgba($color-black, .2);
+            letter-spacing: .25px;
+            font-weight: 400;
+        }
+        &-desc {
+            font-size: 1.8rem;
+            line-height: 1.5;
+            letter-spacing: .5px;
+        }
+    }
+}
+
+.restaurant-delivery {
+    margin-top: 3rem;
+
+    &__heading {
+        font-family: "Oswald",sans-serif;
+        font-weight: 400;
+        letter-spacing: 1px;
+        font-size: 1.3rem;
+    }
+    &__footer {
+        font-size: 1.4rem;
+        font-family: "Source Sans Pro",sans-serif;
+    }
+}
+
+.change-location {
+    display: flex;
+    justify-content: space-between;
+
+    &__location {
+        margin-top: .5rem;
+        font-weight: 400;
+        font-size: 2rem;
+        letter-spacing: 0.5px;
+        border-top: 1px solid rgba($color-white, .2);
+        border-bottom: 1px solid rgba($color-white, .2);
+        padding: .5rem 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__btn {
+        height: 2.5rem;
+        font-size: 1.2rem;
+        font-weight: 300;
+        color: $color-white;
+        background-color: $color-main;
+        padding: .4rem .7rem .3rem .7rem;
+        border: none;
+        border-radius: 1.5rem;
+        transition: all .2s;
+        letter-spacing: .5px;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $color-font-dark;
+        }
+    }
+}
+
+/* main */
+.restaurant-menu-page__main {
+   
+    @include respond(tab-land) {
+        padding: 0;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+}
+
+/* sidebar */
+.restaurant-sidebar {
+    margin: 2rem 0 2rem 0;
+    color: $color-font-dark;
+
+    @include respond(tab-land) {
+        min-width: 30%;
+        position: relative;
+        top: -20rem;
+    }
+
+    &__show-cart {
+        background-color: #fff;
+        border: 1px solid $color-font-light;
+        border-radius: $border-radius-medium;
+        margin-bottom: 1rem;
+        padding: 2rem 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        box-shadow: $box-shadow-light;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &__show-cart-title {
+        font-size: 1.8rem;
+        letter-spacing: 0.5px;
+        font-size: 2rem;
+        font-weight: 400;
+    }
+    &__show-cart-icon {
+        font-size: 3rem;
+    }
+}
+
+/* menu categories */
+.menu-categories {
+    background-color: $color-white;
+    border: 1px solid $color-font-light;
+    border-radius: $border-radius-medium;
+    margin-top: 1rem;
+    box-shadow: $box-shadow-light;
+
+    &__head {
+        padding: 2rem 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $color-gray-light;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &__title {
+        font-size: 1.8rem;
+        letter-spacing: 0.5px;
+        font-size: 2rem;
+        font-weight: 400;
+    }
+    &__icon--arrow-down {
+        font-size: 3rem;
+    }
+    &__body {
+        display: none;
+
+        &--open { 
+            display: block; 
+        }
+
+        @include respond(tab-land) {
+            display: block;
+        }
+    }
+    &__list {
+        list-style: none;
+        padding: 1.5rem 3.5rem;
+    }
+    &__category-item {
+        font-size: 1.8rem;
+        line-height: 4rem;
+    }
+    &__category-link {
+        display: inline-block;
+        text-decoration: none;
+        color: $color-font-dark;
+        transition: all .2s;
+
+        &:hover,
+        &--selected
+        {
+            font-weight: 400;
+            transform: scale(1.1);
+        }
+    }
+}
+
+/* menu items */
+.menu-items-wrapper {
+    padding: 1.5rem 0;
+    margin-bottom: .5rem;
+
+    @include respond(tab-land) {
+        min-width: 65%;
+        margin-right: 1rem;
+    }
+}
+
+.menu-items-by-category {
+
+    &:not(:first-child) {
+        padding-top: 6rem;
+
+        @include respond(tab) {
+            padding-top: 8rem;
+        }
+    }
+
+    @include respond(tab-land) {
+        width: 94%;
+    }
+
+    &__category-name {
+        color: $color-font-dark;
+        background-color: $color-gray-light;
+        text-align: center;
+        font-size: 2rem;
+        letter-spacing: 1.25px;
+        padding: 1.5rem 0;
+        border-radius: .4rem;
+        font-weight: 400;
+    }
+    &__menu-items-list {
+        margin: 1rem 0;
+
+        display: grid;
+
+        @include respond(tab-land) {
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 2rem;
+        }
+    }
+
+}
+
+.menu-item {
+    min-height: 40rem;
+    margin-bottom: 1rem;
+    border: 1px solid $color-font-light;
+    border-bottom-left-radius: $border-radius-large;
+    border-bottom-right-radius: $border-radius-large;
+    transition: all .2s;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.01);
+        box-shadow: $box-shadow-light;
+    }
+
+    &:hover {
+        &__img {
+            background: linear-gradient(
+                            rgba($color-black, .2), 
+                            rgba($color-black, .2)),
+                        url(../img/photo-1549611016-3a70d82b5040.jpg);
+            background-size: cover;
+        }
+    }
+
+    &__img {
+        min-width: 35rem;
+        min-height: 24.5rem;
+        background-image: url(../img/photo-1549611016-3a70d82b5040.jpg);
+        background-size: cover;
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
+        transition: all .2s;
+
+        @include respond(tab) {
+            height: auto;
+        }
+
+        @include respond(tab-land) {
+            min-width: 24rem;
+        }
+    }
+    &__detail {
+        background-color: $color-font-light;
+        padding: .5rem 1.5rem 2rem 1.5rem;
+        min-height: 16rem;
+        border-bottom-left-radius: .5rem;
+        border-bottom-right-radius: .5rem;
+    }
+    &__detail-box {
+        display: flex;
+        justify-content: space-between;
+        margin: 2rem 0 0 0;
+    }
+    &__name {
+        color: $color-font-dark;
+        max-width: 50%;
+        font-size: 2rem;
+        font-weight: 400;
+    }
+    &__price {
+        color: #fff;
+        background-color: $color-main;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+        font-size: 1.5rem;
+
+        @include respond(tab-land) {
+            padding: 1rem;
+            padding-top: .75rem;
+            height: 3rem;
+        }
+    }
+    &__desc {
+        max-height: 4.4rem;
+        margin: 1.2rem 0 0 0;
+        line-height: 1.9rem;
+        font-size: 1.6rem;
+    }    
+}

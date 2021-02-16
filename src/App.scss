@@ -1,3 +1,52 @@
+// abstrcts
+@import "./sass/abstracts/variables";
+@import "./sass/abstracts/mixins";
+@import "./sass/abstracts/functions";
+
+// vendors
+@import "./sass/vendors/normalize";
+
+// base
+@import "./sass/base/base";
+@import "./sass/base/typography";
+@import "./sass/base/animations";
+@import "./sass/base/utilities";
+
+// layout
+@import "./sass/layout/nav";
+// @import "./sass/layout/header";
+@import "./sass/layout/main";
+// @import "./sass/layout/footer";
+
+// components
+@import "./sass/components/breadcrumb";
+// @import "./sass/components/menu-item-modal";
+@import "./sass/components/cart";
+@import "./sass/components/cart-modal";
+@import "./sass/components/country-dropdown";
+@import "./sass/components/category-dropdown";
+@import "./sass/components/location-selection";
+@import "./sass/components/restaurant-selection";
+@import "./sass/components/location-modal";
+@import "./sass/components/map-modal";
+@import "./sass/components/toast-message";
+@import "./sass/components/tooltip";
+@import "./sass/components/loader"; 
+
+// pages
+@import "./sass/pages/home";
+// @import "./sass/pages/restaurant-list";
+// @import "./sass/pages/restaurant-menu";
+// @import "./sass/pages/login";
+// @import "./sass/pages/sign-up";
+// @import "./sass/pages/contact-us";
+// @import "./sass/pages/checkout";
+
+// themes
+@import "./sass/themes/primary";
+
+
+
 .App {
   text-align: center;
 }
@@ -14,7 +63,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  // background-color: #282c34;
+  background-color: $color-main;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -1,0 +1,62 @@
+/* Breadcrumb */
+
+.breadcrumb {
+    width: 100%;
+    height: 5rem;
+    background: rgba($color-white, 0.1);
+    color: $color-white;
+    position: absolute;
+    top: 4.5rem;
+    left: 0;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    display: flex;
+    align-items: center;
+
+    @include respond(phone-land) {
+        padding-left: 2.5rem;
+    }
+
+    @include respond(tab) {
+        padding-left: 2rem;
+        padding-top: 5.5rem;
+        padding-bottom: 3rem;
+    }
+
+    @include respond(desktop) {
+        height: 8rem;
+        padding-left: 12%;
+        padding-top: 3rem;
+        padding-bottom: 0;
+        color: #fff;
+    }
+
+    &__list {
+        list-style: none;
+        display: flex;
+    }
+
+    &__item {
+        font-size: 1.7rem;
+        padding: .3rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &--back {
+            border: 1px solid $color-font-light;
+            border-radius: .3rem;
+            padding: 0;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: #fff;
+
+        &:hover {
+            border-bottom: 2px solid $color-white;
+        }
+    }
+}
