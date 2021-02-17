@@ -20,7 +20,7 @@
 
 // components
 @import "./sass/components/breadcrumb";
-// @import "./sass/components/menu-item-modal";
+@import "./sass/components/menu-item-modal";
 @import "./sass/components/cart";
 @import "./sass/components/cart-modal";
 @import "./sass/components/country-dropdown";
@@ -35,12 +35,12 @@
 
 // pages
 @import "./sass/pages/home";
-// @import "./sass/pages/restaurant-list";
-// @import "./sass/pages/restaurant-menu";
-// @import "./sass/pages/login";
-// @import "./sass/pages/sign-up";
-// @import "./sass/pages/contact-us";
-// @import "./sass/pages/checkout";
+@import "./sass/pages/restaurant-list";
+@import "./sass/pages/restaurant-menu";
+@import "./sass/pages/login";
+@import "./sass/pages/sign-up";
+@import "./sass/pages/contact-us";
+@import "./sass/pages/checkout";
 
 // themes
 @import "./sass/themes/primary";

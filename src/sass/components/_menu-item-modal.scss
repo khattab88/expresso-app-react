@@ -251,7 +251,7 @@
     input[type=checkbox]:checked + label::before {
         position: relative;
         content: "";
-        background: url(../img/radio-button-selected.svg) no-repeat center center $color-main;
+        background: url(../../assets/svg/radio-button-selected.svg) no-repeat center center $color-main;
     }
 
     &__price {

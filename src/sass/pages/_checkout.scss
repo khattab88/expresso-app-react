@@ -1,7 +1,7 @@
 /* Checkout */
 
 .checkout-page__header {
-    background: url(../img/restaurant-cover-2.jpg);
+    background: url(../../assets/img/restaurant-cover.jpg);
     background-size: cover;
     background-position: center center;
     height: 25rem;
@@ -168,7 +168,7 @@
             width: 2.5rem;
             height: 2.5rem;
             opacity: 0.8;
-            background: url(../img/shopping-bag.svg) no-repeat center center transparent;
+            background: url(../../assets/svg/shopping-bag.svg) no-repeat center center transparent;
         }
     }
 
@@ -276,7 +276,7 @@
                 bottom: 0;
                 padding: 0 1em;
                 width: 50px;
-                background: url(../img/arrow-down.svg) no-repeat 16px center transparent;
+                background: url(../../assets/svg/arrow-down.svg) no-repeat 16px center transparent;
                 pointer-events: none;
             }
         }
@@ -304,7 +304,7 @@
             width: 2.5rem;
             height: 2.5rem;
             opacity: 0.8;
-            background: url(../img/wallet.svg) no-repeat center center transparent;
+            background: url(../../assets/svg/wallet.svg) no-repeat center center transparent;
         }
     }
 
@@ -380,10 +380,10 @@
             transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
 
             &--cash {
-                background: url(../img/cash_sprite.svg) no-repeat top center transparent;
+                background: url(../../assets/svg/cash_sprite.svg) no-repeat top center transparent;
             }
             &--credit {
-                background: url(../img/credit_sprite.svg) no-repeat top center transparent;
+                background: url(../../assets/svg/credit_sprite.svg) no-repeat top center transparent;
                 
             }
         }
@@ -405,7 +405,7 @@
         &-input:checked + &-label::after {
             content: "";
             position: absolute;
-            background: url(../img/radio-button-selected.svg) no-repeat center center transparent;
+            background: url(../../assets/svg/radio-button-selected.svg) no-repeat center center transparent;
             bottom: 1.5rem;
             left: 50%;
             transform: translateX(-50%);
