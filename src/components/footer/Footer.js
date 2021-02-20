@@ -1,6 +1,14 @@
+import SocialLink from './social-link/SocialLink';
 import AppDownloadButton from './app-download-button/AppDownloadButton';
 
 function Footer() {
+
+    const socialLinks = {
+        facebook: { href: '#', icon: 'fa-facebook-square'},
+        twitter: { href: '#', icon: 'fa-twitter'},
+        instagram: { href: '#', icon: 'fa-instagram'},
+    };
+
     const appDownloads = {
         ios: { title: 'Download App from Apple App Store', href: '#', img: '/assets/img/icons/app-stores/appstore_icon.svg' },
         android: { title: 'Download App from Apple App Store', href: '#', img: '/assets/img/icons/app-stores/playstore_icon.svg' }
@@ -21,17 +29,9 @@ function Footer() {
                 </div>
                 <div className="social-navigation">
                     <ul className="social-navigation__items">
-                        <li className="social-navigation__item">
-                            <a href="#" className="social-link">
-                                <i className="social-link__icon fa fa-facebook-square"></i>
-                            </a>
-                        </li>
-                        <li className="social-navigation__item">
-                            <a href="#" className="social-link"><i className="social-link__icon fa fa-twitter"></i></a>
-                        </li>
-                        <li className="social-navigation__item">
-                            <a href="#" className="social-link"><i className="social-link__icon fa fa-instagram"></i></a>
-                        </li>
+                        <SocialLink href={socialLinks.facebook.href} icon={socialLinks.facebook.icon} />
+                        <SocialLink href={socialLinks.twitter.href} icon={socialLinks.twitter.icon} />
+                        <SocialLink href={socialLinks.instagram.href} icon={socialLinks.instagram.icon} />
                     </ul>
                 </div>
             </section>
