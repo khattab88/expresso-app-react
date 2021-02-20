@@ -1,4 +1,4 @@
-import NavBar from "../../nav/nav-bar/NavBar";
+import Nav from "../../nav/Nav";
 import Header from "../../header/Header";
 import Footer from "../../footer/Footer";
 import CategoriesShowcase from "../../categories-showcase/CategoriesShowcase";
@@ -7,7 +7,7 @@ import RestaurantsShowcase from "../../restaurants-showcase/RestaurantsShowcase"
 function Home() {
     return(
         <div className="Home">
-            <NavBar />
+            <Nav />
             <Header />
             <CategoriesShowcase />
             <RestaurantsShowcase />

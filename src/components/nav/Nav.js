@@ -1,12 +1,12 @@
-import NavToggle from '../nav-toggle/NavToggle';
-import NavLogo from '../nav-logo/NavLogo';
-import NavItem from '../nav-item/NavItem';
-import NavLink from '../nav-link/NavLink';
-import CountryBtn from '../country-button/CountryButton';
-import CartButton from '../cart-button/CartButton';
-import CategoryButton from '../category-button/CategoryButton';
+import NavToggle from './nav-toggle/NavToggle';
+import NavLogo from './nav-logo/NavLogo';
+import NavItem from './nav-item/NavItem';
+import NavLink from './nav-link/NavLink';
+import CountryBtn from './country-button/CountryButton';
+import CartButton from './cart-button/CartButton';
+import CategoryButton from './category-button/CategoryButton';
 
-function NavBar(props) {
+function Nav(props) {
     const navItems = {
         login: { title: "Login", href:"../login/index.html" },
         signUp: { title: "Sign Up", href:"../sign-up/index.html" },
@@ -65,4 +65,4 @@ function NavBar(props) {
     );
 }
 
-export default NavBar;
+export default Nav;
