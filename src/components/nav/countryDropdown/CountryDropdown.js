@@ -1,11 +1,11 @@
 function CountryDropdown(props) {
     const countries = [
-        { name: "Egypt", img: "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/eg.svg"},
-        { name: "Saudia Arabia", img: "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/sa.svg"},
-        { name: "UAE", img: "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/ae.svg"},
-        { name: "Kuwait", img: "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/kw.svg"},
-        { name: "Qatar", img: "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/qa.svg"},
-        { name: "Bahrain", img: "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/bh.svg"},
+        { name: "Egypt", img: "/assets/img/flags/eg.svg"},
+        { name: "Saudia Arabia", img: "/assets/img/flags/sa.svg"},
+        { name: "UAE", img: "/assets/img/flags/ae.svg"},
+        { name: "Kuwait", img: "/assets/img/flags/kw.svg"},
+        { name: "Qatar", img: "/assets/img/flags/qa.svg"},
+        { name: "Bahrain", img: "/assets/img/flags/bh.svg"},
     ];
 
     const countryList = countries.map((country) => 
