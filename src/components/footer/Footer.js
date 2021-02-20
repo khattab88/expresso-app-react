@@ -1,7 +1,16 @@
+import SecondaryNavItem from './secondary-nav-item/SecondaryNavItem';
 import SocialLink from './social-link/SocialLink';
 import AppDownloadButton from './app-download-button/AppDownloadButton';
+import ChangeCountry from './change-country/ChangeCountry';
 
 function Footer() {
+
+    const navItems = {
+        aboutUs: { title: 'About Us', href: '#'},
+        howItWorks: { title: 'How it works', href: '#'},
+        restaurants: { title: 'Restaurants', href: '../restaurant-list/index.html'},
+        contactUs: { title: 'Contact Us', href: '../contact-us/index.html'},
+    };
 
     const socialLinks = {
         facebook: { href: '#', icon: 'fa-facebook-square'},
@@ -21,10 +30,10 @@ function Footer() {
             <section className="footer__links">
                 <div className="secondary-navigation">
                     <ul className="secondary-navigation__items">
-                        <li className="secondary-navigation__item"><a href="#" className="secondary-navigation__link">About Us</a></li>
-                        <li className="secondary-navigation__item"><a href="#" className="secondary-navigation__link">How it works</a></li>
-                        <li className="secondary-navigation__item"><a href="../restaurant-list/index.html" className="secondary-navigation__link">Restaurants</a></li>
-                        <li className="secondary-navigation__item"><a href="../contact-us/index.html" className="secondary-navigation__link">Contact Us</a></li>
+                        <SecondaryNavItem href={navItems.aboutUs.href} title={navItems.aboutUs.title} />
+                        <SecondaryNavItem href={navItems.howItWorks.href} title={navItems.howItWorks.title} />
+                        <SecondaryNavItem href={navItems.restaurants.href} title={navItems.restaurants.title} />
+                        <SecondaryNavItem href={navItems.contactUs.href} title={navItems.contactUs.title} />
                     </ul>
                 </div>
                 <div className="social-navigation">
@@ -38,12 +47,7 @@ function Footer() {
 
             <section className="sub-footer">
                 <div className="change-country">
-                    <button className="change-country__btn">
-                        <img className="change-country__flag"
-                            src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/eg.svg" alt="egypt" height="20" width="30" />
-                        Egypt
-                        <i className="change-country__caret--down fa fa-caret-down"></i>
-                    </button>
+                    <ChangeCountry />
                 </div>
                 <div className="app-download">
                     <AppDownloadButton 

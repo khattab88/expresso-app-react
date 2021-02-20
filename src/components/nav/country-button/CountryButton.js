@@ -1,4 +1,4 @@
-import CountryDropdown from '../country-dropdown/CountryDropdown';
+import CountryDropdown from '../../country-dropdown/CountryDropdown';
 
 function CountryBtn(props) {
     return(
