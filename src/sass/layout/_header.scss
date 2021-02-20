@@ -14,7 +14,7 @@
 
     @include respond(tab) {
         background: linear-gradient(rgba($color-black, .4), rgba($color-black, .4)),
-                                     url(../../assets/img/header-sm.jpg);
+                                     url(../../assets/img/header-lg.jpg);
     }
 
     @include respond(tab-land) {
