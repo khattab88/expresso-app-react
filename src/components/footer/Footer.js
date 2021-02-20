@@ -1,4 +1,11 @@
+import AppDownloadButton from './app-download-button/AppDownloadButton';
+
 function Footer() {
+    const appDownloads = {
+        ios: { title: 'Download App from Apple App Store', href: '#', img: '/assets/img/icons/app-stores/appstore_icon.svg' },
+        android: { title: 'Download App from Apple App Store', href: '#', img: '/assets/img/icons/app-stores/playstore_icon.svg' }
+    };
+
     return(
         <footer className="footer">
             <h2 className="footer__logo">Expresso</h2>
@@ -39,14 +46,14 @@ function Footer() {
                     </button>
                 </div>
                 <div className="app-download">
-                    <a href="#" className="app-download__btn">
-                        <img alt="Download App from Google Playstore" className="app-download__img"
-                            src="https://trycarriage.global.ssl.fastly.net/assets/v2/playstore_icon-b9ca6f7b9f6d29531733dab0586cd3ab.svg" />
-                    </a>
-                    <a href="#" className="app-download__btn">
-                        <img alt="Download App from Apple App Store" className="app-download__img"
-                            src="https://trycarriage.global.ssl.fastly.net/assets/v2/appstore_icon-71d0475940474ee2ba3be457483be01b.svg" />
-                    </a>
+                    <AppDownloadButton 
+                        title={appDownloads.android.title} 
+                        href={appDownloads.android.href} 
+                        img={appDownloads.android.img} />
+                    <AppDownloadButton 
+                        title={appDownloads.ios.title} 
+                        href={appDownloads.ios.href} 
+                        img={appDownloads.ios.img} />
                 </div>
             </section>
     
