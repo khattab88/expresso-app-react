@@ -1,10 +1,10 @@
-import NavToggle from '../navToggle/NavToggle';
-import NavLogo from '../navLogo/NavLogo';
-import NavItem from '../navItem/NavItem';
-import NavLink from '../navLink/NavLink';
-import CountryBtn from '../countryButton/CountryButton';
-import CartButton from '../cartButton/CartButton';
-import CategoryButton from '../categoryButton/CategoryButton';
+import NavToggle from '../nav-toggle/NavToggle';
+import NavLogo from '../nav-logo/NavLogo';
+import NavItem from '../nav-item/NavItem';
+import NavLink from '../nav-link/NavLink';
+import CountryBtn from '../country-button/CountryButton';
+import CartButton from '../cart-button/CartButton';
+import CategoryButton from '../category-button/CategoryButton';
 
 function NavBar(props) {
     const navItems = {

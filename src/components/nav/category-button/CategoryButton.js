@@ -1,4 +1,4 @@
-import CategoryDropdown from '../categoryDropdown/CategoryDropdown';
+import CategoryDropdown from '../category-dropdown/CategoryDropdown';
 
 function CategoryButton(props) {
     return (
