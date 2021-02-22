@@ -1,11 +1,13 @@
 import './App.scss';
 
-import Home from './components/pages/home/Home';
+import HomePage from './components/pages/home-page/HomePage';
+import RestaurantListPage from './components/pages/restaurant-list-page/RestaurantListPage';
 
 function App() {
   return (
     <div className="App container">
-        <Home />
+        {/* <HomePage /> */}
+        <RestaurantListPage />
     </div>
   );
 }
