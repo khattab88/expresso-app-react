@@ -20,7 +20,7 @@
     }
 
     @include respond(tab-land) {
-        background-color: transparent;
+        // background-color: transparent;
     }
 
     @include respond(desktop) {
