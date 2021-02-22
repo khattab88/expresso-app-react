@@ -1,5 +1,6 @@
 import RestaurantShowcaseHeader from './restaurant-showcase-header/RestaurantShowcaseHeader';
 import RestaurantShowcaseCard from './restaurant-showcase-card/RestaurantShowcaseCard';
+import LinkButton from '../buttons/link-button/LinkButton';
 
 function RestaurantShowcase() {
 
@@ -81,7 +82,7 @@ function RestaurantShowcase() {
                 <RestaurantShowcaseCard restaurant={restaurantCards[5]} />
                 <RestaurantShowcaseCard restaurant={restaurantCards[6]} />
 
-                <a className="showcase__show-all" href="../restaurant-list/index.html">Show All Restaurants</a>
+                <LinkButton className="showcase__show-all" href="../restaurant-list/index.html" title="Show All Restaurants" />
             </div>
         </main>
     );
