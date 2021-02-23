@@ -2,6 +2,8 @@ import React from 'react';
 
 import Nav from '../../nav/Nav';
 import RestaurantMenuHeader from '../../headers/restaurant-menu-header/RestaurantMenuHeader';
+import RestaurantMenu from '../../restaurant-menu/RestaurantMenu';
+import Footer from '../../footer/Footer';
 
 class RestaurantMenuPage extends React.Component {
     constructor(props) {
@@ -25,6 +27,8 @@ class RestaurantMenuPage extends React.Component {
             <div className="container restaurant-menu-page" restaurant={restaurant}>
                 <Nav />
                 <RestaurantMenuHeader restaurant={restaurant} />
+                <RestaurantMenu />
+                <Footer />
             </div>
         );
     }
