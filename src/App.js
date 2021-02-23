@@ -5,6 +5,7 @@ import RestaurantListPage from './components/pages/restaurant-list-page/Restaura
 import RestaurantMenuPage from './components/pages/restaurant-menu-page/RestaurantMenuPage';
 import LoginPage from './components/pages/login-page/LoginPage';
 import SignupPage from './components/pages/signup-page/SignupPage';
+import ContactUsPage from './components/pages/contact-us-page/ContactUsPage';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         {/* <RestaurantListPage /> */}
         {/* <RestaurantMenuPage /> */}
         {/* <LoginPage /> */}
-        <SignupPage />
+        {/* <SignupPage /> */}
+        <ContactUsPage />
     </div>
   );
 }
