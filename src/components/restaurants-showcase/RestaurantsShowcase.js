@@ -1,6 +1,6 @@
 import RestaurantShowcaseHeader from './restaurant-showcase-header/RestaurantShowcaseHeader';
 import RestaurantShowcaseCard from './restaurant-showcase-card/RestaurantShowcaseCard';
-import LinkButton from '../buttons/link-button/LinkButton';
+import LinkButton from '../shared/buttons/link-button/LinkButton';
 
 function RestaurantShowcase() {
 
