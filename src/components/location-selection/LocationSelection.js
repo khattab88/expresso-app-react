@@ -1,7 +1,6 @@
 import React from 'react';
 
-import CityItem from './city-item/CityItem';
-import AreaItem from './area-item/AreaItem';
+import LocationList from './location-list/LocationList';
 
 class LocationSelection extends React.Component {
     constructor(props) {
@@ -14,6 +13,7 @@ class LocationSelection extends React.Component {
 
         this.toggle = this.toggle.bind(this);
         this.select = this.select.bind(this);
+        this.search = this.search.bind(this);
 
         this.cities = [
             {
@@ -60,38 +60,22 @@ class LocationSelection extends React.Component {
         this.toggle();
     }
 
+    search(e) {
+        const value = e.target.value;
+    }
+
     render() {
-        const cityList = this.cities.map((city) => {
-            const areaList = city.areas.map((area) =>
-                <AreaItem area={area} key={area.id} onSelect={this.select} />
-            );
-
-            return (
-                <CityItem city={city} key={city.id}>
-                    {areaList}
-                </CityItem>
-            );
-        });
-
-        // const selected = this.cities[0].areas[0];
-
-        const btnClassName = this.state.isOpen ?"location-selection__btn location-selection__btn--open" :"location-selection__btn";
-        const boxClassName = this.state.isOpen ?"location-selection__box location-selection__box--open" :"location-selection__box";
+        const className = this.state.isOpen ?"location-selection__btn location-selection__btn--open" :"location-selection__btn";
 
         return (
             <div className="location-selection">
-                <button className={btnClassName} onClick={this.toggle}>
+                <button className={className} onClick={this.toggle}>
                     <i className="location-selection__icon-location material-icons-outlined">location_on</i>
                     <p className="location-selection__value" data-selected={this.state.selected.id}>{this.state.selected.name}</p>
                     <i className="location-selection__icon-caret location-selection__icon-caret--down material-icons">keyboard_arrow_down</i>
                     <i className="location-selection__icon-caret location-selection__icon-caret--up material-icons">keyboard_arrow_up</i>
                 </button>
-                <div className={boxClassName}>
-                    <input type="text" className="location-selection__input" />
-                    <ul className="location-selection__city-list">
-                        {cityList}
-                    </ul>
-                </div>
+                <LocationList isOpen={this.state.isOpen} cities={this.cities} onSelect={this.select} />
             </div>
         );
     }
