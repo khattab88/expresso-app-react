@@ -15,7 +15,17 @@ class CountryBtn extends React.Component {
         this.toggleNavCountry = this.toggleNavCountry.bind(this);
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        console.log("componentDidMount");
+    }
+
+    componentDidUpdate() {
+        console.log("componentDidUpdate");
+    }
+
+    componentWillUnmount() {
+        console.log("componentWillUnmount");
+    }
 
     toggleNavCountry(e) {
         this.setState({
@@ -24,6 +34,8 @@ class CountryBtn extends React.Component {
     }
 
     render() {
+        console.log("render");
+
         let className = this.state.isOpen ?"country-btn country-btn--open" :"country-btn";
 
         return(
