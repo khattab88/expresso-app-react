@@ -23,6 +23,7 @@ RestaurantList:
     - filterByOffers
 
 RestaurantMenu:
-    - toggleLocationModal  [DONE]
     - toggleMenuCategories [DONE]
+    - toggleLocationModal  [DONE]
+    - toggleMenuItemModal  [DONE]
     - toggleCartModal      [DONE]
