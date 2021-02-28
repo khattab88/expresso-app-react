@@ -11,7 +11,7 @@ class RestaurantMenu extends React.Component {
     render() {
         return (
             <main className="main restaurant-menu-page__main">
-                <MenuSidebar />
+                <MenuSidebar toggleCartModal={this.props.toggleCartModal} />
 
                 <List />
             </main>

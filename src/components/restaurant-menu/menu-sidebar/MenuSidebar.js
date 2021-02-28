@@ -10,7 +10,7 @@ class MenuSidebar extends React.Component {
     render() {
         return (
             <aside className="restaurant-sidebar">
-                <section className="restaurant-sidebar__show-cart">
+                <section className="restaurant-sidebar__show-cart" onClick={this.props.toggleCartModal}>
                     <h3 className="restaurant-sidebar__show-cart-title">Your Order</h3>
                     <i className="restaurant-sidebar__show-cart-icon material-icons">shopping_cart</i>
                 </section>

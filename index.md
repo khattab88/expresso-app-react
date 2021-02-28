@@ -25,5 +25,4 @@ RestaurantList:
 RestaurantMenu:
     - toggleLocationModal  [DONE]
     - toggleMenuCategories [DONE]
-    - openCartModal
-    - closeCartModal
+    - toggleCartModal      [DONE]

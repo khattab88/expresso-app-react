@@ -15,15 +15,17 @@ class RestaurantMenuPage extends React.Component {
 
         this.state = {
             isLocationModalOpen: false,
+            isCartModalOpen: false,
         };
 
         this.toggleLocationModal = this.toggleLocationModal.bind(this);
+        this.toggleCartModal = this.toggleCartModal.bind(this);
 
         this.restaurant = {
             id: "1", 
             name: "Pizza Hut",
             slogan: "I like it",
-            image: "web_cover_Mcd.png",
+            image: "rest-00.jpg",
             deliveryTime: 35,
             area: {
                 id: "1",
@@ -38,17 +40,25 @@ class RestaurantMenuPage extends React.Component {
         })
     }
 
+    toggleCartModal(e) {
+        console.log(e.target);
+        
+        this.setState({
+            isCartModalOpen: !this.state.isCartModalOpen
+        })
+    }
+
     render() {
         return (
             <div className="container restaurant-menu-page">
                 <Nav />
                 <RestaurantMenuHeader restaurant={this.restaurant} toggleLocationModal={this.toggleLocationModal} />
-                <RestaurantMenu restaurant={this.restaurant} />
+                <RestaurantMenu restaurant={this.restaurant} toggleCartModal={this.toggleCartModal} />
                 <Footer />
 
                 <LocationModal isOpen={this.state.isLocationModalOpen} toggleLocationModal={this.toggleLocationModal} />
                 <MenuItemModal />
-                <CartModal />
+                <CartModal isOpen={this.state.isCartModalOpen} toggleCartModal={this.toggleCartModal} />
             </div>
         );
     }

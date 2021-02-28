@@ -62,7 +62,7 @@ class RestaurantList extends React.Component {
                 slogan: "Finger lickin",
                 areaId: "1",
                 deliveryTime: 35,
-                img: "url(/assets/img/restaurants/1900x1427.jpg)",
+                img: "url(/assets/img/restaurants/rest-00.jpg)",
                 tags: [
                     { id: "1", name: "Offers" },
                     { id: "2", name: "Fast Food" },
