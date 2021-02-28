@@ -41,8 +41,6 @@ class RestaurantMenuPage extends React.Component {
     }
 
     toggleCartModal(e) {
-        console.log(e.target);
-        
         this.setState({
             isCartModalOpen: !this.state.isCartModalOpen
         })
