@@ -55,7 +55,7 @@ class List extends React.Component {
     render() {
 
         const categoryList = this.menu.categories.map((category) => 
-            <CategoryItem category={category} key={category.id} />
+            <CategoryItem category={category} key={category.id} toggleMenuItemModal={this.props.toggleMenuItemModal} />
         );
 
         return (

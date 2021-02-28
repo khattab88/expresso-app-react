@@ -13,7 +13,7 @@ class RestaurantMenu extends React.Component {
             <main className="main restaurant-menu-page__main">
                 <MenuSidebar toggleCartModal={this.props.toggleCartModal} />
 
-                <List />
+                <List toggleMenuItemModal={this.props.toggleMenuItemModal} />
             </main>
         );
     }

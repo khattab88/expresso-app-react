@@ -15,10 +15,12 @@ class RestaurantMenuPage extends React.Component {
 
         this.state = {
             isLocationModalOpen: false,
+            isMenuItemModalOpen: false,
             isCartModalOpen: false,
         };
 
         this.toggleLocationModal = this.toggleLocationModal.bind(this);
+        this.toggleMenuItemModal = this.toggleMenuItemModal.bind(this);
         this.toggleCartModal = this.toggleCartModal.bind(this);
 
         this.restaurant = {
@@ -34,10 +36,24 @@ class RestaurantMenuPage extends React.Component {
         };
     }
 
+    componentDidMount() {
+        console.log(this.state.isMenuItemModalOpen);
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.isMenuItemModalOpen);
+    }
+
     toggleLocationModal(e) {
         this.setState({
             isLocationModalOpen: !this.state.isLocationModalOpen
         })
+    }
+
+    toggleMenuItemModal(e) {
+        this.setState({
+            isMenuItemModalOpen: !this.state.isMenuItemModalOpen
+        });
     }
 
     toggleCartModal(e) {
@@ -51,11 +67,11 @@ class RestaurantMenuPage extends React.Component {
             <div className="container restaurant-menu-page">
                 <Nav />
                 <RestaurantMenuHeader restaurant={this.restaurant} toggleLocationModal={this.toggleLocationModal} />
-                <RestaurantMenu restaurant={this.restaurant} toggleCartModal={this.toggleCartModal} />
+                <RestaurantMenu restaurant={this.restaurant} toggleMenuItemModal={this.toggleMenuItemModal} toggleCartModal={this.toggleCartModal} />
                 <Footer />
 
                 <LocationModal isOpen={this.state.isLocationModalOpen} toggleLocationModal={this.toggleLocationModal} />
-                <MenuItemModal />
+                <MenuItemModal isOpen={this.state.isMenuItemModalOpen} toggleMenuItemModal={this.toggleMenuItemModal} />
                 <CartModal isOpen={this.state.isCartModalOpen} toggleCartModal={this.toggleCartModal} />
             </div>
         );

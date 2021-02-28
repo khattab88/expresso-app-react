@@ -7,7 +7,7 @@ class MenuItem extends React.Component {
 
     render() {
         return (
-            <article className="menu-item" id={this.props.item.id}>
+            <article className="menu-item" id={this.props.item.id} onClick={this.props.toggleMenuItemModal}>
                 <div className="menu-item__img" style={this.props.item.img}></div>
                 <div className="menu-item__detail">
                     <div className="menu-item__detail-box">

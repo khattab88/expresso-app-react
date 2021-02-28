@@ -59,7 +59,7 @@ class Cart extends React.Component {
 
     renderCartItems() {
         return this.state.cartItems.map((item) => 
-            <CartItem item={item} />
+            <CartItem item={item} key={item.id}/>
         );
     }
 
