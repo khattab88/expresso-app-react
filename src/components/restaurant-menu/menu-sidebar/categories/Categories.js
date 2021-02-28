@@ -3,18 +3,30 @@ import React from 'react';
 class Categories extends React.Component {
     constructor(props) {
         super(props);
-    }
 
-    render() {
-        const categories = [
+        this.state = {
+            isOpen: false
+        };
+
+        this.toggleMenuCategories = this.toggleMenuCategories.bind(this);
+
+        this.categories = [
             { id: "1", name: "Sandwiches" },
             { id: "2", name: "Sides" },
             { id: "3", name: "Salads" },
             { id: "4", name: "Specialities" },
             { id: "5", name: "Beverages" },
         ];
+    }
 
-        const categoriesList = categories.map((category) =>
+    toggleMenuCategories(e) {
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+    }
+
+    render() {
+        const categoriesList = this.categories.map((category) =>
             <li className="menu-categories__category-item" id={category.id} key={category.id} >
                 <a href="#category-1" className="menu-categories__category-link">{category.name}</a>
             </li>
@@ -22,11 +34,11 @@ class Categories extends React.Component {
 
         return (
             <section className="menu-categories">
-                <div className="menu-categories__head">
+                <div className="menu-categories__head" onClick={this.toggleMenuCategories}>
                     <h3 className="menu-categories__title">What's on the Menu</h3>
                     <i className="menu-categories__icon--arrow-down material-icons">keyboard_arrow_down</i>
                 </div>
-                <div className="menu-categories__body">
+                <div className={`${this.state.isOpen ?'menu-categories__body menu-categories__body--open' :'menu-categories__body'}`}>
                     <ul className="menu-categories__list">
                         {categoriesList}
                     </ul>

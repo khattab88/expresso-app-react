@@ -1,8 +1,8 @@
 Nav:
     - toggleMobileNav
+    - toggleCountryNav  [DONE]
+    - toggleCategoryNav [DONE]
     - scroll
-    - toggleCountryNav   [DONE]
-    - toggleCategoryNav   [DONE]
 
 LocationSelection:
     - toggle [DONE]
@@ -24,6 +24,6 @@ RestaurantList:
 
 RestaurantMenu:
     - toggleLocationModal  [DONE]
-    - toggleMenuCategories
+    - toggleMenuCategories [DONE]
     - openCartModal
     - closeCartModal
