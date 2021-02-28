@@ -19,7 +19,7 @@ class List extends React.Component {
 
                 <Loader isLoading={this.props.isLoading} />
 
-                {this.props.restaurants.length == 0 &&  
+                {(this.props.restaurants.length == 0 && !this.props.isLoading) &&  
                     <EmptyList />
                 }
 

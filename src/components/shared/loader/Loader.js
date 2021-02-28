@@ -13,7 +13,7 @@ class Loader extends React.Component {
         const className = this.props.isLoading ?"loader" :"loader loader--hidden";
 
         return(
-            <img src="../assets/img/loader-grid.svg" className={className} />
+            <img src="/assets/img/loader-grid.svg" className={className} />
         );
     }
 }

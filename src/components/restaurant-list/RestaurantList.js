@@ -8,11 +8,42 @@ class RestaurantList extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            isLoading: false
-        };
+        this.changeGridLayout = this.changeGridLayout.bind(this);
 
-        this.restaurants = [
+        this.state = {
+            isLoading: true,
+            gridLayout: "three",
+            restaurants: []
+        };
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+
+            this.setState({
+                isLoading: false,
+                restaurants: this.getRestaurants()
+            });
+
+        }, 3000);
+    }
+
+    changeGridLayout(e) {
+        // console.log(e.target);
+
+        e.preventDefault();
+
+        const gridBtn = e.target.parentElement;
+        const gridCols = gridBtn.dataset["gridCols"];
+
+        console.log(gridCols);
+
+    }
+
+    getRestaurants() {
+        // return [];
+
+        return [
             {
                 id: "1",
                 name: "McDonald's",
@@ -21,8 +52,8 @@ class RestaurantList extends React.Component {
                 deliveryTime: 30,
                 img: "url(/assets/img/restaurants/web_cover_Mcd.png)",
                 tags: [
-                    { id: "1", name: "Offers"},
-                    { id: "2", name: "Fast Food"}
+                    { id: "1", name: "Offers" },
+                    { id: "2", name: "Fast Food" }
                 ]
             },
             {
@@ -33,13 +64,12 @@ class RestaurantList extends React.Component {
                 deliveryTime: 35,
                 img: "url(/assets/img/restaurants/1900x1427.jpg)",
                 tags: [
-                    { id: "1", name: "Offers"},
-                    { id: "2", name: "Fast Food"},
-                    { id: "3", name: "American"}
+                    { id: "1", name: "Offers" },
+                    { id: "2", name: "Fast Food" },
+                    { id: "3", name: "American" }
                 ]
             }
         ];
-    
     }
 
     render() {
@@ -48,9 +78,9 @@ class RestaurantList extends React.Component {
 
                 <Breadcrumb />
 
-                <Filters />
+                <Filters gridLayout={this.state.gridLayout} onChangeLayout={this.changeGridLayout} />
 
-                <List restaurants={this.restaurants} isLoading={this.state.isLoading} />
+                <List restaurants={this.state.restaurants} isLoading={this.state.isLoading} />
 
             </main>
         );
