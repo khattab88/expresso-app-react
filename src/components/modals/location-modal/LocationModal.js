@@ -1,10 +1,11 @@
 function LocationModal(props) {
+
     return (
-        <div className="location-modal">
+        <div className={`${props.isOpen ?'location-modal location-modal--open' :'location-modal'}`}>
             <div className="location-modal__content">
                 <div className="location-modal__header">
                     <h3 className="location-modal__title">Change Location</h3>
-                    <p className="location-modal__close">
+                    <p className="location-modal__close" onClick={props.toggleLocationModal}>
                         <span className="location-modal__close-icon material-icons">clear</span>
                     </p>
                 </div>

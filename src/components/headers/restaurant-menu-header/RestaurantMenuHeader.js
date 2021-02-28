@@ -1,16 +1,25 @@
+import React from 'react';
+
 import Breadcrumb from './breadcrumb/Breadcrumb';
 import RestaurantInfo from './restaurant-info/RestaurantInfo';
 
-function RestaurantMenuHeader(props) {
-    return(
-        <header className="header restaurant-menu-page__header" style={{ backgroundImage: "url(/assets/img/restaurants/web_cover_Mcd.png)" }}>
+class RestaurantMenuHeader extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-            <Breadcrumb restaurantName={props.restaurant.name} />
-
-            <RestaurantInfo restaurant={props.restaurant} />
-
-        </header>
-    );
+    render() {
+        return(
+            <header className="header restaurant-menu-page__header" 
+                    style={{ backgroundImage: `url(/assets/img/restaurants/${this.props.restaurant.image})` }}>
+    
+                <Breadcrumb restaurantName={this.props.restaurant.name} />
+    
+                <RestaurantInfo restaurant={this.props.restaurant} toggleLocationModal={this.props.toggleLocationModal} />
+    
+            </header>
+        );
+    }
 }
 
 export default RestaurantMenuHeader;

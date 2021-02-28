@@ -21,3 +21,9 @@ RestaurantList:
     - changeTags
     - clearTags
     - filterByOffers
+
+RestaurantMenu:
+    - toggleLocationModal  [DONE]
+    - toggleMenuCategories
+    - openCartModal
+    - closeCartModal
