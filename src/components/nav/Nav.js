@@ -12,6 +12,12 @@ class Nav extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            isMobileNavOpen: false,
+        };
+
+        this.toggleMobileNav = this.toggleMobileNav.bind(this);
+
         this.navItems = {
             login: { title: "Login", href:"../login/index.html" },
             signUp: { title: "Sign Up", href:"../sign-up/index.html" },
@@ -23,7 +29,12 @@ class Nav extends React.Component {
         };
     }
 
-    componentDidMount() {    
+    componentDidMount() {}
+
+    toggleMobileNav(e) {
+        this.setState({
+            isMobileNavOpen: !this.state.isMobileNavOpen
+        });
     }
 
     render() {
@@ -32,7 +43,7 @@ class Nav extends React.Component {
                 <NavLogo />
     
                 <div className="navigation">
-                    <ul className="navigation__items">
+                    <ul className={`${this.state.isMobileNavOpen ?'navigation__items navigation__items--mobile-open' :'navigation__items'}`}>
                         <NavItem>
                             <NavLink href={this.navItems.login.href}>
                                 {this.navItems.login.title}
@@ -70,7 +81,7 @@ class Nav extends React.Component {
                     </ul>
                 </div>
     
-                <NavToggle />
+                <NavToggle toggleMobileNav={this.toggleMobileNav} />
             </nav>
         );
     }

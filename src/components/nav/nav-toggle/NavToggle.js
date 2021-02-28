@@ -11,7 +11,7 @@ class NavToggle extends React.Component {
     
     render() {
         return(
-            <div className="navbar__toggle">
+            <div className="navbar__toggle" onClick={this.props.toggleMobileNav}>
                     <span className="navbar__toggle-icon fa fa-align-justify"></span>
             </div>
         );

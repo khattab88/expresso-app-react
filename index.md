@@ -1,5 +1,5 @@
 Nav:
-    - toggleMobileNav
+    - toggleMobileNav   [DONE]
     - toggleCountryNav  [DONE]
     - toggleCategoryNav [DONE]
     - scroll
