@@ -21,8 +21,8 @@ class App extends React.Component {
       <div className="App container">
           {/* <HomePage /> */}
           {/* <RestaurantListPage /> */}
-          <RestaurantMenuPage />
-          {/* <LoginPage /> */}
+          {/* <RestaurantMenuPage /> */}
+          <LoginPage />
           {/* <SignupPage /> */}
           {/* <ContactUsPage /> */}
           {/* <CheckoutPage /> */}

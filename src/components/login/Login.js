@@ -3,6 +3,37 @@ import React from 'react';
 class Login extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            email: '',
+            password: '',
+            rememberMe: false
+        };
+
+        this.onEmailChange = this.onEmailChange.bind(this);
+        this.onPasswordChange = this.onPasswordChange.bind(this);
+        this.onRememberMeChange = this.onRememberMeChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onEmailChange(e) {
+        this.setState({ email: e.target.value });
+    }
+
+    onPasswordChange(e) {
+        this.setState({ password: e.target.value });
+    }
+
+    onRememberMeChange(e) {
+        this.setState({ rememberMe: e.target.checked });
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        console.log(`Email:${this.state.email}`);
+        console.log(`Password:${this.state.password}`);
+        console.log(`Remember Me:${this.state.rememberMe}`);
     }
 
     render() {
@@ -14,22 +45,24 @@ class Login extends React.Component {
                     <div className="login login-page__login">
                         <div className="login__box">
                             <h3 className="login_heading">Login</h3>
-                            <form className="login__form" action="#">
+
+                            <form className="login__form" onSubmit={this.onSubmit}>
                                 <div className="form-group">
-                                    <input className="form-group__input-text" type="text" name="email" id="email" required="" placeholder="Email" />
+                                    <input className="form-group__input-text" type="text" name="email" id="email" required="" placeholder="Email" required value={this.state.email} onChange={this.onEmailChange} />
                                 </div>
                                 <div className="form-group">
-                                    <input className="form-group__input-text" type="text" name="password" id="password" required="" placeholder="Password" />
+                                    <input className="form-group__input-text" type="password" name="password" id="password" required="" placeholder="Password" required value={this.state.password} onChange={this.onPasswordChange} />
                                 </div>
                                 <div className="login__remember-me">
-                                    <input className="form-group__input-checkbox" type="checkbox" name="remember-me" id="remember-me" />
+                                    <input className="form-group__input-checkbox" type="checkbox" name="remember-me" id="remember-me" checked={this.state.rememberMe} onChange={this.onRememberMeChange} />
                                     <label className="login__remember-me-label" htmlFor="remember-me">Remember me</label>
                                 </div>
                                 <div className="login__submit">
-                                    <button className="login__sumbit-btn">Login</button>
+                                    <button type="submit" className="login__sumbit-btn">Login</button>
                                     <p className="login__forget-password">Forgot your password?</p>
                                 </div>
                             </form>
+
                         </div>
                     </div>
 
