@@ -24,8 +24,8 @@ class App extends React.Component {
           {/* <RestaurantMenuPage /> */}
           {/* <LoginPage /> */}
           {/* <SignupPage /> */}
-          <ContactUsPage />
-          {/* <CheckoutPage /> */}
+          {/* <ContactUsPage /> */}
+          <CheckoutPage />
       </div>
     );
   }

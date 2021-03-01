@@ -4,11 +4,22 @@
     background: url(../../assets/img/restaurant-cover.jpg);
     background-size: cover;
     background-position: center center;
-    height: 25rem;
+    height: 30rem;
 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
+    padding-left: 2%;
+
+    .breadcrumb {
+        padding-left: 3.5rem;
+
+        @include respond(desktop) {
+            padding-top: 12.5rem;
+            padding-left: 18.25rem;
+        }
+    }
 }
 
 .restaurant-info {
@@ -26,7 +37,7 @@
     }
 
     @include respond(tab-land) {
-        padding-left: 1rem;
+        padding-left: 15rem;
     }
 
     &__name {
@@ -431,7 +442,7 @@
 
     @include respond(tab-land) {
         width: 45%;
-        height: 62rem;
+        height: 66rem;
         transform: translateY(-11.5rem);
         background-color: $color-white;
     }
@@ -442,7 +453,7 @@
     margin: 3rem 0;
 
     @include respond(tab-land) {
-        margin: 8rem 0;
+        padding: 10rem 0 10rem 0;
     }
 
     &__text {
