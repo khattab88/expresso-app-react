@@ -5,8 +5,8 @@ class UserInfo extends React.Component {
         super(props);
 
         this.state = {
-            name: this.props.user.name,
-            email: this.props.user.email
+            name: this.props.userInfo.name,
+            email: this.props.userInfo.email
         };
 
         this.onInputChange = this.onInputChange.bind(this);
@@ -19,16 +19,21 @@ class UserInfo extends React.Component {
         const name = input.name;
         const value = input.value;
 
-        // console.log(`{ ${name}: ${value} }`);
-
         this.setState({ [name]: value });
+
+        this.props.updateUserInfo({
+            name: this.state.name,
+            email: this.state.email
+        });
     }
 
     onSubmit(e) {
         e.preventDefault();
 
-        console.log(`Name: ${this.state.name}`);
-        console.log(`Email: ${this.state.email}`);
+        this.props.updateUserInfo({
+            name: this.state.name,
+            email: this.state.email
+        });
     }
 
     render() {
@@ -47,7 +52,7 @@ class UserInfo extends React.Component {
                             <label className="form-group__label" htmlFor="customer-email">Email</label>
                         </div>
 
-                        {/* <button className="">Submit</button> */}
+                        {/* <button>Submit</button> */}
                     </div>
                 </form>
             </section>

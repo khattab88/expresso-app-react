@@ -1,6 +1,9 @@
 import React from 'react';
 
-import CustomerInfo from './customer-info/CustomerInfo';
+import UserInfo from './customer-info/user-info/UserInfo';
+import DeliveryInfo from './customer-info/delivery-info/DeliveryInfo';
+import PaymentInfo from './customer-info/payment-info/PaymentInfo';
+
 import Cart from '../cart/Cart';
 import Disclaimer from './disclaimer/Disclaimer';
 
@@ -33,6 +36,20 @@ class Checkout extends React.Component {
                 }
             }
         };
+
+        this.updateUserInfo = this.updateUserInfo.bind(this);
+    }
+
+    updateUserInfo(updated) {
+        this.setState({
+            customer: {
+                user: updated
+            }
+        })
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.customer.user);
     }
 
     render() {
@@ -40,7 +57,13 @@ class Checkout extends React.Component {
             <main className="main checkout-page__main">
 
                 <div className="checkout">
-                    <CustomerInfo customer={this.state.customer} />
+                    <section className="customer-info">
+                        <UserInfo userInfo={this.state.customer.user} updateUserInfo={this.updateUserInfo} />
+
+                        <DeliveryInfo delivery={this.state.customer.delivery} />
+
+                        <PaymentInfo payment={this.state.customer.payment} />
+                    </section>
 
                     <section className="checkout-info-box order-info">
                         <Cart />
