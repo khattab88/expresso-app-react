@@ -48,6 +48,7 @@
 .sign-in__btn,
 .register__btn {
     @include btn;
+    width: 100%;
 }
 
 .sign-in__link {
