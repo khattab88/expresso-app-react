@@ -5,17 +5,17 @@ class DeliveryInfo extends React.Component {
         super(props);
 
         this.state = {
-            address: this.props.delivery.address,
-            street: this.props.delivery.street,
-            area: this.props.delivery.area,
-            city: this.props.delivery.city,
-            building: this.props.delivery.building,
-            apartment: this.props.delivery.apartment,
-            floor: this.props.delivery.floor,
-            instructions: this.props.delivery.instructions,
-            mobile: this.props.delivery.mobile,
-            location: this.props.delivery.location,
-            time: this.props.delivery.time,
+            address: this.props.deliveryInfo.address,
+            street: this.props.deliveryInfo.street,
+            area: this.props.deliveryInfo.area,
+            city: this.props.deliveryInfo.city,
+            building: this.props.deliveryInfo.building,
+            apartment: this.props.deliveryInfo.apartment,
+            floor: this.props.deliveryInfo.floor,
+            instructions: this.props.deliveryInfo.instructions,
+            mobile: this.props.deliveryInfo.mobile,
+            location: this.props.deliveryInfo.location,
+            time: this.props.deliveryInfo.time,
         };
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -25,8 +25,7 @@ class DeliveryInfo extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        console.log(`Address: ${this.state.address}`);
-        console.log(`Street: ${this.state.street}`);
+        this.props.updateDeliveryInfo(this.state);
     }
 
     onInputChange(e) {
@@ -36,6 +35,8 @@ class DeliveryInfo extends React.Component {
         const value = input.value;
 
         this.setState({ [name]: value });
+
+        // this.props.updateDeliveryInfo(this.state);
     }
 
     render() {

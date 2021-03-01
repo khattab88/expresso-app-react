@@ -5,8 +5,8 @@ class PaymentInfo extends React.Component {
         super(props);
 
         this.state = {
-            method: this.props.payment.method,
-            agreed: this.props.payment.agreed,
+            method: this.props.paymentInfo.method,
+            agreed: this.props.paymentInfo.agreed,
         }
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -16,21 +16,31 @@ class PaymentInfo extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        console.log(`Method: ${this.state.method}`);
-        console.log(`Agreed: ${this.state.agreed}`);
+        //console.log(`Method: ${this.state.method}`);
+        //console.log(`Agreed: ${this.state.agreed}`);
+
+        this.props.updatePaymentInfo(this.state);
     }
 
     onInputChange(e) {
         const input = e.target;
-
         const name = input.name;
-        let value = input.value;
-        if(input.type === "radio") value = input.value;
-        if(input.type === "checkbox") value = input.checked;
+        let value = null;
 
-        // console.log(`${[name]}: ${value}`);
+        if(name === "agreed") { 
+            // console.log(input.checked);
+            value = input.checked; 
+            this.setState({ [name]: value });
+        } 
 
-        this.setState({ [name]: value });
+        if(name == "method") {
+            value = input.value; 
+            this.setState({ [name]: value });
+        }
+
+        // console.log(this.state);
+
+        // this.props.updatePaymentInfo(this.state);
     }
 
     render() {
@@ -42,14 +52,14 @@ class PaymentInfo extends React.Component {
                     <h4 className="payment-info__heading">Payment Methods</h4>
                     <ul className="payment-info__options">
                         <li className="payment-info__option">
-                            <input className="payment-info__option-input" type="radio" name="payment" id="cash" defaultChecked value="cash" onChange={this.onInputChange} />
+                            <input className="payment-info__option-input" type="radio" name="method" id="cash" checked={this.state.method === "cash"} value="cash" onChange={this.onInputChange} />
                             <label className="payment-info__option-label" htmlFor="cash">
                                 <span className="payment-info__option-icon payment-info__option-icon--cash"></span>
                                 <h5 className="payment-info__option-name">Cash on Delivery</h5>
                             </label>
                         </li>
                         <li className="payment-info__option">
-                            <input className="payment-info__option-input" type="radio" name="payment" id="card" value="card" onChange={this.onInputChange} />
+                            <input className="payment-info__option-input" type="radio" name="method" id="card" checked={this.state.method === "card"} value="card" onChange={this.onInputChange} />
                             <label className="payment-info__option-label" htmlFor="card">
                                 <span className="payment-info__option-icon payment-info__option-icon--credit"></span>
                                 <h5 className="payment-info__option-name">Credit Card</h5>

@@ -12,44 +12,50 @@ class Checkout extends React.Component {
         super(props);
 
         this.state = {
-            customer: {
-                user: {
-                    name: '',
-                    email: '',
-                },
-                delivery: {
-                    address: '',
-                    street: '',
-                    area: '',
-                    city: '',
-                    building: '',
-                    apartment: '',
-                    floor: '',
-                    instructions: '',
-                    mobile: '',
-                    location: '',
-                    time: 'Now',
-                },
-                payment: {
-                    method: 'cash',
-                    agreed: false,
-                }
+            user: {
+                name: '',
+                email: '',
+            },
+            delivery: {
+                address: '',
+                street: '',
+                area: '',
+                city: '',
+                building: '',
+                apartment: '',
+                floor: '',
+                instructions: '',
+                mobile: '',
+                location: '',
+                time: 'Now',
+            },
+            payment: {
+                method: 'cash',
+                agreed: false,
             }
         };
 
         this.updateUserInfo = this.updateUserInfo.bind(this);
+        this.updateDeliveryInfo = this.updateDeliveryInfo.bind(this);
+        this.updatePaymentInfo = this.updatePaymentInfo.bind(this);
     }
 
     updateUserInfo(updated) {
-        this.setState({
-            customer: {
-                user: updated
-            }
-        })
+        this.setState({ user: updated });
+    }
+
+    updateDeliveryInfo(updated) {
+        this.setState({ delivery: updated });
+    }
+
+    updatePaymentInfo(updated) {
+        this.setState({ payment: updated });
     }
 
     componentDidUpdate() {
-        console.log(this.state.customer.user);
+        // console.log(this.state.user);
+        // console.log(this.state.delivery);
+        // console.log(this.state.payment);
     }
 
     render() {
@@ -58,11 +64,11 @@ class Checkout extends React.Component {
 
                 <div className="checkout">
                     <section className="customer-info">
-                        <UserInfo userInfo={this.state.customer.user} updateUserInfo={this.updateUserInfo} />
+                        <UserInfo userInfo={this.state.user} updateUserInfo={this.updateUserInfo} />
 
-                        <DeliveryInfo delivery={this.state.customer.delivery} />
+                        <DeliveryInfo deliveryInfo={this.state.delivery} updateDeliveryInfo={this.updateDeliveryInfo} />
 
-                        <PaymentInfo payment={this.state.customer.payment} />
+                        <PaymentInfo paymentInfo={this.state.payment} updatePaymentInfo={this.updatePaymentInfo} />
                     </section>
 
                     <section className="checkout-info-box order-info">
