@@ -37,11 +37,11 @@ class RestaurantMenuPage extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.state.isMenuItemModalOpen);
+        // console.log(this.state.isMenuItemModalOpen);
     }
 
     componentDidUpdate() {
-        console.log(this.state.isMenuItemModalOpen);
+        // console.log(this.state.isMenuItemModalOpen);
     }
 
     toggleLocationModal(e) {
