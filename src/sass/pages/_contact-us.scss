@@ -31,7 +31,8 @@
 
         @include respond(tab-land) {
             height: 9rem;
-            padding-top: 3rem;
+            padding-top: 6rem;
+            padding-bottom: 5rem;
         }
     }
     &__breadcrumb-list {
@@ -46,7 +47,7 @@
 
         @include respond(tab-land) {
             padding: 2rem;
-            padding-left: 12%;
+            padding-left: 3%;
         }
     }
     &__breadcrumb-item {
