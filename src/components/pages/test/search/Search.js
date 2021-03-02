@@ -35,16 +35,15 @@ class Search extends React.Component {
     }
 
     async onSearch() {
-        const items = await this.fetchData(this.state.term);
-
-        this.setState({ items });
+        // const items = await this.fetchData(this.state.term);
+        // this.setState({ items });
     }
 
     render() {
         return (
             <div style={{ border: '1px solid #ccc', width: '30%', margin: '1rem 0 0 2rem' }}>
                 <Input term={this.state.term} onSearch={this.onSearch} onInputChange={this.onInputChange} />
-                <List items={this.state.items} />
+                <List term={this.state.term} items={this.state.items} />
             </div>
         );
     }

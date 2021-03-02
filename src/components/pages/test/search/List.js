@@ -6,13 +6,14 @@ class List extends React.Component {
     }
 
     render() {
-        const numOfItems = this.props.items.length
+        const filterd = this.props.items.filter(item => item.name.includes(this.props.term));
+
         return (
             <div>
                 <ul style={{ listStyle: 'none' }}>
                     {
-                        this.props.items.map((item) =>
-                            <li style={{ fontSize: '2rem' }} key={item.id}>{item.name}</li>)
+                        filterd.map((item) =>
+                            <li style={{ fontSize: '2rem' }} id={item.id} key={item.id}>{item.name}</li>)
                     }
                 </ul>
             </div>
