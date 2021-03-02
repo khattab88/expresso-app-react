@@ -8,12 +8,10 @@ class GridFilter extends React.Component {
     }
 
     render() {
-        console.log(this.props.layout);
-
         return (
             <div className="filter-grid">
-                <GridButton type="three" active={this.props.layout === "three"} onChangeLayout={this.props.onChangeLayout} />
-                <GridButton type="two" active={this.props.layout === "two"} onChangeLayout={this.props.onChangeLayout} />
+                <GridButton type="three" active={this.props.gridLayout === "three"} changeGridLayout={this.props.changeGridLayout} />
+                <GridButton type="two" active={this.props.gridLayout === "two"} changeGridLayout={this.props.changeGridLayout} />
             </div>
         );
     }

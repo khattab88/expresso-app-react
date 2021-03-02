@@ -1,43 +1,46 @@
 import React from 'react';
 
 import Breadcrumb from './breadcrumb/Breadcrumb';
-import Filters from './filters/Filters';
+
+// import Filters from './filters/Filters';
+import DropdownFilter from './filters/dropdown-filter/DropdownFilter';
+import CheckboxFilter from './filters/checkbox-filter/CheckboxFilter';
+import GridFilter from './filters/grid-filter/GridFilter';
+
 import List from './list/List';
 
 class RestaurantList extends React.Component {
     constructor(props) {
         super(props);
 
-        this.changeGridLayout = this.changeGridLayout.bind(this);
-
         this.state = {
             isLoading: true,
+            selectedTags: [],
+            specialOffers: false,
             gridLayout: "three",
-            restaurants: []
         };
+
+        this.getRestaurants = this.getRestaurants.bind(this);
+        this.changeGridLayout = this.changeGridLayout.bind(this);
+        this.checkSpecialOffers = this.checkSpecialOffers.bind(this);
+
+        this.restaurants = [];
     }
 
     componentDidMount() {
         setTimeout(() => {
 
+            this.restaurants = this.getRestaurants();
+
             this.setState({
                 isLoading: false,
-                restaurants: this.getRestaurants()
             });
 
         }, 3000);
     }
 
-    changeGridLayout(e) {
-        // console.log(e.target);
-
-        e.preventDefault();
-
-        const gridBtn = e.target.parentElement;
-        const gridCols = gridBtn.dataset["gridCols"];
-
-        console.log(gridCols);
-
+    componentDidUpdate() {
+        console.log(this.state);
     }
 
     getRestaurants() {
@@ -72,15 +75,33 @@ class RestaurantList extends React.Component {
         ];
     }
 
+    changeGridLayout(layout) {
+        this.setState({
+            gridLayout: layout
+        });
+    }
+
+    checkSpecialOffers(checked) {
+        this.setState({
+            specialOffers: checked
+        });
+    }
+
     render() {
         return (
             <main className="main RestaurantList">
 
                 <Breadcrumb />
 
-                <Filters gridLayout={this.state.gridLayout} onChangeLayout={this.changeGridLayout} />
+                <section className="restaurant-list-filter">
+                    <DropdownFilter />
 
-                <List restaurants={this.state.restaurants} isLoading={this.state.isLoading} />
+                    <CheckboxFilter specialOffers={this.state.specialOffers} checkSpecialOffers={this.checkSpecialOffers} />
+
+                    <GridFilter gridLayout={this.state.gridLayout} changeGridLayout={this.changeGridLayout} />
+                </section>
+
+                <List restaurants={this.restaurants} isLoading={this.state.isLoading} />
 
             </main>
         );
