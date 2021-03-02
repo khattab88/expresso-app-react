@@ -8,6 +8,7 @@ class LocationSelection extends React.Component {
 
         this.state = {
             isOpen: false,
+            searchText: "",
             selected: { id: "0", name: "Select your area"}
         };
 
@@ -47,21 +48,20 @@ class LocationSelection extends React.Component {
         });
     }
 
-    select(e) {
-        const id = e.target.id;
-        const name = e.target.textContent;
-
-        this.setState({
-            selected: {
-                id, name
-            }
-        });
+    select(selected) {
+        this.setState({ selected });
 
         this.toggle();
     }
 
-    search(e) {
-        const value = e.target.value;
+    search(searchText) {
+        this.setState({ searchText });
+    }
+
+    componentDidUpdate() {
+        // console.log(this.state.isOpen);
+        // console.log(this.state.searchText);
+        // console.log(this.state.selected);
     }
 
     render() {
@@ -75,7 +75,7 @@ class LocationSelection extends React.Component {
                     <i className="location-selection__icon-caret location-selection__icon-caret--down material-icons">keyboard_arrow_down</i>
                     <i className="location-selection__icon-caret location-selection__icon-caret--up material-icons">keyboard_arrow_up</i>
                 </button>
-                <LocationList isOpen={this.state.isOpen} cities={this.cities} onSelect={this.select} />
+                <LocationList isOpen={this.state.isOpen} cities={this.cities} select={this.select} searchText={this.state.searchText} search={this.search} />
             </div>
         );
     }
