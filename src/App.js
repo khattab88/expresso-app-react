@@ -9,6 +9,7 @@ import LoginPage from './components/pages/login-page/LoginPage';
 import SignupPage from './components/pages/signup-page/SignupPage';
 import ContactUsPage from './components/pages/contact-us-page/ContactUsPage';
 import CheckoutPage from './components/pages/checkout-page/CheckoutPage';
+import TestPage from './components/pages/test/TestPage';
 
 
 class App extends React.Component {
@@ -20,12 +21,13 @@ class App extends React.Component {
     return (
       <div className="App container">
           {/* <HomePage /> */}
-          <RestaurantListPage />
+          {/* <RestaurantListPage /> */}
           {/* <RestaurantMenuPage /> */}
           {/* <LoginPage /> */}
           {/* <SignupPage /> */}
           {/* <ContactUsPage /> */}
           {/* <CheckoutPage /> */}
+          <TestPage />
       </div>
     );
   }
