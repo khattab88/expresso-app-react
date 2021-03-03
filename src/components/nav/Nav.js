@@ -18,7 +18,7 @@ class Nav extends React.Component {
 
         this.toggleMobileNav = this.toggleMobileNav.bind(this);
 
-        this.navItems = {
+        this.state.navItems = {
             login: { title: "Login", href:"../login/index.html" },
             signUp: { title: "Sign Up", href:"../sign-up/index.html" },
             contactUs: { title: "Contact Us", href:"../contact-us/index.html" },
@@ -45,23 +45,23 @@ class Nav extends React.Component {
                 <div className="navigation">
                     <ul className={`${this.state.isMobileNavOpen ?'navigation__items navigation__items--mobile-open' :'navigation__items'}`}>
                         <NavItem>
-                            <NavLink href={this.navItems.login.href}>
-                                {this.navItems.login.title}
+                            <NavLink href={this.state.navItems.login.href}>
+                                {this.state.navItems.login.title}
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href={this.navItems.signUp.href}>
-                                {this.navItems.signUp.title}
+                            <NavLink href={this.state.navItems.signUp.href}>
+                                {this.state.navItems.signUp.title}
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href={this.navItems.contactUs.href}>
-                                {this.navItems.contactUs.title}
+                            <NavLink href={this.state.navItems.contactUs.href}>
+                                {this.state.navItems.contactUs.title}
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href={this.navItems.lang.href}>
-                                {this.navItems.lang.title}
+                            <NavLink href={this.state.navItems.lang.href}>
+                                {this.state.navItems.lang.title}
                             </NavLink>
                         </NavItem>
                         
@@ -70,7 +70,7 @@ class Nav extends React.Component {
                         </NavItem>
                         
                         <NavItem>
-                            <NavLink href={this.navItems.cart.href}>
+                            <NavLink href={this.state.navItems.cart.href}>
                                 <CartButton />
                             </NavLink>
                         </NavItem>

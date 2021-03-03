@@ -3,32 +3,52 @@ import React from 'react';
 class CategoryDropdown extends React.Component {
     constructor(props) {
         super(props);
+
+        this.renderList = this.renderList.bind(this);
+        this.onSelect = this.onSelect.bind(this);
     }
 
+    onSelect(e) {
+        e.preventDefault();
+
+        const target = e.target.closest(".category-dropdown__item");
+
+        this.props.select({
+            id: target.dataset["id"],
+            name: target.dataset["name"],
+            img: target.dataset["img"],
+        });
+    }
+
+    renderList() {
+        let categoryList = null;
+
+        if (this.props.categories && this.props.categories.length > 0) {
+
+            categoryList = this.props.categories.map((category) =>
+
+                <li className="category-dropdown__item" key={category.name}
+                    data-id={category.id} data-name={category.name} data-img={category.img} onClick={this.onSelect}>
+                    <a href="#" className="category-dropdown__link">
+                        <div className="category-dropdown__img">
+                            <img src={category.img} alt={category.name} />
+                        </div>     
+                        <p className="category-dropdown__text">{category.name}</p> 
+                    </a>
+                </li>
+            );
+
+        }
+
+        return categoryList;
+    }
 
     render() {
-        const categories = [
-            { name: "Groceries", icon: "shopping_basket" },
-            { name: "Flowers", icon: "local_florist" },
-            { name: "Cosmetics", icon: "card_giftcard" },
-            { name: "Supplements", icon: "local_pharmacy" },
-            { name: "Electronics", icon: "touch_app" }
-        ];
-
-        const categoryList = categories.map((category) =>
-            <li className="category-dropdown__item" key={category.name}>
-                <a href="#" className="category-dropdown__link">
-                    <i className="category-dropdown__icon material-icons">{category.icon}</i>
-                    {category.name}
-                </a>
-            </li>
-        );
-
-        const className= this.props.isOpen ?"category-dropdown category-dropdown--open" :"category-dropdown";
+        const className = this.props.isOpen ? "category-dropdown category-dropdown--open" : "category-dropdown";
 
         return (
             <ul className={className}>
-                {categoryList}
+                {this.renderList()}
             </ul>
         );
     }

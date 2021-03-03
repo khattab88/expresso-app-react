@@ -17,7 +17,7 @@
     @include respond(tab) {
         position: absolute;
         background-color: $color-white;
-        top: 5.5rem;
+        top: 5.15rem;
         right: 1.25rem;
         border-radius: $border-radius-small;
         width: 20rem;
@@ -33,9 +33,22 @@
 
     &__item {
         margin-top: 2rem;
+        transition: all .15s;
+
+        &:hover {
+            background-color: #eee;
+
+            .category-dropdown__img {
+                transform: scale(1.2);
+            }
+
+            .category-dropdown__text {
+                transform: scale(1.1);
+            }
+        }
 
         @include respond(tab) {
-            margin-top: 2.5rem;
+            margin-top: 2rem;
 
             &:first-child {
                 margin-top: 1rem;
@@ -79,8 +92,6 @@
         padding: .35rem;
         border-radius: 50%;
 
-        
-
         @include respond(tab) {
             margin-right: 1rem;
             color: $color-white;
@@ -89,5 +100,20 @@
             font-weight: 100;
             padding: .5rem;
         }
+    }
+
+    &__img {
+        background-color: $color-main;
+        border-radius: 50%;
+
+        img {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+    }
+
+    &__text {
+        background-color: $color-white;
+        margin-left: 1.5rem;
     }
 }
