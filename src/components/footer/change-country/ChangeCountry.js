@@ -9,7 +9,7 @@ class ChangeCountry extends React.Component {
         this.state = {
             isOpen: false,
             countries: [],
-            selected: { id:"1", name: "Egypt", img: "/assets/img/flags/eg.svg" }
+            selected: {}
         };
 
         this.toggle = this.toggle.bind(this);
@@ -17,6 +17,8 @@ class ChangeCountry extends React.Component {
     }
 
     componentDidMount() {
+        const callback = () => this.setState({ selected: this.state.countries[0] });
+
         this.setState({
             countries: [
                 { id:"1", name: "Egypt", img: "/assets/img/flags/eg.svg" },
@@ -26,7 +28,7 @@ class ChangeCountry extends React.Component {
                 { id:"5", name: "Qatar", img: "/assets/img/flags/qa.svg" },
                 { id:"6", name: "Bahrain", img: "/assets/img/flags/bh.svg" },
             ],
-        });
+        }, callback);
     }
 
     componentDidUpdate() {
