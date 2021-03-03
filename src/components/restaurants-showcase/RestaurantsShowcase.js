@@ -1,91 +1,96 @@
+import React from 'react';
+
 import RestaurantShowcaseHeader from './restaurant-showcase-header/RestaurantShowcaseHeader';
+import RestaurantShowcaseList from './restaurant-showcase-list/RestaurantShowcaseList';
 import RestaurantShowcaseCard from './restaurant-showcase-card/RestaurantShowcaseCard';
 import LinkButton from '../shared/buttons/link-button/LinkButton';
 
-function RestaurantShowcase() {
+class RestaurantShowcase extends React.Component {
+    constructor(props) {
+        super(props);
 
-    const header = {
-        primary: `2000+`,
-        secondary: "Take your pick from our featured Restaurants. Delivered faster to your door.."
-    };
-
-    const restaurantCards = [
-        {
-            id: "1",
-            name: "Wrap It",
-            desc: "Tasty and fresh food",
-            image: "/assets/img/restaurants/rest-01.jpg",
-            extraClass: "restaurant-card--big",
-            href: "../restaurant-menu/index.html?id=2"
-        },
-        {
-            id: "1",
-            name: "Wrap It",
-            desc: "Tasty and fresh food",
-            image: "../assets/img/restaurants/rest-02.jpg",
-            extraClass: `restaurant-card--1`,
-            href: "../restaurant-menu/index.html?id=2"
-        },
-        {
-            id: "2",
-            name: "Wrap It",
-            desc: "Tasty and fresh food",
-            image: "../assets/img/restaurants/rest-03.jpg",
-            extraClass: `restaurant-card--2`,
-            href: "../restaurant-menu/index.html?id=2"
-        },
-        {
-            id: "3",
-            name: "Wrap It",
-            desc: "Tasty and fresh food",
-            image: "../assets/img/restaurants/rest-04.jpg",
-            extraClass: `restaurant-card--3`,
-            href: "../restaurant-menu/index.html?id=2"
-        },
-        {
-            id: "4",
-            name: "Wrap It",
-            desc: "Tasty and fresh food",
-            image: "../assets/img/restaurants/rest-05.jpg",
-            extraClass: `restaurant-card--4`,
-            href: "../restaurant-menu/index.html?id=2"
-        },
-        {
-            id: "5",
-            name: "Wrap It",
-            desc: "Tasty and fresh food",
-            image: "../assets/img/restaurants/rest-06.jpg",
-            extraClass: `restaurant-card--5`,
-            href: "../restaurant-menu/index.html?id=2"
-        },
-        {
-            id: "6",
-            name: "Wrap It",
-            desc: "Tasty and fresh food",
-            image: "../assets/img/restaurants/rest-07.jpg",
-            extraClass: `restaurant-card--6`,
-            href: "../restaurant-menu/index.html?id=2"
+        this.state = {
+            isLoading: true,
+            restaurants: []
         }
-    ];
+    }
 
-    return(
-        <main className="main">
-            <div className="showcase">
-                <RestaurantShowcaseHeader primaryTitle={header.primary} secondaryTitle={header.secondary} />
+    componentDidMount() {
+        const callback = () => this.setState({ isLoading: false });
 
-                <RestaurantShowcaseCard restaurant={restaurantCards[0]} />
+        this.setState({
+            restaurants: [
+                {
+                    id: '1',
+                    name: 'Wrap Its',
+                    desc: 'Tasty and fresh food',
+                    img: '/assets/img/restaurants/rest-01.jpg'
+                },
+                {
+                    id: '2',
+                    name: 'Wrap Ito',
+                    desc: 'Tasty and fresh food',
+                    img: '/assets/img/restaurants/rest-02.jpg'
+                },
+                {
+                    id: '3',
+                    name: 'Wrap Ita',
+                    desc: 'Tasty and fresh food',
+                    img: '/assets/img/restaurants/rest-03.jpg'
+                },
+                {
+                    id: '4',
+                    name: 'Wrap Ite',
+                    desc: 'Tasty and fresh food',
+                    img: '/assets/img/restaurants/rest-04.jpg'
+                },
+                {
+                    id: '5',
+                    name: 'Wrap Itw',
+                    desc: 'Tasty and fresh food',
+                    img: '/assets/img/restaurants/rest-05.jpg'
+                },
+                {
+                    id: '6',
+                    name: 'Wrap Itu',
+                    desc: 'Tasty and fresh food',
+                    img: '/assets/img/restaurants/rest-06.jpg'
+                },
+                {
+                    id: '7',
+                    name: 'Wrap Iti',
+                    desc: 'Tasty and fresh food',
+                    img: '/assets/img/restaurants/rest-07.jpg'
+                },
+            ]
+        }, callback);
+    }
 
-                <RestaurantShowcaseCard restaurant={restaurantCards[1]} />
-                <RestaurantShowcaseCard restaurant={restaurantCards[2]} />
-                <RestaurantShowcaseCard restaurant={restaurantCards[3]} />
-                <RestaurantShowcaseCard restaurant={restaurantCards[4]} />
-                <RestaurantShowcaseCard restaurant={restaurantCards[5]} />
-                <RestaurantShowcaseCard restaurant={restaurantCards[6]} />
+    render() {
+        const restaurantCards = this.state.restaurants.map((restaurant, index) => {
+            const card = {
+                id: restaurant.id,
+                name: restaurant.name,
+                desc: restaurant.desc,
+                image: restaurant.img,
+                extraClass: (index === 0) ? "restaurant-card--big" : `restaurant-card--${index}`
+            }
 
-                <LinkButton className="showcase__show-all" href="../restaurant-list/index.html" title="Show All Restaurants" />
-            </div>
-        </main>
-    );
+            return <RestaurantShowcaseCard restaurantCard={card} key={card.id} />
+        });
+
+        return (
+            <main className="main">
+                <div className="showcase">
+                    <RestaurantShowcaseHeader />
+
+                    {restaurantCards}
+
+                    <LinkButton className="showcase__show-all" href="../restaurant-list/index.html" title="Show All Restaurants" />
+                </div>
+            </main>
+        );
+    }
 }
 
 export default RestaurantShowcase;
