@@ -11,12 +11,6 @@ class DropdownFilter extends React.Component {
         };
 
         this.toggle = this.toggle.bind(this);
-
-        this.tags = [
-            { id: "1", name: "Offers" },
-            { id: "2", name: "American" },
-            { id: "3", name: "Arabic" },
-        ];
     }
 
     toggle(e) {
@@ -26,7 +20,7 @@ class DropdownFilter extends React.Component {
     }
 
     render() {
-        const tagList = this.tags.map(tag =>
+        const tagList = this.props.tags.map(tag =>
             <Tag tag={tag} key={tag.id} />
         );
 
@@ -43,6 +37,10 @@ class DropdownFilter extends React.Component {
                     <span className="filter-dropdown__clear">Clear all</span>
                 </div>
                 <ul className="filter-dropdown__cuisine-list">
+                    {(!this.props.tags && this.props.tags.length == 0) &&
+                        <p>Loading...</p>
+                    }
+
                     {tagList}
                 </ul>
             </div>

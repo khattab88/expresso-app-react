@@ -10,12 +10,14 @@ class List extends React.Component {
     }
 
     render() {
+        const gridCols = this.props.layout;
+
         const restaurantList = this.props.restaurants.map((restaurant) =>
             <Card restaurant={restaurant} key={restaurant.id} />
         );
 
         return (
-            <section className="restaurant-list" style={{ position: "relative" }}>
+            <section className={`restaurant-list grid-cols-${gridCols}`} style={{ position: "relative" }}>
 
                 <Loader isLoading={this.props.isLoading} />
 

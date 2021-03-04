@@ -15,32 +15,50 @@ class RestaurantList extends React.Component {
 
         this.state = {
             isLoading: true,
+            tags: [],
             selectedTags: [],
+            restaurants: [],
+            filteredRestaurants: [],
             specialOffers: false,
             gridLayout: "three",
         };
 
+        this.getTags = this.getTags.bind(this);
         this.getRestaurants = this.getRestaurants.bind(this);
+
         this.changeGridLayout = this.changeGridLayout.bind(this);
         this.checkSpecialOffers = this.checkSpecialOffers.bind(this);
-
-        this.restaurants = [];
     }
 
     componentDidMount() {
         setTimeout(() => {
-
-            this.restaurants = this.getRestaurants();
+            
+            const restaurants = this.getRestaurants();
 
             this.setState({
                 isLoading: false,
+                tags: this.getTags(),
+                restaurants,
+                filteredRestaurants: [...restaurants]
             });
 
-        }, 3000);
+        }, 1000);
     }
 
     componentDidUpdate() {
         console.log(this.state);
+    }
+
+    getTags() {
+        return [
+            { id: "1", name: "Offers"},
+            { id: "2", name: "Fast Food"},
+            { id: "3", name: "American"},
+            { id: "4", name: "Arabic"},
+            { id: "5", name: "Italian"},
+            { id: "6", name: "Sea Food"},
+            { id: "7", name: "Indian"},
+        ];
     }
 
     getRestaurants() {
@@ -71,6 +89,51 @@ class RestaurantList extends React.Component {
                     { id: "2", name: "Fast Food" },
                     { id: "3", name: "American" }
                 ]
+            },
+            {
+                id: "3",
+                name: "Hardees",
+                slogan: "Finger lickin",
+                areaId: "1",
+                deliveryTime: 35,
+                img: "url(/assets/img/restaurants/web_hardees_Image_from_iOS.png)",
+                tags: [
+                    { id: "2", name: "Fast Food" },
+                ]
+            },
+            {
+                id: "4",
+                name: "Burger King",
+                slogan: "Finger lickin",
+                areaId: "1",
+                deliveryTime: 35,
+                img: "url(/assets/img/restaurants/rest-01.jpg)",
+                tags: [
+                    { id: "2", name: "Fast Food" },
+                    { id: "3", name: "American" }
+                ]
+            },
+            {
+                id: "5",
+                name: "Sea King",
+                slogan: "Finger lickin",
+                areaId: "1",
+                deliveryTime: 35,
+                img: "url(/assets/img/restaurants/rest-05.jpg)",
+                tags: [
+                    { id: "6", name: "Sea Food" }
+                ]
+            },
+            {
+                id: "6",
+                name: "India Gate",
+                slogan: "Finger lickin",
+                areaId: "1",
+                deliveryTime: 35,
+                img: "url(/assets/img/restaurants/rest-06.jpg)",
+                tags: [
+                    { id: "7", name: "Indian" }
+                ]
             }
         ];
     }
@@ -90,19 +153,17 @@ class RestaurantList extends React.Component {
     render() {
         return (
             <main className="main RestaurantList">
-
                 <Breadcrumb />
 
                 <section className="restaurant-list-filter">
-                    <DropdownFilter />
+                    <DropdownFilter tags={this.state.tags} />
 
                     <CheckboxFilter specialOffers={this.state.specialOffers} checkSpecialOffers={this.checkSpecialOffers} />
 
                     <GridFilter gridLayout={this.state.gridLayout} changeGridLayout={this.changeGridLayout} />
                 </section>
 
-                <List restaurants={this.restaurants} isLoading={this.state.isLoading} />
-
+                <List restaurants={this.state.filteredRestaurants} isLoading={this.state.isLoading} layout={this.state.gridLayout} />
             </main>
         );
     }
