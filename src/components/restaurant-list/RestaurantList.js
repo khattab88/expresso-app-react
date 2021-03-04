@@ -28,6 +28,7 @@ class RestaurantList extends React.Component {
 
         this.changeGridLayout = this.changeGridLayout.bind(this);
         this.checkSpecialOffers = this.checkSpecialOffers.bind(this);
+        this.changeTags = this.changeTags.bind(this);
     }
 
     componentDidMount() {
@@ -161,13 +162,17 @@ class RestaurantList extends React.Component {
         });
     }
 
+    changeTags(tag) {
+        console.log(tag);
+    }
+
     render() {
         return (
             <main className="main RestaurantList">
                 <Breadcrumb />
 
                 <section className="restaurant-list-filter">
-                    <DropdownFilter tags={this.state.tags} />
+                    <DropdownFilter tags={this.state.tags} changeTags={this.changeTags} />
 
                     <CheckboxFilter specialOffers={this.state.specialOffers} checkSpecialOffers={this.checkSpecialOffers} />
 

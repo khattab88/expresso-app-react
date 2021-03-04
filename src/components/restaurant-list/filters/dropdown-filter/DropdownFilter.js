@@ -21,7 +21,7 @@ class DropdownFilter extends React.Component {
 
     render() {
         const tagList = this.props.tags.map(tag =>
-            <Tag tag={tag} key={tag.id} />
+            <Tag tag={tag} key={tag.id} changeTags={this.props.changeTags} />
         );
 
         const className = this.state.isOpen ?"filter-dropdown filter-dropdown--open" :"filter-dropdown";
