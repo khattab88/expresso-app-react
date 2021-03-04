@@ -8,60 +8,34 @@ class LocationSelection extends React.Component {
 
         this.state = {
             isOpen: false,
-            searchText: "",
-            selected: { id: "0", name: "Select your area"}
         };
 
-        this.toggle = this.toggle.bind(this);
-        this.select = this.select.bind(this);
-        this.search = this.search.bind(this);
-
-        this.cities = [
-            {
-                id: "1", name: "Cairo",
-                areas: [
-                    { id: "1", name: "Heliopolis" },
-                    { id: "2", name: "Zamalek" },
-                    { id: "3", name: "DownTown" },
-                    { id: "4", name: "Maadi" },
-                    { id: "5", name: "Nasr City" },
-                ]
-            },
-            {
-                id: "2", name: "Giza",
-                areas: [
-                    { id: "6", name: "Mohandessien" },
-                    { id: "7", name: "Dokki" },
-                    { id: "8", name: "Giza Square" },
-                    { id: "9", name: "Haram" },
-                    { id: "10", name: "6th October" },
-                ]
-            }
-        ];
+        this.onToggle = this.onToggle.bind(this);
+        this.onSelect = this.onSelect.bind(this);
     }
 
-    componentDidMount() {}
+    componentDidMount() { }
 
-    toggle(e) {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
+    onToggle(e) {
+       this.setState({
+           isOpen: !this.state.isOpen
+       });
     }
 
-    select(selected) {
-        this.setState({ selected });
+    onSelect(e) {
+        this.onToggle();
 
-        this.toggle();
-    }
+        const selected = {
+            id: e.target.id,
+            name: e.target.textContent
+        };
 
-    search(searchText) {
-        this.setState({ searchText });
+        this.props.select(selected);
     }
 
     componentDidUpdate() {
         // console.log(this.state.isOpen);
         // console.log(this.state.searchText);
-        // console.log(this.state.selected);
     }
 
     render() {
@@ -69,13 +43,14 @@ class LocationSelection extends React.Component {
 
         return (
             <div className="location-selection">
-                <button className={className} onClick={this.toggle}>
+                <button className={className} onClick={this.onToggle}>
                     <i className="location-selection__icon-location material-icons-outlined">location_on</i>
-                    <p className="location-selection__value" data-selected={this.state.selected.id}>{this.state.selected.name}</p>
+                    <p className="location-selection__value" data-selected={this.props.selected.id}>{this.props.selected.name}</p>
                     <i className="location-selection__icon-caret location-selection__icon-caret--down material-icons">keyboard_arrow_down</i>
                     <i className="location-selection__icon-caret location-selection__icon-caret--up material-icons">keyboard_arrow_up</i>
                 </button>
-                <LocationList isOpen={this.state.isOpen} cities={this.cities} select={this.select} searchText={this.state.searchText} search={this.search} />
+                
+                <LocationList cities={this.props.locations} isOpen={this.state.isOpen} select={this.onSelect} />
             </div>
         );
     }

@@ -8,12 +8,7 @@ class AreaItem extends React.Component{
     }
 
     handleClick(e) {
-        const selected = {
-            id: e.target.id,
-            name: e.target.textContent
-        };
-
-        this.props.select(selected);
+        this.props.select(e);
     }
 
     render() {

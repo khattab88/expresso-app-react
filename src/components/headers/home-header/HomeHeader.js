@@ -1,23 +1,75 @@
+import React from 'react';
+
 import LocationSelection from '../../location-selection/LocationSelection';
 
-function HomeHeader(props) {
-    return (
-        <header className="header home-page__header">
-            <div className="search">
-                <h2 className="search__title">Find your favorite restaurants, We deliver.</h2>
-                <div className="search__box">
-                    <div className="search__form">
+class HomeHeader extends React.Component {
+    constructor(props) {
+        super(props);
 
-                        <div className="search__input location-selection-wrapper">
-                            <LocationSelection />
+        this.state = {
+            locations: [],
+            selectedLocation: { id: "0", name: "Select your area"},
+        };
+
+        this.selectLocation = this.selectLocation.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            locations: [
+                {
+                    id: "1", name: "Cairo",
+                    areas: [
+                        { id: "1", name: "Heliopolis" },
+                        { id: "2", name: "Zamalek" },
+                        { id: "3", name: "DownTown" },
+                        { id: "4", name: "Maadi" },
+                        { id: "5", name: "Nasr City" },
+                    ]
+                },
+                {
+                    id: "2", name: "Giza",
+                    areas: [
+                        { id: "6", name: "Mohandessien" },
+                        { id: "7", name: "Dokki" },
+                        { id: "8", name: "Giza Square" },
+                        { id: "9", name: "Haram" },
+                        { id: "10", name: "6th October" },
+                    ]
+                }
+            ]
+        });
+    }
+
+    selectLocation(selected) {
+        // console.log(selected);
+
+        this.setState({
+            selectedLocation: selected
+        });
+    }
+
+    render() {
+        return (
+            <header className="header home-page__header">
+                <div className="search">
+                    <h2 className="search__title">Find your favorite restaurants, We deliver.</h2>
+                    <div className="search__box">
+                        <div className="search__form">
+
+                            <div className="search__input location-selection-wrapper">
+                                <LocationSelection 
+                                    locations={this.state.locations}
+                                    selected={this.state.selectedLocation} select={this.selectLocation} />
+                            </div>
+
+                            <a href="#" className="search__submit">Find Restaurant</a>
                         </div>
-
-                    <a href="../restaurant-menu/index.html" className="search__submit">Find Restaurant</a>
                     </div>
                 </div>
-            </div>
-        </header>
-    );
+            </header>
+        );
+    }
 }
 
 export default HomeHeader;
