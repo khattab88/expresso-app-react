@@ -71,6 +71,7 @@ class RestaurantList extends React.Component {
                 slogan: "I'm lovin it",
                 areaId: "1",
                 deliveryTime: 30,
+                specialOffers: true,
                 img: "url(/assets/img/restaurants/web_cover_Mcd.png)",
                 tags: [
                     { id: "1", name: "Offers" },
@@ -83,6 +84,7 @@ class RestaurantList extends React.Component {
                 slogan: "Finger lickin",
                 areaId: "1",
                 deliveryTime: 35,
+                specialOffers: true,
                 img: "url(/assets/img/restaurants/rest-00.jpg)",
                 tags: [
                     { id: "1", name: "Offers" },
@@ -96,6 +98,7 @@ class RestaurantList extends React.Component {
                 slogan: "Finger lickin",
                 areaId: "1",
                 deliveryTime: 35,
+                specialOffers: false,
                 img: "url(/assets/img/restaurants/web_hardees_Image_from_iOS.png)",
                 tags: [
                     { id: "2", name: "Fast Food" },
@@ -107,6 +110,7 @@ class RestaurantList extends React.Component {
                 slogan: "Finger lickin",
                 areaId: "1",
                 deliveryTime: 35,
+                specialOffers: true,
                 img: "url(/assets/img/restaurants/rest-01.jpg)",
                 tags: [
                     { id: "2", name: "Fast Food" },
@@ -119,6 +123,7 @@ class RestaurantList extends React.Component {
                 slogan: "Finger lickin",
                 areaId: "1",
                 deliveryTime: 35,
+                specialOffers: false,
                 img: "url(/assets/img/restaurants/rest-05.jpg)",
                 tags: [
                     { id: "6", name: "Sea Food" }
@@ -130,6 +135,7 @@ class RestaurantList extends React.Component {
                 slogan: "Finger lickin",
                 areaId: "1",
                 deliveryTime: 35,
+                specialOffers: false,
                 img: "url(/assets/img/restaurants/rest-06.jpg)",
                 tags: [
                     { id: "7", name: "Indian" }
@@ -145,8 +151,13 @@ class RestaurantList extends React.Component {
     }
 
     checkSpecialOffers(checked) {
+        let filtered = (checked) 
+                          ? this.state.restaurants.filter(restaurant => restaurant.specialOffers)
+                          : this.state.restaurants;
+
         this.setState({
-            specialOffers: checked
+            specialOffers: checked,
+            filteredRestaurants: filtered
         });
     }
 
