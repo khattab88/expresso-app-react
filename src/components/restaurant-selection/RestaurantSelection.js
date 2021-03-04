@@ -8,39 +8,42 @@ class RestaurantSelection extends React.Component {
 
         this.state = {
             isOpen: false,
-            selected: {
-                id: "0", 
-                name: "Find a restaurant",
-                areaId: "0"
+            searchText: "",
+        };
+
+        this.onToggle = this.onToggle.bind(this);
+        this.onSelect = this.onSelect.bind(this);
+        this.onSearch  = this.onSearch.bind(this);
+    }
+
+    onToggle(e) {
+        this.setState({ 
+            isOpen: !this.state.isOpen,
+            searchText: ""
+        });
+    }
+
+    onSelect(e) {
+        this.onToggle();
+
+        const selected = {
+            id: e.target.id,
+            name: e.target.textContent,
+            areaId: e.target.dataset["area"],
+            restaurant: {
+                id: e.target.dataset["restaurantId"],
+                name: e.target.dataset["restaurantName"],
             }
         };
 
-        this.toggle = this.toggle.bind(this);
-        this.select = this.select.bind(this);
+        // console.log(selected);
 
-        this.restaurants = [
-            { id: "1", name: "McDonald's", areaId: "1" },
-            { id: "2", name: "KFC", areaId: "1" },
-            { id: "3", name: "Pizza Hut", areaId: "1" },
-            { id: "4", name: "Burger King", areaId: "1" },
-            { id: "5", name: "Cook Door", areaId: "1" },
-        ];
+        this.props.select(selected);
     }
 
-    toggle(e) {
-        this.setState({ isOpen: !this.state.isOpen });
-    }
-
-    select(e) {
-        const id = e.target.id;
-        const name = e.target.textContent;
-        const areaId = e.target.dataset["area"];
-
-        this.setState({
-            selected: { id, name, areaId }
-        });
-
-        this.toggle();
+    onSearch(e) {
+        const value = e.target.value;
+        this.setState({ searchText: value });
     }
 
     render() {
@@ -54,19 +57,22 @@ class RestaurantSelection extends React.Component {
 
         return (
             <div className="restaurant-selection">
-                <button className={btnClassName} onClick={this.toggle}>
+                <button className={btnClassName} onClick={this.onToggle}>
                     <i className="restaurant-selection__icon-store material-icons">search</i>
                     <p className="restaurant-selection__value" 
-                        data-selected-id={this.state.selected.id} 
-                        data-selected-area={this.state.selected.areaId}>
-                        {this.state.selected.name}
+                        data-selected-id={this.props.selected.id} 
+                        data-selected-area={this.props.selected.areaId}>
+                        {this.props.selected.name}
                     </p>
                     <i className="restaurant-selection__icon-caret restaurant-selection__icon-caret--down material-icons">keyboard_arrow_down</i>
                     <i className="restaurant-selection__icon-caret restaurant-selection__icon-caret--up material-icons">keyboard_arrow_up</i>
                 </button>
+
                 <div className={boxClassName}>
-                    <input type="text" className="restaurant-selection__input" />
-                    <RestaurantList restaurants={this.restaurants} onSelect={this.select} />
+                    <input type="text" className="restaurant-selection__input" onChange={this.onSearch} />
+                    <RestaurantList 
+                        branches={this.props.branches} isOpen={this.state.isOpen} select={this.onSelect}
+                        searchText={this.state.searchText} search={this.onSearch} />
                 </div>
             </div>
         );

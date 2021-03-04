@@ -8,11 +8,6 @@ class LocationList extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            searchText: "",
-            // filtered: []
-        }
-
         this.flatten = this.flatten.bind(this);
         this.filter = this.filter.bind(this);
         this.group = this.group.bind(this);
@@ -29,9 +24,8 @@ class LocationList extends React.Component {
 
     onSearch(e) {
         const value = e.target.value;
-        console.log(value);
-
-        this.setState({ searchText: value });
+        
+        this.props.search(value);
     }
 
     flatten(list) {
@@ -51,8 +45,8 @@ class LocationList extends React.Component {
     }
 
     filter(list) {
-        const value = this.state.searchText;
-        const filtered = list.filter(area => area.name.toLowerCase().includes(this.state.searchText.toLowerCase()));
+        const value = this.props.searchText;
+        const filtered = list.filter(area => area.name.toLowerCase().includes(this.props.searchText.toLowerCase()));
         return filtered;
     }
 
@@ -109,7 +103,7 @@ class LocationList extends React.Component {
 
         return (
             <div className={className}>
-                <input type="text" className="location-selection__input" value={this.state.searchText} onChange={this.onSearch} />
+                <input type="text" className="location-selection__input" ref={this.props.searchInput} value={this.props.searchText} onChange={this.onSearch} />
                 <ul className="location-selection__city-list">
                     {this.renderLocations()}
                 </ul>

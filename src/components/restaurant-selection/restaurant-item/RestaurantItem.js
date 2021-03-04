@@ -8,10 +8,12 @@ class RestaurantItem extends React.Component {
     render() {
         return(
             <li className="restaurant-selection__restaurant" 
-                id={this.props.restaurant.id} 
-                data-area={this.props.restaurant.areaId}
-                onClick={this.props.onSelect}>
-                {this.props.restaurant.name}
+                id={this.props.branch.id} 
+                data-area={this.props.branch.areaId}
+                data-restaurant-id={this.props.branch.restaurant.id} 
+                data-restaurant-name={this.props.branch.restaurant.name}
+                onClick={this.props.select}>
+                    {this.props.branch.restaurant.name}
             </li>
         );
     }

@@ -5,16 +5,33 @@ import RestaurantItem from '../restaurant-item/RestaurantItem';
 class RestaurantList extends React.Component {
     constructor(props) {
         super(props);
+
+        this.renderBranches = this.renderBranches.bind(this);
+        this.onSearch = this.onSearch.bind(this);
+    }
+
+    onSearch(e) {
+        const value = e.target.value;
+        
+        this.props.search(value);
+    }
+
+    renderBranches() {
+        let branchList = null;
+
+        const filtered = this.props.branches.filter(branch => branch.name.toLowerCase().includes(this.props.searchText));
+
+        branchList = filtered.map((branch) =>
+            <RestaurantItem branch={branch} key={branch.id} select={this.props.select} />
+        );
+
+        return branchList;
     }
 
     render() {
-        const restaurantList = this.props.restaurants.map((restaurant) =>
-            <RestaurantItem restaurant={restaurant} key={restaurant.id} onSelect={this.props.onSelect} />
-        );
-
         return (
             <ul className="restaurant-selection__restaurant-list">
-                {restaurantList}
+                {this.renderBranches()}
             </ul>
         );
     }

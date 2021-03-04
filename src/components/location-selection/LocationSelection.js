@@ -6,19 +6,26 @@ class LocationSelection extends React.Component {
     constructor(props) {
         super(props);
 
+        this.searchInputRef = React.createRef();
+
         this.state = {
             isOpen: false,
+            searchText: "",
         };
 
         this.onToggle = this.onToggle.bind(this);
         this.onSelect = this.onSelect.bind(this);
+        this.onSearch  = this.onSearch.bind(this);
     }
 
-    componentDidMount() { }
+    componentDidMount() { 
+        // console.log(this.searchInputRef); 
+    }
 
     onToggle(e) {
        this.setState({
-           isOpen: !this.state.isOpen
+           isOpen: !this.state.isOpen,
+           searchText: ""
        });
     }
 
@@ -31,6 +38,10 @@ class LocationSelection extends React.Component {
         };
 
         this.props.select(selected);
+    }
+
+    onSearch(searchText) {
+        this.setState({ searchText });
     }
 
     componentDidUpdate() {
@@ -50,7 +61,9 @@ class LocationSelection extends React.Component {
                     <i className="location-selection__icon-caret location-selection__icon-caret--up material-icons">keyboard_arrow_up</i>
                 </button>
                 
-                <LocationList cities={this.props.locations} isOpen={this.state.isOpen} select={this.onSelect} />
+                <LocationList 
+                    cities={this.props.locations} isOpen={this.state.isOpen} select={this.onSelect}
+                    searchText={this.state.searchText} search={this.onSearch} searchInputRef={this.searchInputRef} />
             </div>
         );
     }
