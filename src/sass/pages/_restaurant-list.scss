@@ -200,6 +200,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            &--visible {
+                opacity: 1;
+                visibility: visible;
+            }
         }
 
         &__title {
@@ -216,6 +221,10 @@
             bottom: .75rem;
             color: $color-main;
             font-size: 1.5rem;
+
+            &--visible {
+                display: inline-block;
+            }
 
             &:hover {
                 text-decoration: underline;

@@ -29,6 +29,7 @@ class RestaurantList extends React.Component {
         this.changeGridLayout = this.changeGridLayout.bind(this);
         this.checkSpecialOffers = this.checkSpecialOffers.bind(this);
         this.changeTags = this.changeTags.bind(this);
+        this.clearTags = this.clearTags.bind(this);
 
         this.filter = this.filter.bind(this);
     }
@@ -175,8 +176,12 @@ class RestaurantList extends React.Component {
         this.setState({ selectedTags}, this.filter);
     }
 
+    clearTags() {
+        this.setState({ selectedTags: {} }, this.filter);
+    }
+
     componentDidUpdate() {
-        console.log(this.state.selectedTags);
+        // console.log(this.state.selectedTags);
     }
 
     filter() {
@@ -213,7 +218,7 @@ class RestaurantList extends React.Component {
                 <Breadcrumb />
 
                 <section className="restaurant-list-filter">
-                    <DropdownFilter tags={this.state.tags} changeTags={this.changeTags} />
+                    <DropdownFilter tags={this.state.tags} changeTags={this.changeTags} clearTags={this.clearTags} selectedTags={this.state.selectedTags} />
 
                     <CheckboxFilter specialOffers={this.state.specialOffers} checkSpecialOffers={this.checkSpecialOffers} />
 
