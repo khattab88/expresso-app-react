@@ -29,16 +29,20 @@ class RestaurantList extends React.Component {
         this.changeGridLayout = this.changeGridLayout.bind(this);
         this.checkSpecialOffers = this.checkSpecialOffers.bind(this);
         this.changeTags = this.changeTags.bind(this);
+
+        this.filter = this.filter.bind(this);
     }
 
     componentDidMount() {
         setTimeout(() => {
-            
+
+            const tags = this.getTags();
             const restaurants = this.getRestaurants();
 
             this.setState({
                 isLoading: false,
-                tags: this.getTags(),
+                tags,
+                selectedTags: {}, //[...tags].reduce((acc,curr)=> (acc[curr.id]= false, acc),{}),
                 restaurants,
                 filteredRestaurants: [...restaurants]
             });
@@ -52,13 +56,13 @@ class RestaurantList extends React.Component {
 
     getTags() {
         return [
-            { id: "1", name: "Offers"},
-            { id: "2", name: "Fast Food"},
-            { id: "3", name: "American"},
-            { id: "4", name: "Arabic"},
-            { id: "5", name: "Italian"},
-            { id: "6", name: "Sea Food"},
-            { id: "7", name: "Indian"},
+            { id: "1", name: "Offers" },
+            { id: "2", name: "Fast Food" },
+            { id: "3", name: "American" },
+            { id: "4", name: "Arabic" },
+            { id: "5", name: "Italian" },
+            { id: "6", name: "Sea Food" },
+            { id: "7", name: "Indian" },
         ];
     }
 
@@ -152,18 +156,55 @@ class RestaurantList extends React.Component {
     }
 
     checkSpecialOffers(checked) {
-        let filtered = (checked) 
-                          ? this.state.restaurants.filter(restaurant => restaurant.specialOffers)
-                          : this.state.restaurants;
-
         this.setState({
             specialOffers: checked,
-            filteredRestaurants: filtered
-        });
+        }, 
+        this.filter);
     }
 
-    changeTags(tag) {
-        console.log(tag);
+    changeTags(selectedTag) {
+        // console.log(selectedTag);
+
+        const selectedTags = {...this.state.selectedTags};
+        if(selectedTag.selected === "true") {
+            selectedTags[selectedTag.id] = true;
+        } else {
+            delete selectedTags[selectedTag.id];
+        }
+
+        this.setState({ selectedTags}, this.filter);
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.selectedTags);
+    }
+
+    filter() {
+        let filteredRestaurants = [];
+
+        // filter by special offers
+        filteredRestaurants = (this.state.specialOffers)
+                                ? this.state.restaurants.filter(restaurant => restaurant.specialOffers)
+                                : this.state.restaurants;
+
+
+        // filter by selected tags
+        if(Object.keys(this.state.selectedTags).length > 0) {
+            let final = {};
+
+            Object.keys(this.state.selectedTags).forEach(tagId => {
+                filteredRestaurants.forEach(rest => {
+                    const restTags = rest.tags.map(t => t.id);
+                        if(restTags.indexOf(tagId) > -1) final[rest.id] = rest;
+                });
+            });
+
+            this.setState({ filteredRestaurants: Object.values(final) });
+            return;
+        }
+        
+        // update filtered restaurants
+        this.setState({ filteredRestaurants: filteredRestaurants });
     }
 
     render() {

@@ -14,24 +14,30 @@ class Tag extends React.Component {
     }
 
     selectTag(e) {
-        this.setState({ selected: !this.state.selected }, () => {
+
+
+        this.setState({
+            selected: !this.state.selected
+        },
+        () => {
             this.checkbox.current.checked = this.state.selected;
-        });
 
-        const target = e.target.closest(".filter-dropdown__cuisine-item");
-
-        this.props.changeTags({
-            id: target.dataset["tagId"],
-            name: target.dataset["tagName"]
+            const target = e.target.closest(".filter-dropdown__cuisine-item");
+            
+            this.props.changeTags({
+                id: target.dataset["tagId"],
+                name: target.dataset["tagName"],
+                selected: target.dataset["selected"]
+            });
         });
     }
 
     render() {
         return (
-            <li className="filter-dropdown__cuisine-item" onClick={this.selectTag}
+            <li className="filter-dropdown__cuisine-item" onClick={this.selectTag} data-selected={this.state.selected}
                 data-tag-id={this.props.tag.id} data-tag-name={this.props.tag.name}>
-                    <input type="checkbox" className="filter-dropdown__cuisine-checkbox" id={this.props.tag.id} ref={this.checkbox} />
-                    <label className="filter-dropdown__cuisine-name" htmlFor={this.props.tag.id}>{this.props.tag.name}</label>
+                <input type="checkbox" className="filter-dropdown__cuisine-checkbox" id={this.props.tag.id} ref={this.checkbox} />
+                <label className="filter-dropdown__cuisine-name" htmlFor={this.props.tag.id}>{this.props.tag.name}</label>
             </li>
         );
     }
