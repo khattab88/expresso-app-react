@@ -15,7 +15,7 @@ class MenuSidebar extends React.Component {
                     <i className="restaurant-sidebar__show-cart-icon material-icons">shopping_cart</i>
                 </section>
                 
-                <Categories />
+                <Categories menu={this.props.menu} />
             </aside>
         );
     }

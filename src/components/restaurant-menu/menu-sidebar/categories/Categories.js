@@ -9,14 +9,6 @@ class Categories extends React.Component {
         };
 
         this.toggleMenuCategories = this.toggleMenuCategories.bind(this);
-
-        this.categories = [
-            { id: "1", name: "Sandwiches" },
-            { id: "2", name: "Sides" },
-            { id: "3", name: "Salads" },
-            { id: "4", name: "Specialities" },
-            { id: "5", name: "Beverages" },
-        ];
     }
 
     toggleMenuCategories(e) {
@@ -26,7 +18,8 @@ class Categories extends React.Component {
     }
 
     render() {
-        const categoriesList = this.categories.map((category) =>
+
+        const categoriesList = this.props.menu.categories.map((category) =>
             <li className="menu-categories__category-item" id={category.id} key={category.id} >
                 <a href="#category-1" className="menu-categories__category-link">{category.name}</a>
             </li>

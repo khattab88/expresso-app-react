@@ -5,8 +5,6 @@ import RestaurantMenuHeader from '../../headers/restaurant-menu-header/Restauran
 import RestaurantMenu from '../../restaurant-menu/RestaurantMenu';
 import Footer from '../../footer/Footer';
 
-import MenuItemModal from '../../modals/menu-item-modal/MenuItemModal';
-import CartModal from '../../modals/cart-modal/CartModal';
 import LocationModal from '../../modals/location-modal/LocationModal';
 
 class RestaurantMenuPage extends React.Component {
@@ -15,33 +13,117 @@ class RestaurantMenuPage extends React.Component {
 
         this.state = {
             isLocationModalOpen: false,
-            isMenuItemModalOpen: false,
-            isCartModalOpen: false,
-        };
-
-        this.toggleLocationModal = this.toggleLocationModal.bind(this);
-        this.toggleMenuItemModal = this.toggleMenuItemModal.bind(this);
-        this.toggleCartModal = this.toggleCartModal.bind(this);
-
-        this.restaurant = {
-            id: "1", 
-            name: "Pizza Hut",
-            slogan: "I like it",
-            image: "rest-00.jpg",
-            deliveryTime: 35,
-            area: {
-                id: "1",
-                name: "Heliopolis"
+            restaurant: {
+                id: "0", 
+                name: "",
+                slogan: "",
+                image: "",
+                deliveryTime: 0,
+                area: { id: "0", name: "" }
+            }, 
+            menu: {
+                categories: []
             }
         };
+
+        this.getMenu = this.getMenu.bind(this);
+        this.toggleLocationModal = this.toggleLocationModal.bind(this);
     }
 
     componentDidMount() {
-        // console.log(this.state.isMenuItemModalOpen);
+        this.setState({
+            restaurant: {
+                id: "1", 
+                name: "Pizza Hut",
+                slogan: "I like it",
+                image: "rest-00.jpg",
+                deliveryTime: 35,
+                area: { id: "1", name: "Heliopolis" }
+            }
+        });
+
+        this.setState({
+            menu: this.getMenu()
+        });
     }
 
     componentDidUpdate() {
-        // console.log(this.state.isMenuItemModalOpen);
+        // console.log(this.state.restaurant);
+        // console.log(this.state.menu);
+    }
+
+    getMenu() {
+        return {
+            categories: [
+                {
+                    id: "1", 
+                    name: "Sandwiches",
+                    menuItems: [
+                        {
+                            id: "1", 
+                            name: "Double Cheese Burger",
+                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                            img: { backgroundImage: 'url(/assets/img/items/item-1.png)' },
+                            price: "70 EGP"
+                        },
+                        {
+                            id: "2", 
+                            name: "Turkey Cheese Burger",
+                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                            img: { backgroundImage: 'url(/assets/img/items/item-2.png)' },
+                            price: "60 EGP"
+                        }
+                    ]
+                },
+                {
+                    id: "2", 
+                    name: "Sides",
+                    menuItems: [
+                        {
+                            id: "3", 
+                            name: "Regular Cheese Burger",
+                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                            img: { backgroundImage: 'url(/assets/img/items/item-6.jpg)' },
+                            price: "70 EGP"
+                        },
+                        {
+                            id: "4", 
+                            name: "Turkey Cheese Burger",
+                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                            img: { backgroundImage: 'url(/assets/img/items/item-7.jpg)' },
+                            price: "60 EGP"
+                        }
+                    ]
+                },
+                {
+                    id: "3", 
+                    name: "Desserts",
+                    menuItems: [
+                        {
+                            id: "5", 
+                            name: "Regular Cheese Burger",
+                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                            img: { backgroundImage: 'url(/assets/img/items/item-6.jpg)' },
+                            price: "70 EGP"
+                        },
+                        {
+                            id: "6", 
+                            name: "Turkey Cheese Burger",
+                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                            img: { backgroundImage: 'url(/assets/img/items/item-7.jpg)' },
+                            price: "60 EGP"
+                        },
+                        {
+                            id: "7", 
+                            name: "Turkey Cheese Burger",
+                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
+                            img: { backgroundImage: 'url(/assets/img/items/item-7.jpg)' },
+                            price: "60 EGP"
+                        }
+                    ]
+                }
+            ]
+        };
     }
 
     toggleLocationModal(e) {
@@ -50,29 +132,15 @@ class RestaurantMenuPage extends React.Component {
         })
     }
 
-    toggleMenuItemModal(e) {
-        this.setState({
-            isMenuItemModalOpen: !this.state.isMenuItemModalOpen
-        });
-    }
-
-    toggleCartModal(e) {
-        this.setState({
-            isCartModalOpen: !this.state.isCartModalOpen
-        })
-    }
-
     render() {
         return (
             <div className="container restaurant-menu-page">
                 <Nav />
-                <RestaurantMenuHeader restaurant={this.restaurant} toggleLocationModal={this.toggleLocationModal} />
-                <RestaurantMenu restaurant={this.restaurant} toggleMenuItemModal={this.toggleMenuItemModal} toggleCartModal={this.toggleCartModal} />
+                <RestaurantMenuHeader restaurant={this.state.restaurant} toggleLocationModal={this.toggleLocationModal} />
+                <RestaurantMenu restaurant={this.state.restaurant} menu={this.state.menu} />
                 <Footer />
 
                 <LocationModal isOpen={this.state.isLocationModalOpen} toggleLocationModal={this.toggleLocationModal} />
-                <MenuItemModal isOpen={this.state.isMenuItemModalOpen} toggleMenuItemModal={this.toggleMenuItemModal} />
-                <CartModal isOpen={this.state.isCartModalOpen} toggleCartModal={this.toggleCartModal} />
             </div>
         );
     }
