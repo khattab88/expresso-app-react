@@ -6,6 +6,17 @@ import MultipleSelection from './selection/multiple-selection/MultipleSelection'
 class MenuItemOption extends React.Component {
     constructor(props) {
         super(props);
+
+        this.onOptionSelection = this.onOptionSelection.bind(this);
+    }
+
+    onOptionSelection(selection) {
+        const optionSelection = {
+            optionId: this.props.option.id,
+            selection
+        };
+
+        this.props.updateOptionSelection(optionSelection);
     }
 
     render() {
@@ -30,8 +41,8 @@ class MenuItemOption extends React.Component {
 
                 {
                     (option.type === "Required")
-                        ? <SingleSelecion optionItems={option.optionItems} optionId={option.id} />
-                        : <MultipleSelection optionItems={option.optionItems} optionId={option.id} />
+                        ? <SingleSelecion optionItems={option.optionItems} optionId={option.id} onOptionSelection={this.onOptionSelection} />
+                        : <MultipleSelection optionItems={option.optionItems} optionId={option.id} onOptionSelection={this.onOptionSelection} />
                 }
             </article>
         );

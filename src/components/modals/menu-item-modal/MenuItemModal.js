@@ -8,13 +8,23 @@ class MenuItemModal extends React.Component {
 
         this.state = {
             count: 1,
+            optionSelection: {},
             notes: ""
         };
 
         this.close = this.close.bind(this);
         this.addToCart = this.addToCart.bind(this);
 
+        this.increaseCount = this.increaseCount.bind(this);
+        this.decreaseCount = this.decreaseCount.bind(this)
+
         this.onNotesChanged = this.onNotesChanged.bind(this);
+
+        this.updateOptionSelection = this.updateOptionSelection.bind(this);
+    }
+
+    componentDidUpdate() {
+        console.log(this.state);
     }
 
     close(e) {
@@ -24,12 +34,12 @@ class MenuItemModal extends React.Component {
     addToCart(e) {
         // TODO: add menu item to cart
 
-        // this.props.toggleMenuItemModal();
+        this.close();
     }
 
     onNotesChanged(e) {
         const value = e.target.value;
-        console.log(value);
+        // console.log(value);
 
         this.setState({
             notes: value
@@ -38,12 +48,37 @@ class MenuItemModal extends React.Component {
         this.renderOptions = this.renderOptions.bind(this);
     }
 
-    renderOptions(options) {
-        // console.log(options);
+    
+    increaseCount() {
+        let count = this.state.count + 1;
+        this.setState({ count: count });
+    }
 
+    decreaseCount() {
+        let count = this.state.count - 1;
+        if(count > 0)
+            this.setState({ count: count});
+    }
+
+    updateOptionSelection(selection) {
+        // console.log(selection);
+        const callback = () => {
+            // console.log(this.state.optionSelection);
+        };
+
+        let optionSelection = {...this.state.optionSelection};
+
+        optionSelection[selection.optionId] = selection.selection;
+
+        this.setState({ 
+            optionSelection
+        }, callback);
+    }
+
+    renderOptions(options) {
         if(!options) return null;
 
-        return options.map(opt => <MenuItemOption option={opt} key={opt.id} />);
+        return options.map(opt => <MenuItemOption option={opt} key={opt.id} updateOptionSelection={this.updateOptionSelection} />);
     }
 
     render() {
@@ -97,9 +132,9 @@ class MenuItemModal extends React.Component {
 
                         <div className="menu-item-modal__footer">
                             <div className="cart-controls">
-                                <span className="cart-controls__btn cart-controls__btn-remove">-</span>
+                                <div className="cart-controls__btn cart-controls__btn-remove" onClick={this.decreaseCount}>-</div>
                                 <p className="cart-controls__count">{this.state.count}</p>
-                                <span className="cart-controls__btn cart-controls__btn-add">+</span>
+                                <div className="cart-controls__btn cart-controls__btn-add" onClick={this.increaseCount}>+</div>
                             </div>
                             <button type="button" className="add-order-btn" data-id={menuItem.id} onClick={this.addToCart}>Add to order</button>
                         </div>

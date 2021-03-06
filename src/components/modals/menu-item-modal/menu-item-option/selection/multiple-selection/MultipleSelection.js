@@ -3,9 +3,36 @@ import React from 'react';
 class MultipleSelection extends React.Component {
     constructor(props) {
         super(props);
+        
+        this.state = {
+            selection: ""
+        };
 
         this.renderOptionDetail = this.renderOptionDetail.bind(this);
         this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(e) {
+        // const optionId = e.target.name.split('-')[1];
+        const selectedOptionItem = e.target.value.split('-')[1];
+
+        let selection = (this.state.selection.length > 0) ? this.state.selection.split(",") : [];
+
+        if(selection.length) {
+            const index = selection.findIndex(s => s == selectedOptionItem);
+            if(index !== -1) {
+                selection.splice(index, 1);
+            } else {
+                selection.push(selectedOptionItem);    
+            }
+        } else {
+            selection.push(selectedOptionItem);
+        }
+
+        this.setState({ 
+            selection: selection.join(",")
+        },
+        () => this.props.onOptionSelection(this.state.selection));
     }
 
     renderOptionDetail(optionDetail) {
@@ -21,10 +48,6 @@ class MultipleSelection extends React.Component {
                 </p>
             </li>
         );
-    }
-
-    onChange(e) {
-        console.log(e.target.value);
     }
 
     render() {

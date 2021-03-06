@@ -4,8 +4,22 @@ class SingleSelecion extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            selection: ""
+        };
+
         this.renderOptionDetail = this.renderOptionDetail.bind(this);
         this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(e) {
+        // const optionId = e.target.name.split('-')[1];
+        const selectedOptionItem = e.target.value.split('-')[1];
+
+        this.setState({
+            selection: selectedOptionItem
+        }, 
+        () => this.props.onOptionSelection(this.state.selection));
     }
 
     renderOptionDetail(optionDetail) {
@@ -21,10 +35,6 @@ class SingleSelecion extends React.Component {
                 </p>
             </li>
         );
-    }
-
-    onChange(e) {
-        console.log(e.target.value);
     }
 
     render() {
