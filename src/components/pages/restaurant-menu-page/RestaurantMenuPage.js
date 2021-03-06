@@ -65,15 +65,37 @@ class RestaurantMenuPage extends React.Component {
                             id: "1", 
                             name: "Double Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: { backgroundImage: 'url(/assets/img/items/item-1.png)' },
-                            price: "70 EGP"
+                            img: "/assets/img/items/item-1.png",
+                            price: 70,
+                            options: [
+                                {
+                                    id: "1",
+                                    name: "Choice of bun or lettuce wrap",
+                                    type: "Required",
+                                    optionItems: [
+                                        { id: "1", name: "Potato Bun", value: 3 },
+                                        { id: "2", name: "Lettuce Wrap", value: 6 },
+                                    ]
+                                },
+                                {
+                                    id: "2",
+                                    name: "Choice of cheese",
+                                    type: "Optionl",
+                                    optionItems: [
+                                        { id: "3", name: "No Cheese", value: 0 },
+                                        { id: "4", name: "Regular", value: 5 },
+                                        { id: "5", name: "Cheddar", value: 10 },
+                                        { id: "6", name: "Spicy", value: 15 },
+                                    ]
+                                }
+                            ]
                         },
                         {
                             id: "2", 
                             name: "Turkey Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: { backgroundImage: 'url(/assets/img/items/item-2.png)' },
-                            price: "60 EGP"
+                            img: "/assets/img/items/item-2.png",
+                            price: 60
                         }
                     ]
                 },
@@ -85,15 +107,15 @@ class RestaurantMenuPage extends React.Component {
                             id: "3", 
                             name: "Regular Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: { backgroundImage: 'url(/assets/img/items/item-6.jpg)' },
-                            price: "70 EGP"
+                            img: "/assets/img/items/item-6.jpg",
+                            price: 70
                         },
                         {
                             id: "4", 
                             name: "Turkey Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: { backgroundImage: 'url(/assets/img/items/item-7.jpg)' },
-                            price: "60 EGP"
+                            img: "/assets/img/items/item-7.jpg",
+                            price: 60
                         }
                     ]
                 },
@@ -105,22 +127,22 @@ class RestaurantMenuPage extends React.Component {
                             id: "5", 
                             name: "Regular Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: { backgroundImage: 'url(/assets/img/items/item-6.jpg)' },
-                            price: "70 EGP"
+                            img: "/assets/img/items/item-6.jpg",
+                            price: 70
                         },
                         {
                             id: "6", 
                             name: "Turkey Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: { backgroundImage: 'url(/assets/img/items/item-7.jpg)' },
-                            price: "60 EGP"
+                            img: "/assets/img/items/item-7.jpg",
+                            price: 60
                         },
                         {
                             id: "7", 
                             name: "Turkey Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: { backgroundImage: 'url(/assets/img/items/item-7.jpg)' },
-                            price: "60 EGP"
+                            img: "/assets/img/items/item-7.jpg",
+                            price: 60
                         }
                     ]
                 }
