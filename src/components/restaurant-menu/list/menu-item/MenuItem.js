@@ -3,11 +3,22 @@ import React from 'react';
 class MenuItem extends React.Component {
     constructor(props) {
         super(props);
+
+        this.open = this.open.bind(this);
+    }
+
+    open(e) {
+        const target = e.target.closest(".menu-item");
+        const itemId = target.id;
+
+        this.props.renderMenuItemModal(itemId);
+
+        this.props.toggleMenuItemModal();
     }
 
     render() {
         return (
-            <article className="menu-item" id={this.props.item.id} onClick={this.props.toggleMenuItemModal}>
+            <article className="menu-item" id={this.props.item.id} onClick={this.open}>
                 <div className="menu-item__img" style={this.props.item.img}></div>
                 <div className="menu-item__detail">
                     <div className="menu-item__detail-box">

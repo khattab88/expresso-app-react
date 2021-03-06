@@ -4,16 +4,23 @@ class MenuItemModal extends React.Component {
     constructor(props) {
         super(props);
 
+        this.close = this.close.bind(this);
         this.addToCart = this.addToCart.bind(this);
+    }
+
+    close(e) {
+        this.props.toggleMenuItemModal();
     }
 
     addToCart(e) {
         // TODO: add menu item to cart
 
-        this.props.toggleMenuItemModal();
+        // this.props.toggleMenuItemModal();
     }
 
     render() {
+        const menuItem = this.props.item;
+
         let className = this.props.isOpen 
                             ? "menu-item-modal menu-item-modal--open"
                             : "menu-item-modal menu-item-modal--close";
@@ -25,17 +32,17 @@ class MenuItemModal extends React.Component {
                     <div className="menu-item-modal__container">
 
                         <div className="menu-item-modal__head">
-                            <p className="menu-item-modal__close" onClick={this.props.toggleMenuItemModal}>
+                            <p className="menu-item-modal__close" onClick={this.close}>
                                 <i className="fa fa-times"></i>
                             </p>
-                            <img className="menu-item-modal__item-img" src="../assets/img/items/item-2.png" alt="Double Cheese Burger" />
+                            <img className="menu-item-modal__item-img" src="/assets/img/items/item-2.png" alt={menuItem.name} />
                         </div>
 
                         <div className="menu-item-modal__body">
 
                             <section className="dish-info">
                                 <div className="dish-info__row">
-                                    <h3 className="dish-info__name">Double Cheese Burger</h3>
+                                    <h3 className="dish-info__name">{menuItem.name}</h3>
                                     <p className="dish-info__price"><span>70</span>.00 EGP</p>
                                 </div>
                                 <p className="dish-info__desc">House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey....</p>

@@ -12,10 +12,13 @@ class RestaurantMenu extends React.Component {
 
         this.state = {
             isMenuItemModalOpen: false,
+            currentItem: {},
             isCartModalOpen: false,
         };
 
+        this.renderMenuItemModal = this.renderMenuItemModal.bind(this);
         this.toggleMenuItemModal = this.toggleMenuItemModal.bind(this);
+
         this.toggleCartModal = this.toggleCartModal.bind(this);
     }
 
@@ -23,10 +26,23 @@ class RestaurantMenu extends React.Component {
         // console.log(this.props.menu);
     }
 
-    toggleMenuItemModal(e) {
+    renderMenuItemModal(itemId) {
+        const item = this.props.getItem(itemId);
+        // console.log(item);
+
         this.setState({
-            isMenuItemModalOpen: !this.state.isMenuItemModalOpen
+            currentItem: item,
         });
+    }
+
+    toggleMenuItemModal() {
+        this.setState({
+            isMenuItemModalOpen: !this.state.isMenuItemModalOpen,
+        });
+    }
+
+    componentDidUpdate() {
+        // console.log(this.state.currentItem);
     }
 
     toggleCartModal(e) {
@@ -39,9 +55,9 @@ class RestaurantMenu extends React.Component {
         return (
             <main className="main restaurant-menu-page__main">
                 <MenuSidebar toggleCartModal={this.toggleCartModal} menu={this.props.menu} />
-                <List toggleMenuItemModal={this.toggleMenuItemModal} menu={this.props.menu} />
+                <List menu={this.props.menu} toggleMenuItemModal={this.toggleMenuItemModal} renderMenuItemModal={this.renderMenuItemModal} />
 
-                <MenuItemModal isOpen={this.state.isMenuItemModalOpen} toggleMenuItemModal={this.toggleMenuItemModal} />
+                <MenuItemModal isOpen={this.state.isMenuItemModalOpen} toggleMenuItemModal={this.toggleMenuItemModal} item={this.state.currentItem} />
                 <CartModal isOpen={this.state.isCartModalOpen} toggleCartModal={this.toggleCartModal} />
             </main>
         );

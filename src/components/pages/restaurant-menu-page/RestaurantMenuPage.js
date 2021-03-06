@@ -27,6 +27,8 @@ class RestaurantMenuPage extends React.Component {
         };
 
         this.getMenu = this.getMenu.bind(this);
+        this.getItem = this.getItem.bind(this);
+
         this.toggleLocationModal = this.toggleLocationModal.bind(this);
     }
 
@@ -126,6 +128,19 @@ class RestaurantMenuPage extends React.Component {
         };
     }
 
+    getItem(id) {
+        // console.log(id);
+        
+        let menuItem = null;
+        this.state.menu.categories.forEach(category => {
+            category.menuItems.forEach(item => {
+                if(item.id === id) menuItem = item;
+            });
+        });
+
+        return menuItem;
+    }
+
     toggleLocationModal(e) {
         this.setState({
             isLocationModalOpen: !this.state.isLocationModalOpen
@@ -137,7 +152,7 @@ class RestaurantMenuPage extends React.Component {
             <div className="container restaurant-menu-page">
                 <Nav />
                 <RestaurantMenuHeader restaurant={this.state.restaurant} toggleLocationModal={this.toggleLocationModal} />
-                <RestaurantMenu restaurant={this.state.restaurant} menu={this.state.menu} />
+                <RestaurantMenu restaurant={this.state.restaurant} menu={this.state.menu} getItem={this.getItem} />
                 <Footer />
 
                 <LocationModal isOpen={this.state.isLocationModalOpen} toggleLocationModal={this.toggleLocationModal} />

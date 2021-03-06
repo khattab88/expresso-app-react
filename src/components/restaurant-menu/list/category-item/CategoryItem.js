@@ -10,7 +10,9 @@ class CategoryItem extends React.Component {
     render() {
 
         const menuItemList = this.props.category.menuItems.map((item) =>
-            <MenuItem item={item} key={item.id} toggleMenuItemModal={this.props.toggleMenuItemModal} />
+            <MenuItem 
+                item={item} key={item.id} 
+                toggleMenuItemModal={this.props.toggleMenuItemModal} renderMenuItemModal={this.props.renderMenuItemModal} />
         ); 
 
         return (

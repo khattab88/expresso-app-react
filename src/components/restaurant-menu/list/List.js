@@ -10,7 +10,10 @@ class List extends React.Component {
     render() {
 
         const categoryList = this.props.menu.categories.map((category) => 
-            <CategoryItem category={category} key={category.id} toggleMenuItemModal={this.props.toggleMenuItemModal} />
+            <CategoryItem 
+                category={category} key={category.id} 
+                toggleMenuItemModal={this.props.toggleMenuItemModal} 
+                renderMenuItemModal={this.props.renderMenuItemModal} />
         );
 
         return (
