@@ -24,7 +24,7 @@ class MenuItemModal extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log(this.state);
+        // console.log(this.state);
     }
 
     close(e) {
@@ -32,7 +32,8 @@ class MenuItemModal extends React.Component {
     }
 
     addToCart(e) {
-        // TODO: add menu item to cart
+        this.state["itemId"] = this.props.item.id;
+        this.props.addItemToCart(this.state);
 
         this.close();
     }

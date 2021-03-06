@@ -14,16 +14,22 @@ class RestaurantMenu extends React.Component {
             isMenuItemModalOpen: false,
             currentItem: {},
             isCartModalOpen: false,
+            cart: []
         };
 
         this.renderMenuItemModal = this.renderMenuItemModal.bind(this);
         this.toggleMenuItemModal = this.toggleMenuItemModal.bind(this);
 
         this.toggleCartModal = this.toggleCartModal.bind(this);
+        this.addItemToCart = this.addItemToCart.bind(this);
     }
 
     componentDidMount() {
         // console.log(this.props.menu);
+    }
+
+    componentDidUpdate() {
+        // console.log(this.state.currentItem);
     }
 
     renderMenuItemModal(itemId) {
@@ -41,14 +47,24 @@ class RestaurantMenu extends React.Component {
         });
     }
 
-    componentDidUpdate() {
-        // console.log(this.state.currentItem);
-    }
-
     toggleCartModal(e) {
         this.setState({
             isCartModalOpen: !this.state.isCartModalOpen
         })
+    }
+
+    addItemToCart(cartItem) {
+        console.log(cartItem);
+
+        const callback = () => { 
+            console.log(this.state.cart);
+        };
+        
+        let cart = [...this.state.cart];
+
+        cart.push(cartItem);
+
+        this.setState({cart}, callback);
     }
 
     render() {
@@ -57,7 +73,8 @@ class RestaurantMenu extends React.Component {
                 <MenuSidebar toggleCartModal={this.toggleCartModal} menu={this.props.menu} />
                 <List menu={this.props.menu} toggleMenuItemModal={this.toggleMenuItemModal} renderMenuItemModal={this.renderMenuItemModal} />
 
-                <MenuItemModal isOpen={this.state.isMenuItemModalOpen} toggleMenuItemModal={this.toggleMenuItemModal} item={this.state.currentItem} />
+                <MenuItemModal isOpen={this.state.isMenuItemModalOpen} toggleMenuItemModal={this.toggleMenuItemModal}
+                               item={this.state.currentItem} addItemToCart={this.addItemToCart} />
                 <CartModal isOpen={this.state.isCartModalOpen} toggleCartModal={this.toggleCartModal} />
             </main>
         );
