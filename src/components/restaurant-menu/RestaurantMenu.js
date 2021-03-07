@@ -22,6 +22,7 @@ class RestaurantMenu extends React.Component {
 
         this.toggleCartModal = this.toggleCartModal.bind(this);
         this.addItemToCart = this.addItemToCart.bind(this);
+        this.removeCartItem = this.removeCartItem.bind(this);
     }
 
     componentDidMount() {
@@ -114,6 +115,24 @@ class RestaurantMenu extends React.Component {
         this.setState({cart}, callback);
     }
 
+    removeCartItem(itemId) {
+        const callback = () => { 
+            // console.log(this.state.cart); 
+        };
+
+        // console.log("delete item" + itemId);
+
+        let cart = [...this.state.cart];
+        /* check if cart item already exists
+         if exists, remove it from cart items */
+        const cartItemIndex = cart.findIndex(ci => ci.itemId === itemId);
+        if(cartItemIndex > -1) {
+            cart.splice(cartItemIndex, 1);
+        }
+
+        this.setState({cart}, callback);
+    }
+
     render() {
         return (
             <main className="main restaurant-menu-page__main">
@@ -123,7 +142,8 @@ class RestaurantMenu extends React.Component {
                 <MenuItemModal isOpen={this.state.isMenuItemModalOpen} toggleMenuItemModal={this.toggleMenuItemModal}
                                item={this.state.currentItem} addItemToCart={this.addItemToCart} />
                 <CartModal isOpen={this.state.isCartModalOpen} toggleCartModal={this.toggleCartModal}
-                           restaurant={this.props.restaurant} cart={this.state.cart} />
+                           restaurant={this.props.restaurant} cart={this.state.cart}
+                           removeCartItem={this.removeCartItem} />
             </main>
         );
     }

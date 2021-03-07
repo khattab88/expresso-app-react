@@ -12,6 +12,8 @@ class CartItem extends React.Component {
         this.decreaseCount = this.decreaseCount.bind(this);
         this.increaseCount = this.increaseCount.bind(this);
 
+        this.removeItem = this.removeItem.bind(this);
+
         this.updateItemSubTotal = this.updateItemSubTotal.bind(this);
         this.calcItemSubTotal = this.calcItemSubTotal.bind(this);
     }
@@ -53,6 +55,18 @@ class CartItem extends React.Component {
         this.setState({ count }, this.updateItemSubTotal);
     }
 
+    removeItem(e) {
+        const target = e.target.closest(".cart__item-controls-remove");
+        const itemId = target.dataset["itemId"];
+
+        this.props.onUpdateItemSubTotal({
+            itemId,
+            itemSubTotal: 0
+        });
+
+        this.props.removeCartItem(itemId);
+    }
+
     render() {
         // console.log(this.props.cartItem);
 
@@ -91,7 +105,7 @@ class CartItem extends React.Component {
                     <div className="cart__item-controls-btn cart__item-controls-btn-remove" onClick={this.decreaseCount}>-</div>
                     <p className="cart__item-controls-count">{this.state.count}</p>
                     <div className="cart__item-controls-btn cart__item-controls-btn-add" onClick={this.increaseCount}>+</div>
-                    <a className="cart__item-controls-remove" rel="nofollow">
+                    <a className="cart__item-controls-remove" rel="nofollow" data-item-id={this.props.cartItem.itemId} onClick={this.removeItem}>
                         <span>x</span>
                     </a>
                 </div>
