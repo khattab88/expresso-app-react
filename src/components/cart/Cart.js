@@ -16,11 +16,17 @@ class Cart extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log(this.state.cartItemSubTotals);
+        // console.log(this.state.cartItemSubTotals);
     }
 
     onUpdateItemSubTotal(itemSubTotal) {
         // console.log(itemSubTotal);
+        
+        const callback = () => {
+            this.setState({
+                subtotal: this.state.cartItemSubTotals.reduce((prev, curr) => prev + curr.itemSubTotal, 0)
+            });
+        };
 
         const cartItemSubTotals = [...this.state.cartItemSubTotals];
 
@@ -31,7 +37,7 @@ class Cart extends React.Component {
 
         cartItemSubTotals.push(itemSubTotal);
 
-        this.setState({cartItemSubTotals});
+        this.setState({cartItemSubTotals}, callback);
     }
 
     renderCartItems() {

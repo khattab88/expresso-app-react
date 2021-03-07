@@ -5,15 +5,27 @@ class CartItem extends React.Component {
         super(props);
 
         this.state = {
+            count: this.props.cartItem.count,
             subTotal: 0
         }
 
+        this.decreaseCount = this.decreaseCount.bind(this);
+        this.increaseCount = this.increaseCount.bind(this);
+
+        this.updateItemSubTotal = this.updateItemSubTotal.bind(this);
         this.calcItemSubTotal = this.calcItemSubTotal.bind(this);
     }
 
     componentDidMount() {
+        // console.log(this.state.count);
+
+        this.updateItemSubTotal();
+    }
+
+    updateItemSubTotal() {
         const subTotal = this.calcItemSubTotal();
-        this.setState({subTotal});
+
+        this.setState({ subTotal });
 
         this.props.onUpdateItemSubTotal({
             itemId: this.props.cartItem.itemId,
@@ -23,12 +35,22 @@ class CartItem extends React.Component {
 
     calcItemSubTotal() {
         let subTotal = this.props.cartItem.price;
-         
+
         this.props.cartItem.options.forEach(opt => {
             opt.selection.forEach(s => subTotal += s.value);
         });
 
-        return subTotal * this.props.cartItem.count;
+        return subTotal * this.state.count;
+    }
+
+    decreaseCount(e) {
+        let count = this.state.count - 1;
+        if (count > 0) this.setState({ count }, this.updateItemSubTotal);
+    }
+
+    increaseCount(e) {
+        let count = this.state.count + 1;
+        this.setState({ count }, this.updateItemSubTotal);
     }
 
     render() {
@@ -66,9 +88,9 @@ class CartItem extends React.Component {
                 }
 
                 <div className="cart__item-controls">
-                    <div className="cart__item-controls-btn cart__item-controls-btn-remove">-</div>
-                    <p className="cart__item-controls-count">{this.props.cartItem.count}</p>
-                    <div className="cart__item-controls-btn cart__item-controls-btn-add">+</div>
+                    <div className="cart__item-controls-btn cart__item-controls-btn-remove" onClick={this.decreaseCount}>-</div>
+                    <p className="cart__item-controls-count">{this.state.count}</p>
+                    <div className="cart__item-controls-btn cart__item-controls-btn-add" onClick={this.increaseCount}>+</div>
                     <a className="cart__item-controls-remove" rel="nofollow">
                         <span>x</span>
                     </a>
