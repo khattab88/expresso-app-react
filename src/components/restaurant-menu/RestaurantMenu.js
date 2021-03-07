@@ -33,12 +33,16 @@ class RestaurantMenu extends React.Component {
     }
 
     renderMenuItemModal(itemId) {
+        const callback =() => { 
+            // console.log(this.state.currentItem); 
+        };
+
         const item = this.props.getItem(itemId);
         // console.log(item);
 
         this.setState({
             currentItem: item,
-        }, () => console.log(this.state.currentItem));
+        }, callback);
     }
 
     toggleMenuItemModal() {
@@ -54,14 +58,45 @@ class RestaurantMenu extends React.Component {
     }
 
     addItemToCart(cartItem) {
-        console.log(cartItem);
-
         const callback = () => { 
-            console.log(this.state.cart);
+            // console.log(this.state.currentItem);
+            console.log(cartItem);
         };
         
-        let cart = [...this.state.cart];
 
+        let optionSelection = [];
+        if(Object.keys(cartItem.optionSelection).length > 0) {
+            for(const obj in cartItem.optionSelection) {
+
+                const optionId = obj;
+                const selection = cartItem.optionSelection[obj];
+
+                
+                const option = this.state.currentItem.options.find(opt => opt.id == optionId);
+                option.selection = [];
+
+                if(selection.indexOf(",") > -1) {
+                    // multiple selection
+                    selection.split(",").forEach(id => {
+                        const optionItem = option.optionItems.find(oi => oi.id === id);
+                        option.selection.push(optionItem);
+                    });
+
+                } else {
+                    // single selection
+                    const optionItem = option.optionItems.find(oi => oi.id === selection);
+                    option.selection.push(optionItem);
+                }
+
+                optionSelection.push(option);
+            }
+        }
+
+        /* format cart item */
+        cartItem.price = this.state.currentItem.price;
+        cartItem.options = optionSelection;
+
+        let cart = [...this.state.cart];
         /* check if cart item already exists
          if exists, remove it from cart items */
         const cartItemIndex = cart.findIndex(ci => ci.itemId === cartItem.itemId);

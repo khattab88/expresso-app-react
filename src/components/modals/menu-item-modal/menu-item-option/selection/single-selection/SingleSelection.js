@@ -27,7 +27,8 @@ class SingleSelecion extends React.Component {
             <li className="dish-option" key={optionDetail.id}>
                 <div className="dish-option__detail">
                     <input className="dish-option__input-checkbox" type="radio" 
-                           name={`opt-${this.props.optionId}`} id={`optitem-${optionDetail.id}`} value={`optitem-${optionDetail.id}`} />
+                           name={`opt-${this.props.optionId}`} id={`optitem-${optionDetail.id}`}
+                           value={`optitem-${optionDetail.id}`}  />
                     <label className="dish-option__name" htmlFor={`optitem-${optionDetail.id}`}>{optionDetail.name}</label>
                 </div>
                 <p className="dish-option__price">
