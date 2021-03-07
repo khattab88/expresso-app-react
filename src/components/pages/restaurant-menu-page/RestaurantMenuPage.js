@@ -40,6 +40,7 @@ class RestaurantMenuPage extends React.Component {
                 slogan: "I like it",
                 image: "rest-00.jpg",
                 deliveryTime: 35,
+                deliveryFee: 20,
                 area: { id: "1", name: "Heliopolis" }
             }
         });

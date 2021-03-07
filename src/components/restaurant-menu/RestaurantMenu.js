@@ -60,7 +60,7 @@ class RestaurantMenu extends React.Component {
     addItemToCart(cartItem) {
         const callback = () => { 
             // console.log(this.state.currentItem);
-            console.log(cartItem);
+            // console.log(cartItem);
         };
         
 
@@ -88,13 +88,18 @@ class RestaurantMenu extends React.Component {
                     option.selection.push(optionItem);
                 }
 
+                // delete option.optionItems;
+
                 optionSelection.push(option);
             }
         }
 
         /* format cart item */
+        cartItem.itemName = this.state.currentItem.name;
         cartItem.price = this.state.currentItem.price;
+        delete cartItem.optionSelection;
         cartItem.options = optionSelection;
+
 
         let cart = [...this.state.cart];
         /* check if cart item already exists
@@ -117,7 +122,8 @@ class RestaurantMenu extends React.Component {
 
                 <MenuItemModal isOpen={this.state.isMenuItemModalOpen} toggleMenuItemModal={this.toggleMenuItemModal}
                                item={this.state.currentItem} addItemToCart={this.addItemToCart} />
-                <CartModal isOpen={this.state.isCartModalOpen} toggleCartModal={this.toggleCartModal} />
+                <CartModal isOpen={this.state.isCartModalOpen} toggleCartModal={this.toggleCartModal}
+                           restaurant={this.props.restaurant} cart={this.state.cart} />
             </main>
         );
     }

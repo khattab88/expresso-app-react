@@ -6,60 +6,12 @@ class Cart extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            cartItems: []
-        };
-
         this.submit = this.submit.bind(this);
     }
 
-    componentDidMount() {
-        this.setState({
-            cartItems: [
-                {
-                    id: '1',
-                    name: 'Double Cheese Burger',
-                    price: 85,
-                    count: 2,
-                    notes: "served asap, please!",
-                    options: [
-                        {
-                            id: "1",
-                            name: 'Choice of bun or lettuce wrap',
-                            selected: {
-                                id: "1",
-                                name: 'Lettuce Wrap',
-                                value: 3
-                            }
-                        },
-                        {
-                            id: "2",
-                            name: 'Choice of burger size',
-                            selected: {
-                                id: "2",
-                                name: 'Regular',
-                                value: 4
-                            }
-                        }
-                    ]
-                }
-            ],
-        });
-
-        const subTotal = this.calcSubTotal();
-        const delivery = 10;
-        const total = subTotal + delivery;
-
-        this.setState({ subTotal, delivery, total });
-    }
-
-    calcSubTotal() {
-        return 0;
-    }
-
     renderCartItems() {
-        return this.state.cartItems.map((item) => 
-            <CartItem item={item} key={item.id}/>
+        return this.props.cart.map((cartItem) => 
+            <CartItem cartItem={cartItem} key={cartItem.itemId}/>
         );
     }
 
@@ -70,6 +22,9 @@ class Cart extends React.Component {
     }
 
     render() {
+        // console.log(this.props.restaurant);
+        // console.log(this.props.cart);
+
         return (
             <section className="cart">
                 <div className="cart__header">
@@ -82,13 +37,13 @@ class Cart extends React.Component {
                     </p>
                 </div>
 
-                {(this.state.cartItems.length == 0) &&
+                {(this.props.cart.length === 0) &&
                     <div className="cart__empty-template visible">
                         <p>Your shopping cart is empty!</p>
                     </div>
                 }
 
-                {(this.state.cartItems.length) &&
+                {(this.props.cart.length) &&
                     <div className="cart__content">
                         <div className="cart__items">
                             {this.renderCartItems()}
@@ -97,15 +52,15 @@ class Cart extends React.Component {
                         <div className="cart__pricing">
                             <div className="cart__pricing-box cart__pricing-box-subtotal">
                                 <p className="cart__pricing-box__title">Subtotal</p>
-                                <p className="cart__pricing-box__value">{`${this.state.subTotal}.00 EGP`}</p>
+                                <p className="cart__pricing-box__value">{`${0}.00 EGP`}</p>
                             </div>
                             <div className="cart__pricing-box cart__pricing-box-delivery">
                                 <p className="cart__pricing-box__title">Delivery fee</p>
-                                <p className="cart__pricing-box__value">{`${this.state.delivery}.00 EGP`}</p>
+                                <p className="cart__pricing-box__value">{`${this.props.restaurant.deliveryFee}.00 EGP`}</p>
                             </div>
                             <div className="cart__pricing-box cart__pricing-box-total">
                                 <p className="cart__pricing-box__title">Total</p>
-                                <p className="cart__pricing-box__value">{`${this.state.total}.00 EGP`}</p>
+                                <p className="cart__pricing-box__value">{`${0}.00 EGP`}</p>
                             </div>
                         </div>
 
