@@ -28,11 +28,18 @@ class MenuItemModal extends React.Component {
     }
 
     close(e) {
+        this.setState({
+            count: 1,
+            optionSelection: {},
+            notes: ""
+        });
+
         this.props.toggleMenuItemModal();
     }
 
     addToCart(e) {
         this.state["itemId"] = this.props.item.id;
+
         this.props.addItemToCart(this.state);
 
         this.close();

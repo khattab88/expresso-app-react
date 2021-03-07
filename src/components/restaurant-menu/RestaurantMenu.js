@@ -38,7 +38,7 @@ class RestaurantMenu extends React.Component {
 
         this.setState({
             currentItem: item,
-        });
+        }, () => console.log(this.state.currentItem));
     }
 
     toggleMenuItemModal() {
@@ -61,6 +61,13 @@ class RestaurantMenu extends React.Component {
         };
         
         let cart = [...this.state.cart];
+
+        /* check if cart item already exists
+         if exists, remove it from cart items */
+        const cartItemIndex = cart.findIndex(ci => ci.itemId === cartItem.itemId);
+        if(cartItemIndex > -1) {
+            cart.splice(cartItemIndex, 1);
+        }
 
         cart.push(cartItem);
 
