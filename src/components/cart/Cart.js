@@ -6,12 +6,37 @@ class Cart extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            cartItemSubTotals: [],
+            subtotal: 0
+        };
+
+        this.onUpdateItemSubTotal = this.onUpdateItemSubTotal.bind(this);
         this.submit = this.submit.bind(this);
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.cartItemSubTotals);
+    }
+
+    onUpdateItemSubTotal(itemSubTotal) {
+        // console.log(itemSubTotal);
+
+        const cartItemSubTotals = [...this.state.cartItemSubTotals];
+
+        const index = cartItemSubTotals.findIndex(cis => cis.itemId === itemSubTotal.itemId);
+        if(index !== -1) {
+            cartItemSubTotals.splice(index, 1);
+        }
+
+        cartItemSubTotals.push(itemSubTotal);
+
+        this.setState({cartItemSubTotals});
     }
 
     renderCartItems() {
         return this.props.cart.map((cartItem) => 
-            <CartItem cartItem={cartItem} key={cartItem.itemId}/>
+            <CartItem cartItem={cartItem} key={cartItem.itemId} onUpdateItemSubTotal={this.onUpdateItemSubTotal}/>
         );
     }
 
@@ -37,7 +62,7 @@ class Cart extends React.Component {
                     </p>
                 </div>
 
-                {(this.props.cart.length === 0) &&
+                {(this.props.cart.length == 0) &&
                     <div className="cart__empty-template visible">
                         <p>Your shopping cart is empty!</p>
                     </div>
@@ -52,7 +77,7 @@ class Cart extends React.Component {
                         <div className="cart__pricing">
                             <div className="cart__pricing-box cart__pricing-box-subtotal">
                                 <p className="cart__pricing-box__title">Subtotal</p>
-                                <p className="cart__pricing-box__value">{`${0}.00 EGP`}</p>
+                                <p className="cart__pricing-box__value">{`${this.state.subtotal}.00 EGP`}</p>
                             </div>
                             <div className="cart__pricing-box cart__pricing-box-delivery">
                                 <p className="cart__pricing-box__title">Delivery fee</p>
@@ -60,7 +85,7 @@ class Cart extends React.Component {
                             </div>
                             <div className="cart__pricing-box cart__pricing-box-total">
                                 <p className="cart__pricing-box__title">Total</p>
-                                <p className="cart__pricing-box__value">{`${0}.00 EGP`}</p>
+                                <p className="cart__pricing-box__value">{`${this.state.subtotal + this.props.restaurant.deliveryFee}.00 EGP`}</p>
                             </div>
                         </div>
 
