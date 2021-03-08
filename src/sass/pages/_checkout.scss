@@ -437,12 +437,16 @@
 /* order info */
 .order-info {
     min-height: 20rem;
-    display: flex;
-    flex-direction: column;
+    
+    // display: flex;
+    // flex-direction: column;
 
     @include respond(tab-land) {
         width: 45%;
-        height: 66rem;
+
+        // height: auto;
+        align-self: baseline;
+
         transform: translateY(-11.5rem);
         background-color: $color-white;
     }
@@ -453,7 +457,8 @@
     margin: 3rem 0;
 
     @include respond(tab-land) {
-        padding: 10rem 0 10rem 0;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
     }
 
     &__text {

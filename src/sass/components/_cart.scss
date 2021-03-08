@@ -2,10 +2,10 @@
 
 .cart {
     position: relative;
-    min-height: 40rem;
+    // min-height: 40rem;
     display: flex;
     flex-direction: column;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
     color: $color-font-dark;
 
     &__header {
@@ -241,10 +241,12 @@
 
     &__empty-template {
         display: none;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        margin-top: 3rem;
+
+        // position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%, -50%);
 
         p {
             width: 30rem;

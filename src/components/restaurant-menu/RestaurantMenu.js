@@ -68,7 +68,6 @@ class RestaurantMenu extends React.Component {
             // console.log(cartItem);
         };
         
-
         let optionSelection = [];
         if(Object.keys(cartItem.optionSelection).length > 0) {
             for(const obj in cartItem.optionSelection) {

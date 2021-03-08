@@ -25,6 +25,8 @@ class CartItem extends React.Component {
     }
 
     updateItemSubTotal() {
+        // console.log(this.props.cartItem.itemId);
+
         const subTotal = this.calcItemSubTotal();
 
         this.setState({ subTotal });

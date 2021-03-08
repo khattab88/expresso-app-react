@@ -15,20 +15,27 @@ class Cart extends React.Component {
         this.submit = this.submit.bind(this);
     }
 
+    componentDidMount() {
+        // console.log(this.props);
+    }
+
     componentDidUpdate() {
-        // console.log(this.state.cartItemSubTotals);
+        // console.log(this.props);
     }
 
     onUpdateItemSubTotal(itemSubTotal) {
         // console.log(itemSubTotal);
 
         const callback = () => {
+            // console.log(this.state.cartItemSubTotals);
+
             this.setState({
-                subtotal: this.state.cartItemSubTotals.reduce((prev, curr) => prev + curr.itemSubTotal, 0)
+                subtotal: (this.state.cartItemSubTotals.reduce((prev, curr) => prev + curr.itemSubTotal, 0))
             });
         };
 
-        const cartItemSubTotals = [...this.state.cartItemSubTotals];
+        // const cartItemSubTotals = [...this.state.cartItemSubTotals];
+        const cartItemSubTotals = this.state.cartItemSubTotals;
 
         const index = cartItemSubTotals.findIndex(cis => cis.itemId === itemSubTotal.itemId);
         if(index !== -1) {
@@ -36,6 +43,7 @@ class Cart extends React.Component {
         }
 
         cartItemSubTotals.push(itemSubTotal);
+
 
         this.setState({cartItemSubTotals}, callback);
     }
@@ -96,7 +104,7 @@ class Cart extends React.Component {
                         </div>
 
                         <div className="cart__submit">
-                            <button className="cart__submit-btn" onClick={this.submit}>Checkout</button>
+                            <button className="cart__submit-btn" onClick={this.submit}>{this.props.submitBtnTitle || 'Checkout'}</button>
                         </div>
                     </div>
                 }
