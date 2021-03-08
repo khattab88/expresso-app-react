@@ -7,6 +7,8 @@ import PaymentInfo from './customer-info/payment-info/PaymentInfo';
 import Cart from '../cart/Cart';
 import Disclaimer from './disclaimer/Disclaimer';
 
+import MapModal from '../modals/map-modal/MapModal';
+
 class Checkout extends React.Component {
     constructor(props) {
         super(props);
@@ -34,7 +36,8 @@ class Checkout extends React.Component {
             payment: {
                 method: 'cash',
                 agreed: false,
-            }
+            },
+            isMapModalOpen: false,
         };
 
         this.updateUserInfo = this.updateUserInfo.bind(this);
@@ -42,6 +45,8 @@ class Checkout extends React.Component {
         this.updatePaymentInfo = this.updatePaymentInfo.bind(this);
 
         this.removeCartItem = this.removeCartItem.bind(this);
+
+        this.toggleMapModal = this.toggleMapModal.bind(this);
     }
 
     componentDidMount() {
@@ -152,6 +157,12 @@ class Checkout extends React.Component {
         // console.log(this.state.payment);
     }
 
+    toggleMapModal() {
+        this.setState({
+            isMapModalOpen: !this.state.isMapModalOpen
+        });
+    }
+
     updateUserInfo(updated) {
         this.setState({ user: updated });
     }
@@ -190,7 +201,7 @@ class Checkout extends React.Component {
                     <section className="customer-info">
                         <UserInfo userInfo={this.state.user} updateUserInfo={this.updateUserInfo} />
 
-                        <DeliveryInfo deliveryInfo={this.state.delivery} updateDeliveryInfo={this.updateDeliveryInfo} />
+                        <DeliveryInfo deliveryInfo={this.state.delivery} updateDeliveryInfo={this.updateDeliveryInfo} toggleMapModal={this.toggleMapModal} />
 
                         <PaymentInfo paymentInfo={this.state.payment} updatePaymentInfo={this.updatePaymentInfo} />
                     </section>
@@ -204,9 +215,7 @@ class Checkout extends React.Component {
                     </section>
                 </div>
 
-                {/* map modal */}
-                {/* <div className="map-modal"></div> */}
-
+                <MapModal isOpen={this.state.isMapModalOpen} toggleMapModal={this.toggleMapModal} />
             </main>
         );
     }

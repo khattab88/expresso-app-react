@@ -20,6 +20,8 @@ class DeliveryInfo extends React.Component {
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
+
+        this.openMapModal = this.openMapModal.bind(this);
     }
 
     onSubmit(e) {
@@ -37,6 +39,12 @@ class DeliveryInfo extends React.Component {
         this.setState({ [name]: value });
 
         // this.props.updateDeliveryInfo(this.state);
+    }
+
+    openMapModal(e) {
+        e.preventDefault();
+
+        this.props.toggleMapModal();
     }
 
     render() {
@@ -91,7 +99,7 @@ class DeliveryInfo extends React.Component {
                     </div>
 
                     <div className="delivery-info__address">
-                        <button className="delivery-info__add">Add New Address</button>
+                        <button className="delivery-info__add" onClick={this.openMapModal}>Add New Address</button>
                         <input type="hidden" name="location" id="location" value={this.state.location} onChange={this.onInputChange} />
                         <span className="delivery-info__locate">
                             <i className="delivery-info__locate-icon material-icons">info</i>Locate your address on the map
