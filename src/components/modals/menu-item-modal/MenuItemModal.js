@@ -9,18 +9,19 @@ class MenuItemModal extends React.Component {
         this.state = {
             count: 1,
             optionSelection: {},
-            notes: ""
+            notes: "",
         };
 
-        this.close = this.close.bind(this);
-        this.addToCart = this.addToCart.bind(this);
+        this.renderOptions = this.renderOptions.bind(this);
 
         this.increaseCount = this.increaseCount.bind(this);
         this.decreaseCount = this.decreaseCount.bind(this)
-
         this.onNotesChanged = this.onNotesChanged.bind(this);
 
         this.updateOptionSelection = this.updateOptionSelection.bind(this);
+
+        this.close = this.close.bind(this);
+        this.addToCart = this.addToCart.bind(this);
     }
 
     componentDidUpdate() {
@@ -43,6 +44,8 @@ class MenuItemModal extends React.Component {
         this.props.addItemToCart(this.state);
 
         this.close();
+
+        this.props.toggleToaster();
     }
 
     onNotesChanged(e) {
@@ -52,8 +55,6 @@ class MenuItemModal extends React.Component {
         this.setState({
             notes: value
         });
-
-        this.renderOptions = this.renderOptions.bind(this);
     }
 
     

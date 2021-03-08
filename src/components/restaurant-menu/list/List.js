@@ -20,7 +20,6 @@ class List extends React.Component {
             <div className="menu-items-wrapper">
                 {categoryList}
             </div>
-
         );
     }
 }

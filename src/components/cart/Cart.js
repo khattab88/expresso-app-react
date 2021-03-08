@@ -74,7 +74,7 @@ class Cart extends React.Component {
                     </div>
                 }
 
-                {(this.props.cart.length) &&
+                {(this.props.cart.length > 0) &&
                     <div className="cart__content">
                         <div className="cart__items">
                             {this.renderCartItems()}
@@ -96,7 +96,7 @@ class Cart extends React.Component {
                         </div>
 
                         <div className="cart__submit">
-                            <button className="cart__submit-btn" onClick={this.submit}>Place Order</button>
+                            <button className="cart__submit-btn" onClick={this.submit}>Checkout</button>
                         </div>
                     </div>
                 }

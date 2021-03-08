@@ -4,7 +4,7 @@ import UserInfo from './customer-info/user-info/UserInfo';
 import DeliveryInfo from './customer-info/delivery-info/DeliveryInfo';
 import PaymentInfo from './customer-info/payment-info/PaymentInfo';
 
-import Cart from '../cart/Cart';
+import CartSummary from '../checkout/cart-summary/CartSummary';
 import Disclaimer from './disclaimer/Disclaimer';
 
 class Checkout extends React.Component {
@@ -72,7 +72,7 @@ class Checkout extends React.Component {
                     </section>
 
                     <section className="checkout-info-box order-info">
-                        <Cart />
+                        <CartSummary />
                         <Disclaimer />
                     </section>
                 </div>
