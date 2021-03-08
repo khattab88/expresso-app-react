@@ -10,7 +10,7 @@ class Toaster extends React.Component {
 
         return (
             <div className={className}>
-                <p className="toast-message__message">Item added to cart</p>
+                <p className="toast-message__message">{this.props.msg}</p>
                 <span className="material-icons toast-message__close" onClick={this.props.toggleToaster}>close</span>
             </div>
         );

@@ -10,6 +10,7 @@ class MenuItemModal extends React.Component {
             count: 1,
             optionSelection: {},
             notes: "",
+            valid: true
         };
 
         this.renderOptions = this.renderOptions.bind(this);
@@ -41,10 +42,11 @@ class MenuItemModal extends React.Component {
     addToCart(e) {
         this.state["itemId"] = this.props.item.id;
 
+        // console.log(this.state.optionSelection);
+
         this.props.addItemToCart(this.state);
 
         this.close();
-
         this.props.toggleToaster();
     }
 
@@ -89,6 +91,8 @@ class MenuItemModal extends React.Component {
 
         return options.map(opt => <MenuItemOption option={opt} key={opt.id} updateOptionSelection={this.updateOptionSelection} />);
     }
+
+
 
     render() {
         const menuItem = this.props.item;
@@ -145,7 +149,7 @@ class MenuItemModal extends React.Component {
                                 <p className="cart-controls__count">{this.state.count}</p>
                                 <div className="cart-controls__btn cart-controls__btn-add" onClick={this.increaseCount}>+</div>
                             </div>
-                            <button type="button" className="add-order-btn" data-id={menuItem.id} onClick={this.addToCart}>Add to order</button>
+                            <button type="button" className="add-order-btn" data-id={menuItem.id} onClick={this.addToCart} disabled={!this.state.valid}>Add to order</button>
                         </div>
 
                     </div>

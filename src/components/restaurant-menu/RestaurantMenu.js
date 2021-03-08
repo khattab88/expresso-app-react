@@ -144,7 +144,7 @@ class RestaurantMenu extends React.Component {
             if(this.state.isToasterVisible) {
                 let timerId = setTimeout(() => {
                     this.setState({isToasterVisible : false})
-                }, 5000);
+                }, 4000);
 
                 timerId = null;
             }
@@ -168,7 +168,7 @@ class RestaurantMenu extends React.Component {
                            restaurant={this.props.restaurant} cart={this.state.cart}
                            removeCartItem={this.removeCartItem} />
 
-                <Toaster visible={this.state.isToasterVisible} toggleToaster={this.toggleToaster} />
+                <Toaster visible={this.state.isToasterVisible} msg="Item added to cart" toggleToaster={this.toggleToaster} />
             </main>
         );
     }

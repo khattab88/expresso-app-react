@@ -13,8 +13,11 @@ class MenuItemOption extends React.Component {
     onOptionSelection(selection) {
         const optionSelection = {
             optionId: this.props.option.id,
+            type: this.props.option.type,
             selection
         };
+
+        // console.log(optionSelection);
 
         this.props.updateOptionSelection(optionSelection);
     }
