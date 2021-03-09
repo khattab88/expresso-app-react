@@ -7,14 +7,28 @@ class TagApi {
     }
 
     async getTags(query) {
-        let params = {};
-        if(query) params = { name: query };
+        try {
+            let params = {};
+            if (query) params = { name: query };
 
-        const res = await this.baseApi.get("/api/v1/tags", {params});
-    
-        const items = res.data.data.docs;
-        return items;
-    }    
+            const res = await this.baseApi.get("/tags", { params });
+
+            const items = res.data.data.docs;
+
+            return {
+                status: "success",
+                err: null,
+                data: items
+            }
+        } catch (err) {
+            // console.log(e);
+
+            return {
+                status: "fail",
+                err: err,
+            }
+        }
+    }
 }
 
 export default new TagApi();

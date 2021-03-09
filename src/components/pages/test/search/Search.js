@@ -12,7 +12,8 @@ class Search extends React.Component {
 
         this.state = {
             term: '',
-            items: []
+            items: [],
+            err: null
         };
 
         this.fetchData = this.fetchData.bind(this);
@@ -24,14 +25,19 @@ class Search extends React.Component {
     }
 
     async componentDidMount() {
-        const items = await this.fetchData();
+        const res = await this.fetchData();
 
-        this.setState({ items });
+        if (res.err) {
+            this.setState({ err: res.err });
+        } else {
+            const items = res.data;
+            this.setState({ items });
+        }
     }
 
     componentDidUpdate() {
-        console.log(this.parent);
-        console.log(this.textInput.current);
+        // console.log(this.parent);
+        // console.log(this.textInput.current);
     }
 
     async fetchData(term) {
@@ -48,6 +54,10 @@ class Search extends React.Component {
     }
 
     render() {
+        if (this.state.err) {
+            return (<div style={{ textAlign: 'center', color: '#f00', fontSize: '20px', marginTop: '30px' }}>ERORR!!!</div>);
+        }
+
         return (
             <div style={{ border: '1px solid #ccc', width: '30%', margin: '1rem 0 0 2rem' }} ref={this.parent}>
                 <Input term={this.state.term} onSearch={this.onSearch} onInputChange={this.onInputChange} ref={this.textInput} />

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import tagApi from '../../api/TagApi';
+
 import Breadcrumb from './breadcrumb/Breadcrumb';
 
 // import Filters from './filters/Filters';
@@ -34,10 +36,10 @@ class RestaurantList extends React.Component {
         this.filter = this.filter.bind(this);
     }
 
-    componentDidMount() {
-        setTimeout(() => {
+    async componentDidMount() {
+        // setTimeout(() => {
 
-            const tags = this.getTags();
+            const tags = await this.getTags();
             const restaurants = this.getRestaurants();
 
             this.setState({
@@ -48,23 +50,28 @@ class RestaurantList extends React.Component {
                 filteredRestaurants: [...restaurants]
             });
 
-        }, 1000);
+        //}, 1000);
     }
 
     componentDidUpdate() {
         console.log(this.state);
     }
 
-    getTags() {
-        return [
-            { id: "1", name: "Offers" },
-            { id: "2", name: "Fast Food" },
-            { id: "3", name: "American" },
-            { id: "4", name: "Arabic" },
-            { id: "5", name: "Italian" },
-            { id: "6", name: "Sea Food" },
-            { id: "7", name: "Indian" },
-        ];
+    async getTags() {
+        let tags = [];
+
+        // tags = [
+        //     { id: "1", name: "Offers" },
+        //     { id: "2", name: "Fast Food" },
+        //     { id: "3", name: "American" },
+        //     { id: "4", name: "Arabic" },
+        //     { id: "5", name: "Italian" },
+        //     { id: "6", name: "Sea Food" },
+        //     { id: "7", name: "Indian" },
+        // ];
+
+        tags = await (await tagApi.getTags()).data;
+        return tags;
     }
 
     getRestaurants() {
