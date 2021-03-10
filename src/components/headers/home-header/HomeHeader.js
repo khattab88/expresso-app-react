@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LocationSelection from '../../location-selection/LocationSelection';
+import cityApi from '../../../api/CityApi';
 
 class HomeHeader extends React.Component {
     constructor(props) {
@@ -9,36 +10,54 @@ class HomeHeader extends React.Component {
         this.state = {
             locations: [],
             selectedLocation: { id: "0", name: "Select your area"},
+            err: null
         };
 
         this.selectLocation = this.selectLocation.bind(this);
     }
 
-    componentDidMount() {
-        this.setState({
-            locations: [
-                {
-                    id: "1", name: "Cairo",
-                    areas: [
-                        { id: "1", name: "Heliopolis" },
-                        { id: "2", name: "Zamalek" },
-                        { id: "3", name: "DownTown" },
-                        { id: "4", name: "Maadi" },
-                        { id: "5", name: "Nasr City" },
-                    ]
-                },
-                {
-                    id: "2", name: "Giza",
-                    areas: [
-                        { id: "6", name: "Mohandessien" },
-                        { id: "7", name: "Dokki" },
-                        { id: "8", name: "Giza Square" },
-                        { id: "9", name: "Haram" },
-                        { id: "10", name: "6th October" },
-                    ]
-                }
-            ]
-        });
+    async componentDidMount() {
+        const response = await this.getCities();
+        if(response.err) {
+            this.setState({
+                err: response.err
+            });
+        } else {
+            console.log(response.data);
+            this.setState({
+                locations: response.data
+            });
+        }
+
+        // this.setState({
+        //     locations: [
+        //         {
+        //             id: "1", name: "Cairo",
+        //             areas: [
+        //                 { id: "1", name: "Heliopolis" },
+        //                 { id: "2", name: "Zamalek" },
+        //                 { id: "3", name: "DownTown" },
+        //                 { id: "4", name: "Maadi" },
+        //                 { id: "5", name: "Nasr City" },
+        //             ]
+        //         },
+        //         {
+        //             id: "2", name: "Giza",
+        //             areas: [
+        //                 { id: "6", name: "Mohandessien" },
+        //                 { id: "7", name: "Dokki" },
+        //                 { id: "8", name: "Giza Square" },
+        //                 { id: "9", name: "Haram" },
+        //                 { id: "10", name: "6th October" },
+        //             ]
+        //         }
+        //     ]
+        // });
+    }
+
+    async getCities() {
+        const response = await cityApi.getCities();
+        return response;
     }
 
     selectLocation(selected) {
