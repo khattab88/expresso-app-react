@@ -16,7 +16,7 @@ class CategoryDropdown extends React.Component {
         this.props.select({
             id: target.dataset["id"],
             name: target.dataset["name"],
-            img: target.dataset["img"],
+            image: target.dataset["img"],
         });
     }
 
@@ -28,10 +28,10 @@ class CategoryDropdown extends React.Component {
             categoryList = this.props.categories.map((category) =>
 
                 <li className="category-dropdown__item" key={category.name}
-                    data-id={category.id} data-name={category.name} data-img={category.img} onClick={this.onSelect}>
+                    data-id={category.id} data-name={category.name} data-img={category.image} onClick={this.onSelect}>
                     <a href="#" className="category-dropdown__link">
                         <div className="category-dropdown__img">
-                            <img src={category.img} alt={category.name} />
+                            <img src={category.image} alt={category.name} />
                         </div>     
                         <p className="category-dropdown__text">{category.name}</p> 
                     </a>

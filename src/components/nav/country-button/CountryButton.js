@@ -77,7 +77,7 @@ class CountryBtn extends React.Component {
 
     render() {
         const className = this.state.isOpen ? "country-btn country-btn--open" : "country-btn";
-        const selected = (this.state.selected.image !== '') ? this.state.selected : { name:"Egypt", image: "/assets/img/flags/eg.svg" }
+        const selected = (this.state.selected.image !== '') ? this.state.selected : { name:"Egypt", image: "/assets/img/flags/eg.svg" };
        
         return(
             <button className={className} onClick={this.toggleNavCountry}>
