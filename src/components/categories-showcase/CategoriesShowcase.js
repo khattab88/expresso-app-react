@@ -28,7 +28,7 @@ class CategoriesShowcase extends React.Component {
         if(response.err) {
             this.setState({ err: response.err});
         } else {
-            this.setState({ categories: response.data });
+            this.setState({ categories: response.data }, callback);
         }
 
         // this.setState({
