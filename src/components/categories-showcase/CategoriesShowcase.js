@@ -1,6 +1,7 @@
 import React from 'react';
 
 import CategoryCard from './category-card/CategoryCard';
+import categoryApi from '../../api/CategoryApi';
 
 class CategoriesShowcase extends React.Component {
     constructor(props) {
@@ -8,30 +9,43 @@ class CategoriesShowcase extends React.Component {
 
         this.state = {
             categories: [],
-            selectedId: "0"
+            selectedId: "0",
+            err: null
         }
 
         this.renderList = this.renderList.bind(this);
         this.select = this.select.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const callback = () => { 
             const selected = this.state.categories[0];
 
             this.setState({ selectedId: selected.id });
         };
 
-        this.setState({
-            categories: [
-                { id: "1", name: "Restaurants", img: "/assets/img/icons/categories/restaurants_icon.svg" },
-                { id: "2", name: "Groceries", img: "/assets/img/icons/categories/groceries_icon.svg" },
-                { id: "3", name: "Flowers", img: "/assets/img/icons/categories/flowers_icon.svg" },
-                { id: "4", name: "Cosmetics", img: "/assets/img/icons/categories/cosmetics_icon.svg" },
-                { id: "5", name: "Supplements", img: "/assets/img/icons/categories/supplements_icon.svg" },
-                { id: "6", name: "Electronics", img: "/assets/img/icons/categories/electronics_icon.svg" }
-            ]
-        }, callback);
+        const response = await this.getCategories();
+        if(response.err) {
+            this.setState({ err: response.err});
+        } else {
+            this.setState({ categories: response.data });
+        }
+
+        // this.setState({
+        //     categories: [
+        //         { id: "1", name: "Restaurants", img: "/assets/img/icons/categories/restaurants_icon.svg" },
+        //         { id: "2", name: "Groceries", img: "/assets/img/icons/categories/groceries_icon.svg" },
+        //         { id: "3", name: "Flowers", img: "/assets/img/icons/categories/flowers_icon.svg" },
+        //         { id: "4", name: "Cosmetics", img: "/assets/img/icons/categories/cosmetics_icon.svg" },
+        //         { id: "5", name: "Supplements", img: "/assets/img/icons/categories/supplements_icon.svg" },
+        //         { id: "6", name: "Electronics", img: "/assets/img/icons/categories/electronics_icon.svg" }
+        //     ]
+        // }, callback);
+    }
+
+    async getCategories() {
+        const response = await categoryApi.getCategories();
+        return response;
     }
 
     renderList() {

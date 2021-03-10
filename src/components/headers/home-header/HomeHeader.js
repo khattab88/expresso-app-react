@@ -23,7 +23,7 @@ class HomeHeader extends React.Component {
                 err: response.err
             });
         } else {
-            console.log(response.data);
+            // console.log(response.data);
             this.setState({
                 locations: response.data
             });
