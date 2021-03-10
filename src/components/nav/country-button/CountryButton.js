@@ -19,7 +19,10 @@ class CountryBtn extends React.Component {
     }
 
     async componentDidMount() {
-        const callback = () => this.setState({ selected: this.state.countries[0] });
+        const callback = () => this.setState({ 
+            // selected: this.state.countries[0] 
+            selected: this.state.countries.find(country => country.name === "Egypt")
+        });
 
         const response = await this.getCountries();
         if(response.err) {
@@ -65,6 +68,8 @@ class CountryBtn extends React.Component {
     }
 
     select(selected) {
+        // console.log(selected);
+
         this.setState({
             selected: selected
         });

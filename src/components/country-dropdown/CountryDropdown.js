@@ -18,7 +18,7 @@ class CountryDropdown extends React.Component {
         const selected = {
             id: target.dataset["id"],
             name: target.dataset["name"],
-            img: target.dataset["img"],
+            image: target.dataset["img"],
         };
 
         this.props.select(selected);
