@@ -31,10 +31,10 @@ class CountryDropdown extends React.Component {
             countryList = this.props.countries.map((country) =>
 
                 <li className="country-dropdown__item" key={country.id} 
-                    data-id={country.id} data-name={country.name} data-img={country.img}
+                    data-id={country.id} data-name={country.name} data-img={country.image}
                     onClick={this.onSelect} >
                     <a className="country-dropdown__link" href="#">
-                        <img className="country-dropdown__img" src={country.img} alt={country.name} />
+                        <img className="country-dropdown__img" src={country.image} alt={country.name} />
                         {country.name}
                     </a>
                 </li>
