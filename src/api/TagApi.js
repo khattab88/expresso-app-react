@@ -8,10 +8,7 @@ class TagApi {
 
     async getTags(query) {
         try {
-            let params = {};
-            if (query) params = { name: query };
-
-            const res = await this.baseApi.get("/tags", { params });
+            const res = await this.baseApi.get("/tags");
 
             const items = res.data.data.docs;
 

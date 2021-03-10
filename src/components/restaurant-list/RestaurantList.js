@@ -19,6 +19,7 @@ class RestaurantList extends React.Component {
             isLoading: true,
             tags: [],
             selectedTags: [],
+            tagsLoadingError: null,
             restaurants: [],
             filteredRestaurants: [],
             specialOffers: false,
@@ -37,20 +38,25 @@ class RestaurantList extends React.Component {
     }
 
     async componentDidMount() {
-        // setTimeout(() => {
-
-            const tags = await this.getTags();
-            const restaurants = this.getRestaurants();
-
-            this.setState({
-                isLoading: false,
-                tags,
-                selectedTags: {}, //[...tags].reduce((acc,curr)=> (acc[curr.id]= false, acc),{}),
-                restaurants,
-                filteredRestaurants: [...restaurants]
+        const tagsResponse = await this.getTags();
+        if(tagsResponse.err) {
+            // console.log(tagsResponse.err);
+            this.setState({ 
+                tagsLoadingError: tagsResponse.err 
             });
+        } else {
+            this.setState({ 
+                tags: tagsResponse.data,
+                selectedTags: {},
+            });
+        }
 
-        //}, 1000);
+        const restaurants = this.getRestaurants();
+        this.setState({
+            isLoading: false,
+            restaurants,
+            filteredRestaurants: [...restaurants]
+        });
     }
 
     componentDidUpdate() {
@@ -70,8 +76,8 @@ class RestaurantList extends React.Component {
         //     { id: "7", name: "Indian" },
         // ];
 
-        tags = await (await tagApi.getTags()).data;
-        return tags;
+        const response = await await tagApi.getTags();
+        return response;
     }
 
     getRestaurants() {
@@ -166,21 +172,21 @@ class RestaurantList extends React.Component {
     checkSpecialOffers(checked) {
         this.setState({
             specialOffers: checked,
-        }, 
-        this.filter);
+        },
+            this.filter);
     }
 
     changeTags(selectedTag) {
         // console.log(selectedTag);
 
-        const selectedTags = {...this.state.selectedTags};
-        if(selectedTag.selected === "true") {
+        const selectedTags = { ...this.state.selectedTags };
+        if (selectedTag.selected === "true") {
             selectedTags[selectedTag.id] = true;
         } else {
             delete selectedTags[selectedTag.id];
         }
 
-        this.setState({ selectedTags}, this.filter);
+        this.setState({ selectedTags }, this.filter);
     }
 
     clearTags() {
@@ -196,25 +202,25 @@ class RestaurantList extends React.Component {
 
         // filter by special offers
         filteredRestaurants = (this.state.specialOffers)
-                                ? this.state.restaurants.filter(restaurant => restaurant.specialOffers)
-                                : this.state.restaurants;
+            ? this.state.restaurants.filter(restaurant => restaurant.specialOffers)
+            : this.state.restaurants;
 
 
         // filter by selected tags
-        if(Object.keys(this.state.selectedTags).length > 0) {
+        if (Object.keys(this.state.selectedTags).length > 0) {
             let final = {};
 
             Object.keys(this.state.selectedTags).forEach(tagId => {
                 filteredRestaurants.forEach(rest => {
                     const restTags = rest.tags.map(t => t.id);
-                        if(restTags.indexOf(tagId) > -1) final[rest.id] = rest;
+                    if (restTags.indexOf(tagId) > -1) final[rest.id] = rest;
                 });
             });
 
             this.setState({ filteredRestaurants: Object.values(final) });
             return;
         }
-        
+
         // update filtered restaurants
         this.setState({ filteredRestaurants: filteredRestaurants });
     }
@@ -238,4 +244,4 @@ class RestaurantList extends React.Component {
     }
 }
 
-export default RestaurantList; 
+export default RestaurantList;
