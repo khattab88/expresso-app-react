@@ -8,7 +8,8 @@ function Card(props) {
 
     return (
         <article className="restaurant-info-card" data-id={props.restaurant.id} data-area={props.restaurant.areaId} >
-            <div className="restaurant-info-card__head" style={{ backgroundImage: props.restaurant.img }}>
+            <div className="restaurant-info-card__head">
+                <img src={props.restaurant.image} alt={props.restaurant.name} />
                 <div className="delivery-detail">
                     <p className="delivery-detail__title">Average delivery time</p>
                     <span className="delivery-detail__time">{props.restaurant.deliveryTime} mins</span>

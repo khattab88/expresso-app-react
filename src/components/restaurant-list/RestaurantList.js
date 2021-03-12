@@ -1,14 +1,12 @@
 import React from 'react';
 
 import tagApi from '../../api/TagApi';
+import branchApi from '../../api/BranchApi';
 
 import Breadcrumb from './breadcrumb/Breadcrumb';
-
-// import Filters from './filters/Filters';
 import DropdownFilter from './filters/dropdown-filter/DropdownFilter';
 import CheckboxFilter from './filters/checkbox-filter/CheckboxFilter';
 import GridFilter from './filters/grid-filter/GridFilter';
-
 import List from './list/List';
 
 class RestaurantList extends React.Component {
@@ -16,7 +14,7 @@ class RestaurantList extends React.Component {
         super(props);
 
         this.state = {
-            isLoading: true,
+            isLoading: false,
             tags: [],
             selectedTags: [],
             tagsLoadingError: null,
@@ -38,29 +36,36 @@ class RestaurantList extends React.Component {
     }
 
     async componentDidMount() {
+
         const tagsResponse = await this.getTags();
-        if(tagsResponse.err) {
+        if (tagsResponse.err) {
             // console.log(tagsResponse.err);
-            this.setState({ 
-                tagsLoadingError: tagsResponse.err 
+            this.setState({
+                tagsLoadingError: tagsResponse.err
             });
         } else {
-            this.setState({ 
+            this.setState({
                 tags: tagsResponse.data,
                 selectedTags: {},
             });
         }
 
-        const restaurants = this.getRestaurants();
-        this.setState({
-            isLoading: false,
-            restaurants,
-            filteredRestaurants: [...restaurants]
-        });
+        // this.setState({
+        //     isLoading: false,
+        //     restaurants,
+        //     filteredRestaurants: [...restaurants]
+        // });
+
+        // const restaurants = this.getRestaurants();
+        // this.setState({
+        //     isLoading: false,
+        //     restaurants,
+        //     filteredRestaurants: [...restaurants]
+        // });
     }
 
     componentDidUpdate() {
-        console.log(this.state);
+        // console.log(this.props.area);
     }
 
     async getTags() {
@@ -193,17 +198,14 @@ class RestaurantList extends React.Component {
         this.setState({ selectedTags: {} }, this.filter);
     }
 
-    componentDidUpdate() {
-        // console.log(this.state.selectedTags);
-    }
 
     filter() {
         let filteredRestaurants = [];
 
         // filter by special offers
         filteredRestaurants = (this.state.specialOffers)
-            ? this.state.restaurants.filter(restaurant => restaurant.specialOffers)
-            : this.state.restaurants;
+            ? this.props.branches.filter(branch => branch.restaurant.specialOffers)
+            : this.props.branches;
 
 
         // filter by selected tags
@@ -217,12 +219,13 @@ class RestaurantList extends React.Component {
                 });
             });
 
-            this.setState({ filteredRestaurants: Object.values(final) });
-            return;
+            // return this.setState({ filteredRestaurants: Object.values(final) });
+            return Object.values(final)
         }
 
         // update filtered restaurants
-        this.setState({ filteredRestaurants: filteredRestaurants });
+        // return this.setState({ filteredRestaurants: filteredRestaurants });
+        return filteredRestaurants;
     }
 
     render() {
@@ -238,7 +241,7 @@ class RestaurantList extends React.Component {
                     <GridFilter gridLayout={this.state.gridLayout} changeGridLayout={this.changeGridLayout} />
                 </section>
 
-                <List restaurants={this.state.filteredRestaurants} isLoading={this.state.isLoading} layout={this.state.gridLayout} />
+                <List branches={this.filter()} isLoading={this.state.isLoading} layout={this.state.gridLayout} />
             </main>
         );
     }

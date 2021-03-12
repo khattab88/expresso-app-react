@@ -152,7 +152,7 @@ class RestaurantListHeader extends React.Component {
         // console.log(selected);
 
         const callback = () => { 
-            // this.props.onAreaChange(selected);
+            this.props.onAreaChange(selected);
         }
 
         const selectedArea = selected;

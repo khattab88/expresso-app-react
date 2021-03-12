@@ -12,8 +12,8 @@ class List extends React.Component {
     render() {
         const gridCols = this.props.layout;
 
-        const restaurantList = this.props.restaurants.map((restaurant) =>
-            <Card restaurant={restaurant} key={restaurant.id} />
+        const restaurantList = this.props.branches.map((branch) =>
+            <Card restaurant={branch.restaurant} key={branch.id} />
         );
 
         return (
@@ -21,7 +21,7 @@ class List extends React.Component {
 
                 <Loader isLoading={this.props.isLoading} />
 
-                {(this.props.restaurants.length == 0 && !this.props.isLoading) &&  
+                {(this.props.branches.length == 0 && !this.props.isLoading) &&  
                     <EmptyList />
                 }
 
