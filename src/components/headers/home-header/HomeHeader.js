@@ -1,7 +1,9 @@
 import React from 'react';
 
-import LocationSelection from '../../location-selection/LocationSelection';
 import cityApi from '../../../api/CityApi';
+
+import LocationSelection from '../../location-selection/LocationSelection';
+
 
 class HomeHeader extends React.Component {
     constructor(props) {

@@ -1,13 +1,14 @@
 import React from 'react';
+import { rest } from 'lodash';
+
+
+import areaApi from '../../api/AreaApi';
+import branchApi from '../../api/BranchApi';
 
 import RestaurantShowcaseHeader from './restaurant-showcase-header/RestaurantShowcaseHeader';
 import RestaurantShowcaseList from './restaurant-showcase-list/RestaurantShowcaseList';
 import RestaurantShowcaseCard from './restaurant-showcase-card/RestaurantShowcaseCard';
 import LinkButton from '../shared/buttons/link-button/LinkButton';
-
-import areaApi from '../../api/AreaApi';
-import branchApi from '../../api/BranchApi';
-import { rest } from 'lodash';
 
 class RestaurantShowcase extends React.Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class RestaurantShowcase extends React.Component {
                     err: branchesResponse.err,
                 }, () => this.setState({ isLoading: false }));
             } else {
-                console.log(branchesResponse.data);
+                // console.log(branchesResponse.data);
                 this.setState({
                     branches: branchesResponse.data
                 }, () => this.setState({ isLoading: false }));
