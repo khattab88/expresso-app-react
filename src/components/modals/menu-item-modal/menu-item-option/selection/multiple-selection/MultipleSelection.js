@@ -14,7 +14,9 @@ class MultipleSelection extends React.Component {
 
     onChange(e) {
         // const optionId = e.target.name.split('-')[1];
-        const selectedOptionItem = e.target.value.split('-')[1];
+        // const selectedOptionItem = e.target.value.split('-')[1];
+
+        const selectedOptionItem = e.target.value.replace("optitem-", "");
 
         let selection = (this.state.selection.length > 0) ? this.state.selection.split(",") : [];
 
