@@ -14,7 +14,10 @@ class SingleSelecion extends React.Component {
 
     onChange(e) {
         // const optionId = e.target.name.split('-')[1];
-        const selectedOptionItem = e.target.value.split('-')[1];
+
+        //console.log(e.target);
+
+        const selectedOptionItem = e.target.value.replace("optitem-", "");
 
         this.setState({
             selection: selectedOptionItem

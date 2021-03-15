@@ -18,10 +18,11 @@ class Categories extends React.Component {
     }
 
     render() {
+        // console.log(this.props.menu);
 
-        const categoriesList = this.props.menu.categories.map((category) =>
-            <li className="menu-categories__category-item" id={category.id} key={category.id} >
-                <a href="#category-1" className="menu-categories__category-link">{category.name}</a>
+        const menuSectionList = this.props.menu.menuSections.map((section) =>
+            <li className="menu-categories__category-item" id={section.id} key={section.id} >
+                <a href={`#category-${section.id}`} className="menu-categories__category-link">{section.name}</a>
             </li>
         );
 
@@ -33,7 +34,7 @@ class Categories extends React.Component {
                 </div>
                 <div className={`${this.state.isOpen ?'menu-categories__body menu-categories__body--open' :'menu-categories__body'}`}>
                     <ul className="menu-categories__list">
-                        {categoriesList}
+                        {menuSectionList}
                     </ul>
                 </div>
             </section>

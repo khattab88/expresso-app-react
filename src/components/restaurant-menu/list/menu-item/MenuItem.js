@@ -17,8 +17,7 @@ class MenuItem extends React.Component {
     }
 
     render() {
-        const img = this.props.item.img;
-        const backgroundImage = { backgroundImage: `url(${this.props.item.img})` };
+        const backgroundImage = { backgroundImage: `url(${this.props.item.image})` };
 
         return (
             <article className="menu-item" id={this.props.item.id} onClick={this.open}>
@@ -28,7 +27,7 @@ class MenuItem extends React.Component {
                         <h4 className="menu-item__name">{this.props.item.name}</h4>
                         <p className="menu-item__price">{`${this.props.item.price} EGP`}</p>
                     </div>
-                    <p className="menu-item__desc">{this.props.item.desc}</p>
+                    <p className="menu-item__desc">{this.props.item.description}</p>
                 </div>
             </article>
         );

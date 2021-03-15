@@ -1,6 +1,7 @@
 import React from 'react';
 
 import branchApi from '../../../api/BranchApi';
+import menuApi from '../../../api/MenuApi';
 
 import Nav from '../../nav/Nav';
 import RestaurantMenuHeader from '../../headers/restaurant-menu-header/RestaurantMenuHeader';
@@ -26,18 +27,27 @@ class RestaurantMenuPage extends React.Component {
                 area: { id: "0", name: "" }
             },
             menu: {
-                categories: []
+                menuSections: []
             },
             err: null
         };
 
-        this.getMenu = this.getMenu.bind(this);
         this.getItem = this.getItem.bind(this);
-
         this.toggleLocationModal = this.toggleLocationModal.bind(this);
     }
 
     async componentDidMount() {
+        const callback = async () => {
+            const menuResponse = await this.getRestaurantMenu(this.state.branch.restaurant.id);
+            if (menuResponse.err) {
+                this.setState({ err: menuResponse.err });
+            } else {
+                // console.log(menuResponse.data);
+
+                this.setState({ menu: menuResponse.data });
+            }
+        };
+
         // this.setState({
         //     restaurant: {
         //         id: "1", 
@@ -62,12 +72,14 @@ class RestaurantMenuPage extends React.Component {
                     ...branch,
                     area: branch.area
                 }
-            });
+            }, callback); 
         }
 
-        this.setState({
-            menu: this.getMenu()
-        });
+        // this.setState({
+        //     menu: this.getMenu()
+        // });
+
+
     }
 
     componentDidUpdate() {
@@ -78,6 +90,11 @@ class RestaurantMenuPage extends React.Component {
     async getBranch(branchId) {
         const branchResponse = await branchApi.getBranch(branchId);
         return branchResponse;
+    }
+
+    async getRestaurantMenu(restaurantId) {
+        const menuResponse = await menuApi.getRestaurantMenu(restaurantId);
+        return menuResponse;
     }
 
     getMenu() {
@@ -180,9 +197,11 @@ class RestaurantMenuPage extends React.Component {
         // console.log(id);
 
         let menuItem = null;
-        this.state.menu.categories.forEach(category => {
-            category.menuItems.forEach(item => {
-                if (item.id === id) menuItem = item;
+        this.state.menu.menuSections.forEach(section => {
+            section.menuItems.forEach(item => {
+                if (item.id === id) {
+                    menuItem = item;
+                }
             });
         });
 
@@ -200,7 +219,7 @@ class RestaurantMenuPage extends React.Component {
             <div className="container restaurant-menu-page">
                 <Nav />
                 <RestaurantMenuHeader branch={this.state.branch} toggleLocationModal={this.toggleLocationModal} />
-                <RestaurantMenu restaurant={this.state.restaurant} menu={this.state.menu} getItem={this.getItem} />
+                <RestaurantMenu restaurant={this.state.branch.restaurant} menu={this.state.menu} getItem={this.getItem} />
                 <Footer />
 
                 <LocationModal isOpen={this.state.isLocationModalOpen} toggleLocationModal={this.toggleLocationModal} />

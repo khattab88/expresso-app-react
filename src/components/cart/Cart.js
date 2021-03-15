@@ -11,6 +11,7 @@ class Cart extends React.Component {
             subtotal: 0
         };
 
+        this.renderCartItems = this.renderCartItems.bind(this);
         this.onUpdateItemSubTotal = this.onUpdateItemSubTotal.bind(this);
         this.submit = this.submit.bind(this);
     }

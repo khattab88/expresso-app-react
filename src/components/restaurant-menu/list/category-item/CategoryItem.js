@@ -9,15 +9,15 @@ class CategoryItem extends React.Component {
 
     render() {
 
-        const menuItemList = this.props.category.menuItems.map((item) =>
+        const menuItemList = this.props.section.menuItems.map((item) =>
             <MenuItem 
                 item={item} key={item.id} 
                 toggleMenuItemModal={this.props.toggleMenuItemModal} renderMenuItemModal={this.props.renderMenuItemModal} />
         ); 
 
         return (
-            <article className="menu-items-by-category" id={this.props.category.id} onClick={this.props.toggleMenuItemModal}>
-                <h2 className="menu-items-by-category__category-name">{this.props.category.name}</h2>
+            <article className="menu-items-by-category" id={this.props.section.id} onClick={this.props.toggleMenuItemModal}>
+                <h2 className="menu-items-by-category__category-name">{this.props.section.name}</h2>
                 <div className="menu-items-by-category__menu-items-list">
                     {menuItemList}
                 </div>

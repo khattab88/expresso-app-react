@@ -73,6 +73,7 @@ class MenuItemModal extends React.Component {
 
     updateOptionSelection(selection) {
         // console.log(selection);
+
         const callback = () => {
             // console.log(this.state.optionSelection);
         };
@@ -113,7 +114,7 @@ class MenuItemModal extends React.Component {
                             <p className="menu-item-modal__close" onClick={this.close}>
                                 <i className="fa fa-times"></i>
                             </p>
-                            <img className="menu-item-modal__item-img" src={menuItem.img} alt={menuItem.name} />
+                            <img className="menu-item-modal__item-img" src={menuItem.image} alt={menuItem.name} />
                         </div>
 
                         <div className="menu-item-modal__body">

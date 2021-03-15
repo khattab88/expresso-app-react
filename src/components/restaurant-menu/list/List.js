@@ -9,16 +9,16 @@ class List extends React.Component {
 
     render() {
 
-        const categoryList = this.props.menu.categories.map((category) => 
+        const sectionList = this.props.menu.menuSections.map((section) => 
             <CategoryItem 
-                category={category} key={category.id} 
+                section={section} key={section.id} 
                 toggleMenuItemModal={this.props.toggleMenuItemModal} 
                 renderMenuItemModal={this.props.renderMenuItemModal} />
         );
 
         return (
             <div className="menu-items-wrapper">
-                {categoryList}
+                {sectionList}
             </div>
         );
     }
