@@ -8,8 +8,8 @@ class CartModal extends React.Component {
     }
 
     render() {
-        console.log(this.props.restaurant);
-        console.log(this.props.cart);
+        // console.log(this.props.restaurant);
+        // console.log(this.props.cart);
 
 
         const className = this.props.isOpen 

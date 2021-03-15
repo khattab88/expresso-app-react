@@ -11,11 +11,11 @@ class RestaurantMenuHeader extends React.Component {
     render() {
         return(
             <header className="header restaurant-menu-page__header" 
-                    style={{ backgroundImage: `url(/assets/img/restaurants/${this.props.restaurant.image})` }}>
+                style={{ backgroundImage: `url(${this.props.branch.restaurant.image})` }} >
     
-                <Breadcrumb restaurantName={this.props.restaurant.name} />
+                <Breadcrumb restaurantName={this.props.branch.restaurant.name} />
     
-                <RestaurantInfo restaurant={this.props.restaurant} toggleLocationModal={this.props.toggleLocationModal} />
+                <RestaurantInfo branch={this.props.branch} toggleLocationModal={this.props.toggleLocationModal} />
     
             </header>
         );

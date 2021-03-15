@@ -1,5 +1,7 @@
 import React from 'react';
 
+import branchApi from '../../../api/BranchApi';
+
 import Nav from '../../nav/Nav';
 import RestaurantMenuHeader from '../../headers/restaurant-menu-header/RestaurantMenuHeader';
 import RestaurantMenu from '../../restaurant-menu/RestaurantMenu';
@@ -13,17 +15,20 @@ class RestaurantMenuPage extends React.Component {
 
         this.state = {
             isLocationModalOpen: false,
-            restaurant: {
-                id: "0", 
-                name: "",
-                slogan: "",
-                image: "",
-                deliveryTime: 0,
+            branch: {
+                restaurant: {
+                    id: "0",
+                    name: "",
+                    slogan: "",
+                    image: "",
+                    deliveryTime: 0
+                },
                 area: { id: "0", name: "" }
-            }, 
+            },
             menu: {
                 categories: []
-            }
+            },
+            err: null
         };
 
         this.getMenu = this.getMenu.bind(this);
@@ -32,18 +37,33 @@ class RestaurantMenuPage extends React.Component {
         this.toggleLocationModal = this.toggleLocationModal.bind(this);
     }
 
-    componentDidMount() {
-        this.setState({
-            restaurant: {
-                id: "1", 
-                name: "Pizza Hut",
-                slogan: "I like it",
-                image: "rest-00.jpg",
-                deliveryTime: 35,
-                deliveryFee: 20,
-                area: { id: "1", name: "Heliopolis" }
-            }
-        });
+    async componentDidMount() {
+        // this.setState({
+        //     restaurant: {
+        //         id: "1", 
+        //         name: "Pizza Hut",
+        //         slogan: "I like it",
+        //         image: "rest-00.jpg",
+        //         deliveryTime: 35,
+        //         deliveryFee: 20,
+        //         area: { id: "1", name: "Heliopolis" }
+        //     }
+        // });
+
+        const defaultBranchId = "d7403b9c-f063-4732-8591-13af0b8ac07f"; // McDonald's - Heliopolis
+        const branchResponse = await this.getBranch(defaultBranchId);
+        if (branchResponse.err) {
+            this.setState({ err: branchResponse.err });
+        } else {
+            const branch = branchResponse.data;
+
+            this.setState({
+                branch: {
+                    ...branch,
+                    area: branch.area
+                }
+            });
+        }
 
         this.setState({
             menu: this.getMenu()
@@ -55,15 +75,20 @@ class RestaurantMenuPage extends React.Component {
         // console.log(this.state.menu);
     }
 
+    async getBranch(branchId) {
+        const branchResponse = await branchApi.getBranch(branchId);
+        return branchResponse;
+    }
+
     getMenu() {
         return {
             categories: [
                 {
-                    id: "1", 
+                    id: "1",
                     name: "Sandwiches",
                     menuItems: [
                         {
-                            id: "1", 
+                            id: "1",
                             name: "Double Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
                             img: "/assets/img/items/item-1.png",
@@ -92,7 +117,7 @@ class RestaurantMenuPage extends React.Component {
                             ]
                         },
                         {
-                            id: "2", 
+                            id: "2",
                             name: "Turkey Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
                             img: "/assets/img/items/item-2.png",
@@ -101,18 +126,18 @@ class RestaurantMenuPage extends React.Component {
                     ]
                 },
                 {
-                    id: "2", 
+                    id: "2",
                     name: "Sides",
                     menuItems: [
                         {
-                            id: "3", 
+                            id: "3",
                             name: "Regular Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
                             img: "/assets/img/items/item-6.jpg",
                             price: 70
                         },
                         {
-                            id: "4", 
+                            id: "4",
                             name: "Turkey Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
                             img: "/assets/img/items/item-7.jpg",
@@ -121,25 +146,25 @@ class RestaurantMenuPage extends React.Component {
                     ]
                 },
                 {
-                    id: "3", 
+                    id: "3",
                     name: "Desserts",
                     menuItems: [
                         {
-                            id: "5", 
+                            id: "5",
                             name: "Regular Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
                             img: "/assets/img/items/item-6.jpg",
                             price: 70
                         },
                         {
-                            id: "6", 
+                            id: "6",
                             name: "Turkey Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
                             img: "/assets/img/items/item-7.jpg",
                             price: 60
                         },
                         {
-                            id: "7", 
+                            id: "7",
                             name: "Turkey Cheese Burger",
                             desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
                             img: "/assets/img/items/item-7.jpg",
@@ -153,11 +178,11 @@ class RestaurantMenuPage extends React.Component {
 
     getItem(id) {
         // console.log(id);
-        
+
         let menuItem = null;
         this.state.menu.categories.forEach(category => {
             category.menuItems.forEach(item => {
-                if(item.id === id) menuItem = item;
+                if (item.id === id) menuItem = item;
             });
         });
 
@@ -174,7 +199,7 @@ class RestaurantMenuPage extends React.Component {
         return (
             <div className="container restaurant-menu-page">
                 <Nav />
-                <RestaurantMenuHeader restaurant={this.state.restaurant} toggleLocationModal={this.toggleLocationModal} />
+                <RestaurantMenuHeader branch={this.state.branch} toggleLocationModal={this.toggleLocationModal} />
                 <RestaurantMenu restaurant={this.state.restaurant} menu={this.state.menu} getItem={this.getItem} />
                 <Footer />
 

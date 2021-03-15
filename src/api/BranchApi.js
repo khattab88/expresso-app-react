@@ -27,6 +27,27 @@ class BranchApi {
         }
     }
 
+    async getBranch(branchId) {
+        try {
+            const res = await this.baseApi.get(`/branches/${branchId}`);
+
+            const item = res.data.data.doc;
+
+            return {
+                status: "success",
+                err: null,
+                data: item
+            }
+        } catch (err) {
+            // console.log(e);
+
+            return {
+                status: "fail",
+                err: err,
+            }
+        }
+    }
+
     async getBranchesByArea(areaId) {
         try {
             const res = await this.baseApi.get(`areas/${areaId}/branches`);
