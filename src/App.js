@@ -22,12 +22,12 @@ class App extends React.Component {
       <div className="App container">
           {/* <HomePage /> */}
           {/* <RestaurantListPage /> */}
-          {/* <RestaurantMenuPage /> */}
+          <RestaurantMenuPage />
           {/* <LoginPage /> */}
           {/* <SignupPage /> */}
           {/* <ContactUsPage /> */}
           {/* <CheckoutPage /> */}
-          <TestPage />
+          {/* <TestPage /> */}
       </div>
     );
   }

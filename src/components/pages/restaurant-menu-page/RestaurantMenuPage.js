@@ -34,6 +34,7 @@ class RestaurantMenuPage extends React.Component {
 
         this.getItem = this.getItem.bind(this);
         this.toggleLocationModal = this.toggleLocationModal.bind(this);
+        this.selectLocation = this.selectLocation.bind(this);
     }
 
     async componentDidMount() {
@@ -47,18 +48,6 @@ class RestaurantMenuPage extends React.Component {
                 this.setState({ menu: menuResponse.data });
             }
         };
-
-        // this.setState({
-        //     restaurant: {
-        //         id: "1", 
-        //         name: "Pizza Hut",
-        //         slogan: "I like it",
-        //         image: "rest-00.jpg",
-        //         deliveryTime: 35,
-        //         deliveryFee: 20,
-        //         area: { id: "1", name: "Heliopolis" }
-        //     }
-        // });
 
         const defaultBranchId = "d7403b9c-f063-4732-8591-13af0b8ac07f"; // McDonald's - Heliopolis
         const branchResponse = await this.getBranch(defaultBranchId);
@@ -75,11 +64,6 @@ class RestaurantMenuPage extends React.Component {
             }, callback); 
         }
 
-        // this.setState({
-        //     menu: this.getMenu()
-        // });
-
-
     }
 
     componentDidUpdate() {
@@ -95,102 +79,6 @@ class RestaurantMenuPage extends React.Component {
     async getRestaurantMenu(restaurantId) {
         const menuResponse = await menuApi.getRestaurantMenu(restaurantId);
         return menuResponse;
-    }
-
-    getMenu() {
-        return {
-            categories: [
-                {
-                    id: "1",
-                    name: "Sandwiches",
-                    menuItems: [
-                        {
-                            id: "1",
-                            name: "Double Cheese Burger",
-                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: "/assets/img/items/item-1.png",
-                            price: 70,
-                            options: [
-                                {
-                                    id: "1",
-                                    name: "Choice of bun or lettuce wrap",
-                                    type: "Required",
-                                    optionItems: [
-                                        { id: "1", name: "Potato Bun", value: 3 },
-                                        { id: "2", name: "Lettuce Wrap", value: 6 },
-                                    ]
-                                },
-                                {
-                                    id: "2",
-                                    name: "Choice of cheese",
-                                    type: "Optionl",
-                                    optionItems: [
-                                        { id: "3", name: "No Cheese", value: 0 },
-                                        { id: "4", name: "Regular", value: 5 },
-                                        { id: "5", name: "Cheddar", value: 10 },
-                                        { id: "6", name: "Spicy", value: 15 },
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            id: "2",
-                            name: "Turkey Cheese Burger",
-                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: "/assets/img/items/item-2.png",
-                            price: 60
-                        }
-                    ]
-                },
-                {
-                    id: "2",
-                    name: "Sides",
-                    menuItems: [
-                        {
-                            id: "3",
-                            name: "Regular Cheese Burger",
-                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: "/assets/img/items/item-6.jpg",
-                            price: 70
-                        },
-                        {
-                            id: "4",
-                            name: "Turkey Cheese Burger",
-                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: "/assets/img/items/item-7.jpg",
-                            price: 60
-                        }
-                    ]
-                },
-                {
-                    id: "3",
-                    name: "Desserts",
-                    menuItems: [
-                        {
-                            id: "5",
-                            name: "Regular Cheese Burger",
-                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: "/assets/img/items/item-6.jpg",
-                            price: 70
-                        },
-                        {
-                            id: "6",
-                            name: "Turkey Cheese Burger",
-                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: "/assets/img/items/item-7.jpg",
-                            price: 60
-                        },
-                        {
-                            id: "7",
-                            name: "Turkey Cheese Burger",
-                            desc: "House-made turkey sausage, cage-free over medium egg, cheddar cheese, honey...",
-                            img: "/assets/img/items/item-7.jpg",
-                            price: 60
-                        }
-                    ]
-                }
-            ]
-        };
     }
 
     getItem(id) {
@@ -214,6 +102,15 @@ class RestaurantMenuPage extends React.Component {
         })
     }
 
+    selectLocation(area) {
+        this.setState({
+            branch: {
+                ...this.state.branch,
+                area
+            }
+        })
+    }
+
     render() {
         return (
             <div className="container restaurant-menu-page">
@@ -222,7 +119,9 @@ class RestaurantMenuPage extends React.Component {
                 <RestaurantMenu restaurant={this.state.branch.restaurant} menu={this.state.menu} getItem={this.getItem} />
                 <Footer />
 
-                <LocationModal isOpen={this.state.isLocationModalOpen} toggleLocationModal={this.toggleLocationModal} />
+                <LocationModal 
+                    isOpen={this.state.isLocationModalOpen} toggleLocationModal={this.toggleLocationModal}
+                    selectLocation={this.selectLocation} />
             </div>
         );
     }
