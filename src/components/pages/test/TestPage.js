@@ -4,6 +4,7 @@ import './Test.scss';
 
 import Search from './search/Search';
 import Accordion from './accordion/Accordion';
+import WikiSearch from './wiki-search/WikiSearch';
 
 class TestPage extends React.Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class TestPage extends React.Component {
         return (
             <main className="main">
                 {/* <Search /> */}
-                <Accordion />
+                {/* <Accordion /> */}
+                <WikiSearch />
             </main>
         );
     }
