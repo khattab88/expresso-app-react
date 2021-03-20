@@ -11,10 +11,34 @@ class RestaurantSelection extends React.Component {
             searchText: "",
         };
 
+        this.ref = React.createRef();
+
         this.onToggle = this.onToggle.bind(this);
         this.onSelect = this.onSelect.bind(this);
         this.onSearch  = this.onSearch.bind(this);
+
+        this.onBodyClick = this.onBodyClick.bind(this);
     }
+
+    componentDidMount() {
+        document.body.addEventListener("click", this.onBodyClick);
+    }
+
+    componentWillUnmount() {
+        document.body.removeEventListener("click", this.onBodyClick);
+    }
+
+    onBodyClick(e) {
+        // console.log(e.target);
+
+        if(this.ref.current && this.ref.current.contains(e.target)) {
+            return;
+        }
+
+        this.setState({
+            isOpen: false
+        });
+    };
 
     onToggle(e) {
         this.setState({ 
@@ -56,7 +80,7 @@ class RestaurantSelection extends React.Component {
                                 : "restaurant-selection__box";
 
         return (
-            <div className="restaurant-selection">
+            <div className="restaurant-selection" ref={this.ref}>
                 <button className={btnClassName} onClick={this.onToggle}>
                     <i className="restaurant-selection__icon-store material-icons">search</i>
                     <p className="restaurant-selection__value" 
