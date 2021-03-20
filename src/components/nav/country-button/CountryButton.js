@@ -14,8 +14,11 @@ class CountryBtn extends React.Component {
             err: null,
         };
 
+        this.ref = React.createRef();
+
         this.toggleNavCountry = this.toggleNavCountry.bind(this);
         this.select = this.select.bind(this);
+        this.onBodyClick = this.onBodyClick.bind(this);
     }
 
     async componentDidMount() {
@@ -36,17 +39,20 @@ class CountryBtn extends React.Component {
             }, callback);
         }
 
-        // this.setState({
-        //     countries: [
-        //         { id: "1", name: "Egypt", img: "/assets/img/flags/eg.svg" },
-        //         { id: "2", name: "Saudia Arabia", img: "/assets/img/flags/sa.svg" },
-        //         { id: "3", name: "UAE", img: "/assets/img/flags/ae.svg" },
-        //         { id: "4", name: "Kuwait", img: "/assets/img/flags/kw.svg" },
-        //         { id: "5", name: "Qatar", img: "/assets/img/flags/qa.svg" },
-        //         { id: "6", name: "Bahrain", img: "/assets/img/flags/bh.svg" },
-        //     ]
-        // }, callback);
+        document.body.addEventListener("click", this.onBodyClick);
     }
+
+    onBodyClick(e) {
+        // console.log(e.target);
+
+        if(this.ref.current && this.ref.current.contains(e.target)) {
+            return;
+        }
+
+        this.setState({
+            isOpen: false
+        });
+    };
 
     componentDidUpdate() {
         // console.log("componentDidUpdate");
@@ -54,6 +60,8 @@ class CountryBtn extends React.Component {
 
     componentWillUnmount() {
         // console.log("componentWillUnmount");
+
+        document.body.removeEventListener("click", this.onBodyClick);
     }
 
     async getCountries() {
@@ -80,7 +88,7 @@ class CountryBtn extends React.Component {
         const selected = (this.state.selected.image !== '') ? this.state.selected : { name:"Egypt", image: "/assets/img/flags/eg.svg" };
        
         return(
-            <button className={className} onClick={this.toggleNavCountry}>
+            <button className={className} onClick={this.toggleNavCountry} ref={this.ref}>
                 <img className="country-btn__img" src={selected.image} alt={selected.name} />
                 <i className="country-btn__caret--down fa fa-caret-down"></i>
                 <CountryDropdown isOpen={this.state.isOpen} countries={this.state.countries} select={this.select} />
