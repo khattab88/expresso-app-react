@@ -13,7 +13,7 @@ class List extends React.Component {
         const gridCols = this.props.layout;
 
         const restaurantList = this.props.branches.map((branch) =>
-            <Card restaurant={branch.restaurant} key={branch.id} />
+            <Card branch={branch} restaurant={branch.restaurant} key={branch.id} />
         );
 
         return (
