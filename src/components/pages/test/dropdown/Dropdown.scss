@@ -1,0 +1,67 @@
+.dropdown {
+    width: 50%;
+    // height: 100vh;
+    margin: 2rem auto;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 1rem;
+
+    &__title {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    &__select {
+        width: 60%;
+        font-size: 1.5rem;
+        padding: .5rem;
+    }
+
+    &__head {
+        font-size: 2rem;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: .5rem;
+
+        .icon--close {
+            display: inline-block;
+        }
+        .icon--open {
+            display: none;
+        }
+
+        &--open {
+            .icon--close {
+                display: none;
+            }
+            .icon--open {
+                display: inline-block;
+            }
+        }
+    }
+
+    &__body {
+        display: none;
+        width: 100%;
+        border: 1px solid #ccc;
+        padding: .5rem;
+
+        &--open {
+            display: inline-block;
+        }
+    }
+
+    &__option {
+        margin: .25rem 0;
+        font-size: 1.75rem;
+        padding: .25rem 0;
+
+        &:hover {
+            background-color: #eee;
+            cursor: pointer;
+        }
+    }
+}
