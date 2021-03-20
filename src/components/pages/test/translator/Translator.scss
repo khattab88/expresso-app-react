@@ -1,0 +1,24 @@
+.translator {
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 2rem auto;
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+
+    &__title {
+        text-align: center;
+        margin: 1rem;
+    }
+
+    &__label {
+        font-weight: 400;
+        margin-left: 1rem;
+    }
+
+    &__input {
+        margin-left: .5rem;
+        font-weight: 100;
+        padding: .5rem;
+    }
+}
