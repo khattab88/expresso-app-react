@@ -6,6 +6,7 @@ class LocationSelection extends React.Component {
     constructor(props) {
         super(props);
 
+        this.ref = React.createRef();
         this.searchInputRef = React.createRef();
 
         this.state = {
@@ -16,11 +17,31 @@ class LocationSelection extends React.Component {
         this.onToggle = this.onToggle.bind(this);
         this.onSelect = this.onSelect.bind(this);
         this.onSearch  = this.onSearch.bind(this);
+
+        this.onBodyClick = this.onBodyClick.bind(this);
     }
 
     componentDidMount() { 
         // console.log(this.searchInputRef); 
+
+        document.body.addEventListener("click", this.onBodyClick);
     }
+
+    componentWillUnmount() {
+        document.body.removeEventListener("click", this.onBodyClick);
+    }
+
+    onBodyClick(e) {
+        // console.log(e.target);
+
+        if(this.ref.current && this.ref.current.contains(e.target)) {
+            return;
+        }
+
+        this.setState({
+            isOpen: false
+        });
+    };
 
     onToggle(e) {
        this.setState({
@@ -53,7 +74,7 @@ class LocationSelection extends React.Component {
         const className = this.state.isOpen ?"location-selection__btn location-selection__btn--open" :"location-selection__btn";
 
         return (
-            <div className="location-selection">
+            <div className="location-selection" ref={this.ref}>
                 <button className={className} onClick={this.onToggle}>
                     <i className="location-selection__icon-location material-icons-outlined">location_on</i>
                     <p className="location-selection__value" data-selected={this.props.selected.id}>{this.props.selected.name}</p>
