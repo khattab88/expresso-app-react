@@ -18,6 +18,7 @@ class CountryBtn extends React.Component {
 
         this.toggleNavCountry = this.toggleNavCountry.bind(this);
         this.select = this.select.bind(this);
+        
         this.onBodyClick = this.onBodyClick.bind(this);
     }
 

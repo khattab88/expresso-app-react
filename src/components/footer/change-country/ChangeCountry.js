@@ -14,8 +14,12 @@ class ChangeCountry extends React.Component {
             err: null
         };
 
+        this.ref = React.createRef();
+
         this.toggle = this.toggle.bind(this);
         this.select = this.select.bind(this);
+
+        this.onBodyClick = this.onBodyClick.bind(this);
     }
 
     async componentDidMount() {
@@ -31,21 +35,28 @@ class ChangeCountry extends React.Component {
             }, callback);
         }
 
-        // this.setState({
-        //     countries: [
-        //         { id:"1", name: "Egypt", img: "/assets/img/flags/eg.svg" },
-        //         { id:"2", name: "Saudia Arabia", img: "/assets/img/flags/sa.svg" },
-        //         { id:"3", name: "UAE", img: "/assets/img/flags/ae.svg" },
-        //         { id:"4", name: "Kuwait", img: "/assets/img/flags/kw.svg" },
-        //         { id:"5", name: "Qatar", img: "/assets/img/flags/qa.svg" },
-        //         { id:"6", name: "Bahrain", img: "/assets/img/flags/bh.svg" },
-        //     ],
-        // }, callback);
+        document.body.addEventListener("click", this.onBodyClick);
     }
 
     componentDidUpdate() {
         // console.log(this.state.countries);
     }
+
+    componentWillUnmount() {
+        document.body.removeEventListener("click", this.onBodyClick);
+    }
+
+    onBodyClick(e) {
+        // console.log(e.target);
+
+        if(this.ref.current && this.ref.current.contains(e.target)) {
+            return;
+        }
+
+        this.setState({
+            isOpen: false
+        });
+    };
 
     async getCountries() {
         const response = await countryApi.getCountries();
@@ -66,7 +77,7 @@ class ChangeCountry extends React.Component {
 
     render() {
         return (
-            <button className="change-country__btn" onClick={this.toggle}>
+            <button className="change-country__btn" onClick={this.toggle} ref={this.ref}>
                 <img className="change-country__flag"
                     src={this.state.selected.image} alt={this.state.selected.name} height="20" width="30" />
                 {this.state.selected.name}
