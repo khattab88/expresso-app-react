@@ -12,8 +12,8 @@ class Footer extends React.Component {
         this.navItems = {
             aboutUs: { title: 'About Us', href: '#' },
             howItWorks: { title: 'How it works', href: '#' },
-            restaurants: { title: 'Restaurants', href: '../restaurant-list/index.html' },
-            contactUs: { title: 'Contact Us', href: '../contact-us/index.html' },
+            restaurants: { title: 'Restaurants', href: '/restaurant-list' },
+            contactUs: { title: 'Contact Us', href: '/contact-us' },
         };
 
         this.socialLinks = {

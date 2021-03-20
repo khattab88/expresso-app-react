@@ -1,5 +1,5 @@
 import React from 'react';
-import { rest } from 'lodash';
+import { Link } from "react-router-dom";
 
 
 import areaApi from '../../api/AreaApi';
@@ -133,7 +133,7 @@ class RestaurantShowcase extends React.Component {
 
                     {restaurantCards}
 
-                    <LinkButton className="showcase__show-all" href="#" title="Show All Restaurants" />
+                    <LinkButton className="showcase__show-all" href="/restaurant-list" title="Show All Restaurants" />
                 </div>
             </main>
         );

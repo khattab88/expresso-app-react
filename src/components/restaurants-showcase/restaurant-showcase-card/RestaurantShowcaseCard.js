@@ -12,7 +12,7 @@ class RestaurantShowcaseCard extends React.Component {
 
         return (
             <article className={className} id={this.props.restaurantCard.id}>
-                <a className="restaurant-card__link" href="#">
+                <a className="restaurant-card__link" href="/restaurant-menu">
                     <img className="restaurant-card__img" src={this.props.restaurantCard.image} alt={this.props.restaurantCard.name} />
                     <div className="restaurant-card__name">{this.props.restaurantCard.name}</div>
                     <div className="restaurant-card__desc">{this.props.restaurantCard.desc}</div>

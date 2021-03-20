@@ -19,12 +19,12 @@ class Nav extends React.Component {
         this.toggleMobileNav = this.toggleMobileNav.bind(this);
 
         this.state.navItems = {
-            login: { title: "Login", href:"../login/index.html" },
-            signUp: { title: "Sign Up", href:"../sign-up/index.html" },
-            contactUs: { title: "Contact Us", href:"../contact-us/index.html" },
+            login: { title: "Login", href:"/login" },
+            signUp: { title: "Sign Up", href:"/signup" },
+            contactUs: { title: "Contact Us", href:"/contact-us" },
             lang: { title: "العربية", href:"#"},
             country: { title: "", href:"#"},
-            cart: { title: "", href:"../checkout/index.html"},
+            cart: { title: "", href:"/checkout"},
             category: { title: "", href:"#"}
         };
     }

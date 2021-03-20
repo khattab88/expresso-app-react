@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 import './App.scss';
 
@@ -20,14 +27,44 @@ class App extends React.Component {
   render() {
     return (
       <div className="App container">
-          {/* <HomePage /> */}
-          {/* <RestaurantListPage /> */}
-          {/* <RestaurantMenuPage /> */}
-          {/* <LoginPage /> */}
-          {/* <SignupPage /> */}
-          {/* <ContactUsPage /> */}
-          {/* <CheckoutPage /> */}
-          <TestPage />
+        {/* <HomePage /> */}
+        {/* <RestaurantListPage /> */}
+        {/* <RestaurantMenuPage /> */}
+        {/* <LoginPage /> */}
+        {/* <SignupPage /> */}
+        {/* <ContactUsPage /> */}
+        {/* <CheckoutPage /> */}
+        {/* <TestPage /> */}
+
+        <Router>
+          <Switch>
+            <Route path="/restaurant-list">
+              <RestaurantListPage />
+            </Route>
+            <Route path="/restaurant-menu">
+              <RestaurantMenuPage />
+            </Route>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+            <Route path="/signup">
+              <SignupPage />
+            </Route>
+            <Route path="/contact-us">
+              <ContactUsPage />
+            </Route>
+            <Route path="/checkout">
+              <CheckoutPage />
+            </Route>
+            <Route path="/test">
+              <TestPage />
+            </Route>
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+        </Router>
+
       </div>
     );
   }

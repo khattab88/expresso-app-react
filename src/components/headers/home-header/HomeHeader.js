@@ -84,7 +84,7 @@ class HomeHeader extends React.Component {
                                     selected={this.state.selectedLocation} select={this.selectLocation} />
                             </div>
 
-                            <a href="#" className="search__submit">Find Restaurant</a>
+                            <a href="/restaurant-list" className="search__submit">Find Restaurant</a>
                         </div>
                     </div>
                 </div>

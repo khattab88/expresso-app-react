@@ -198,7 +198,8 @@ class RestaurantListHeader extends React.Component {
                                     selected={this.state.selectedBranch} select={this.selectBranch} />
                             </div>
 
-                            <button className="restaurant-search__submit" type="submit">Find Food</button>
+                            {/* <button className="restaurant-search__submit" type="submit">Find Food</button> */}
+                            <a className="restaurant-search__submit" href="/restaurant-menu">Find Food</a>
                         </div>
                     </div>
                 </div>
