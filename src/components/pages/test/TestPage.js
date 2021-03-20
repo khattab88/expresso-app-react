@@ -33,7 +33,48 @@ class TestPage extends React.Component {
                 {/* <Dropdown /> */}
                 {/* <Translator /> */}
 
-                
+                <Router>
+                    <nav style={{ margin: "1rem" }}>
+                        <ul style={{ listStyle: 'none', display: 'flex' }}>
+                            <li style={navItemStyles}>
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li style={navItemStyles}>
+                                <Link to="/accordion">Accordion</Link>
+                            </li>
+                            <li style={navItemStyles}>
+                                <Link to="/wiki-search">WikiSearch</Link>
+                            </li>
+                            <li style={navItemStyles}>
+                                <Link to="/dropdown">Dropdown</Link>
+                            </li>
+                            <li style={navItemStyles}>
+                                <Link to="/translator">Translator</Link>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <Switch>
+                        <Route path="/accordion">
+                            <Accordion />
+                        </Route>
+                        <Route path="/wiki-search">
+                            <WikiSearch />
+                        </Route>
+                        <Route path="/dropdown">
+                            <Dropdown />
+                        </Route>
+                        <Route path="/translator">
+                            <Translator />
+                        </Route>
+                        <Route path="/">
+                            <React.Fragment>
+                                <h1>Home</h1>
+                            </React.Fragment>
+                        </Route>
+                    </Switch>
+                </Router>
+
             </main>
         );
     }
