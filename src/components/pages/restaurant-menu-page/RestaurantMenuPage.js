@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from "react-router";
+import { useParams } from "react-router-dom";
 
 import branchApi from '../../../api/BranchApi';
 import menuApi from '../../../api/MenuApi';
@@ -38,6 +40,10 @@ class RestaurantMenuPage extends React.Component {
     }
 
     async componentDidMount() {
+        // const branchId = "d7403b9c-f063-4732-8591-13af0b8ac07f"; // McDonald's - Heliopolis
+        // const { branchId } = useParams(); // A REACT HOOK, ONLY WORKS IN FUNCTION COMPONENTS
+        const branchId = this.props.match.params.branchId;
+
         const callback = async () => {
             const menuResponse = await this.getRestaurantMenu(this.state.branch.restaurant.id);
             if (menuResponse.err) {
@@ -49,8 +55,7 @@ class RestaurantMenuPage extends React.Component {
             }
         };
 
-        const defaultBranchId = "d7403b9c-f063-4732-8591-13af0b8ac07f"; // McDonald's - Heliopolis
-        const branchResponse = await this.getBranch(defaultBranchId);
+        const branchResponse = await this.getBranch(branchId);
         if (branchResponse.err) {
             this.setState({ err: branchResponse.err });
         } else {
@@ -127,4 +132,4 @@ class RestaurantMenuPage extends React.Component {
     }
 }
 
-export default RestaurantMenuPage;
+export default withRouter(RestaurantMenuPage);

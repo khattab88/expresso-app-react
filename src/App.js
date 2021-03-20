@@ -41,8 +41,8 @@ class App extends React.Component {
             <Route path="/restaurant-list">
               <RestaurantListPage />
             </Route>
-            <Route path="/restaurant-menu">
-              <RestaurantMenuPage />
+            <Route path="/restaurant-menu/:branchId">
+              <RestaurantMenuPage/>
             </Route>
             <Route path="/login">
               <LoginPage />

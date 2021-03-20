@@ -50,91 +50,6 @@ class RestaurantListHeader extends React.Component {
             }, callback)
         }
 
-        // const locations = [
-        //     {
-        //         id: "1", name: "Cairo",
-        //         areas: [
-        //             { id: "1", name: "Heliopolis" },
-        //             { id: "2", name: "Zamalek" },
-        //             { id: "3", name: "DownTown" },
-        //             { id: "4", name: "Maadi" },
-        //             { id: "5", name: "Nasr City" },
-        //         ]
-        //     },
-        //     {
-        //         id: "2", name: "Giza",
-        //         areas: [
-        //             { id: "6", name: "Mohandessien" },
-        //             { id: "7", name: "Dokki" },
-        //             { id: "8", name: "Giza Square" },
-        //             { id: "9", name: "Haram" },
-        //             { id: "10", name: "6th October" },
-        //         ]
-        //     }
-        // ];
-
-        // const branches = [
-        //     {
-        //         id: "1",
-        //         name: "McDonalds's - Heliopolis Branch",
-        //         areaId: "1",
-        //         restaurant: {
-        //             id: "1",
-        //             name: "McDonalds's"
-        //         }
-        //     },
-        //     {
-        //         id: "2",
-        //         name: "KFC - Heliopolis Branch",
-        //         areaId: "1",
-        //         restaurant: {
-        //             id: "2",
-        //             name: "KFC"
-        //         }
-        //     },
-        //     {
-        //         id: "3",
-        //         name: "McDonalds's - Mohandessien Branch",
-        //         areaId: "6",
-        //         restaurant: {
-        //             id: "1",
-        //             name: "McDonalds's"
-        //         }
-        //     },
-        //     {
-        //         id: "4",
-        //         name: "KFC - Mohandessien Branch",
-        //         areaId: "6",
-        //         restaurant: {
-        //             id: "2",
-        //             name: "KFC"
-        //         }
-        //     },
-        //     {
-        //         id: "5",
-        //         name: "Pizza Hut - Heliopolis Branch",
-        //         areaId: "1",
-        //         restaurant: {
-        //             id: "3",
-        //             name: "Pizza Hut"
-        //         }
-        //     },
-        //     {
-        //         id: "6",
-        //         name: "Burger King - Mohandessien Branch",
-        //         areaId: "6",
-        //         restaurant: {
-        //             id: "4",
-        //             name: "Burger King"
-        //         }
-        //     },
-        // ];
-
-        // this.setState({
-        //     locations,
-        //     branches,
-        //     locationBranches: [...branches]
-        // });
     }
 
     async getCities() {
@@ -151,7 +66,7 @@ class RestaurantListHeader extends React.Component {
     async selectLocation(selected) {
         // console.log(selected);
 
-        const callback = () => { 
+        const callback = () => {
             this.props.onAreaChange(selected);
         }
 
@@ -178,6 +93,10 @@ class RestaurantListHeader extends React.Component {
     }
 
     render() {
+        const linkHref = (this.state.selectedBranch.id !== "0")
+                            ? `/restaurant-menu/${this.state.selectedBranch.id}`
+                            : "/restaurant-list";
+
         return (
             <header className="header restaurant-list-page__header">
 
@@ -199,7 +118,9 @@ class RestaurantListHeader extends React.Component {
                             </div>
 
                             {/* <button className="restaurant-search__submit" type="submit">Find Food</button> */}
-                            <a className="restaurant-search__submit" href="/restaurant-menu">Find Food</a>
+                            <a className="restaurant-search__submit" href={linkHref}>
+                                Find Food
+                            </a>
                         </div>
                     </div>
                 </div>
