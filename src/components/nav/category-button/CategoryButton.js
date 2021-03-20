@@ -14,8 +14,12 @@ class CategoryButton extends React.Component {
             err: null
         };
 
+        this.ref = React.createRef();
+
         this.toggle = this.toggle.bind(this);
         this.select = this.select.bind(this);
+
+        this.onBodyClick = this.onBodyClick.bind(this);
     }
 
     async componentDidMount() {
@@ -33,17 +37,21 @@ class CategoryButton extends React.Component {
             }, callback)
         }
 
+        document.body.addEventListener("click", this.onBodyClick);
+    }
 
-        // this.setState({
-        //     categories: [
-        //         { id: "1", name: "Restaurants", img: "/assets/img/icons/categories/restaurants_icon.svg" },
-        //         { id: "2", name: "Groceries", img: "/assets/img/icons/categories/groceries_icon.svg" },
-        //         { id: "3", name: "Flowers", img: "/assets/img/icons/categories/flowers_icon.svg" },
-        //         { id: "4", name: "Cosmetics", img: "/assets/img/icons/categories/cosmetics_icon.svg" },
-        //         { id: "5", name: "Supplements", img: "/assets/img/icons/categories/supplements_icon.svg" },
-        //         { id: "6", name: "Electronics", img: "/assets/img/icons/categories/electronics_icon.svg" }
-        //     ]
-        // }, callback);
+    componentWillUnmount() {
+        document.body.removeEventListener("click", this.onBodyClick);
+    }
+
+    onBodyClick(e) {
+        if(this.ref.current && this.ref.current.contains(e.target)) {
+            return;
+        }
+
+        this.setState({
+            isOpen: false
+        });
     }
 
     async getCategories() {
@@ -56,7 +64,10 @@ class CategoryButton extends React.Component {
     }
 
     select(selected) {
-        this.setState({ selected });
+        this.setState({ 
+            selected ,
+            isOpen: !this.state.isOpen
+        });
     }
 
     render() {
@@ -64,7 +75,7 @@ class CategoryButton extends React.Component {
         const selected = (this.state.selected.image !== '') ? this.state.selected : { name:"Restaurants", image: "/assets/img/icons/categories/restaurants_icon.svg" };
 
         return (
-            <div className="CategoryButton">
+            <div className="CategoryButton" ref={this.ref}>
                 <button className={className} onClick={this.toggle}>
                     <img className="category-btn__img" src={selected.image} alt={selected.name} />
                     <i className="category-btn__caret--down fa fa-caret-down"></i>
