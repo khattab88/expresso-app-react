@@ -12,14 +12,12 @@ function LocationModal(props) {
     const [err, setErr] = useState(null);
 
     useEffect(async () => {
+        // console.log(selectedLocation);
 
         const locationsResponse = await cityApi.getCities();
         if (locationsResponse.err) {
             setErr(locationsResponse.err);
         } else {
-            // console.log(locationsResponse.data);
-            // console.log(selectedLocation);
-
             setLocations(locationsResponse.data);
         }
 
@@ -27,11 +25,16 @@ function LocationModal(props) {
 
     const selectLocation = (selected) => {
         // console.log(selected);
+
         setSelectedLocation(selected);
     }
 
     const submit = () => {
-        props.selectLocation(selectedLocation);
+        // console.log(selectedLocation);
+
+        if (selectedLocation.id !== "0") {
+            props.selectLocation(selectedLocation);
+        }
         props.toggleLocationModal();
     }
 
@@ -46,7 +49,7 @@ function LocationModal(props) {
                 </div>
                 <div className="location-modal__body">
                     <div className="location-modal__select">
-                        <LocationSelection locations={locations} selected={selectedLocation} select={selectLocation}  />
+                        <LocationSelection locations={locations} selected={selectedLocation} select={selectLocation} />
                     </div>
                     <button className="location-modal__update" onClick={submit}>Update</button>
                 </div>
