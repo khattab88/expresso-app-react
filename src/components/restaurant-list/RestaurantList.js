@@ -214,7 +214,7 @@ class RestaurantList extends React.Component {
 
             Object.keys(this.state.selectedTags).forEach(tagId => {
                 filteredRestaurants.forEach(rest => {
-                    const restTags = rest.tags.map(t => t.id);
+                    const restTags = rest.restaurant.tags.map(t => t.id);
                     if (restTags.indexOf(tagId) > -1) final[rest.id] = rest;
                 });
             });
