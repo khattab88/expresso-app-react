@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 function NavLink(props) {
     return(
-        <a href={props.href} className="navigation__link">{props.children}</a>
+        <Link to={props.href} className="navigation__link">{props.children}</Link>
     );
 }
 
