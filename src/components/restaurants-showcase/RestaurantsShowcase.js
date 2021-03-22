@@ -53,52 +53,6 @@ class RestaurantShowcase extends React.Component {
             }, callback);
         }
 
-        // this.setState({
-        //     restaurants: [
-        //         {
-        //             id: '1',
-        //             name: 'Wrap Its',
-        //             desc: 'Tasty and fresh food',
-        //             img: '/assets/img/restaurants/rest-01.jpg'
-        //         },
-        //         {
-        //             id: '2',
-        //             name: 'Wrap Ito',
-        //             desc: 'Tasty and fresh food',
-        //             img: '/assets/img/restaurants/rest-02.jpg'
-        //         },
-        //         {
-        //             id: '3',
-        //             name: 'Wrap Ita',
-        //             desc: 'Tasty and fresh food',
-        //             img: '/assets/img/restaurants/rest-03.jpg'
-        //         },
-        //         {
-        //             id: '4',
-        //             name: 'Wrap Ite',
-        //             desc: 'Tasty and fresh food',
-        //             img: '/assets/img/restaurants/rest-04.jpg'
-        //         },
-        //         {
-        //             id: '5',
-        //             name: 'Wrap Itw',
-        //             desc: 'Tasty and fresh food',
-        //             img: '/assets/img/restaurants/rest-05.jpg'
-        //         },
-        //         {
-        //             id: '6',
-        //             name: 'Wrap Itu',
-        //             desc: 'Tasty and fresh food',
-        //             img: '/assets/img/restaurants/rest-06.jpg'
-        //         },
-        //         {
-        //             id: '7',
-        //             name: 'Wrap Iti',
-        //             desc: 'Tasty and fresh food',
-        //             img: '/assets/img/restaurants/rest-07.jpg'
-        //         },
-        //     ]
-        // }, callback);
     }
 
     async getArea(areaId) {

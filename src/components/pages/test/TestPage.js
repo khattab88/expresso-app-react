@@ -25,6 +25,9 @@ class TestPage extends React.Component {
     }
 
     render() {
+        console.log(process.env.NODE_ENV);
+        console.log(process.env.REACT_APP_APP_ENV);
+
         return (
             <main className="main">
                 {/* <Search /> */}
