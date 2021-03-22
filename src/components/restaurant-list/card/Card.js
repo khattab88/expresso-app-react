@@ -1,4 +1,5 @@
 import Tag from "../tag/Tag";
+import { Link } from "react-router-dom";
 
 function Card(props) {
 
@@ -8,7 +9,7 @@ function Card(props) {
 
     return (
         <article className="restaurant-info-card" data-id={props.branch.id} data-area={props.restaurant.areaId} >
-            <a href={`/restaurant-menu/${props.branch.id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/restaurant-menu/${props.branch.id}`} style={{ textDecoration: "none" }}>
                 <div className="restaurant-info-card__head">
                     <img src={props.restaurant.image} alt={props.restaurant.name} />
                     <div className="delivery-detail">
@@ -27,7 +28,7 @@ function Card(props) {
                         {tagList}
                     </ul>
                 </div>
-            </a>
+            </Link>
         </article>
     );
 }
