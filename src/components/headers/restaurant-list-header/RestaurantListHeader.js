@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 import cityApi from '../../../api/CityApi';
 import branchApi from '../../../api/BranchApi';
@@ -117,10 +118,7 @@ class RestaurantListHeader extends React.Component {
                                     selected={this.state.selectedBranch} select={this.selectBranch} />
                             </div>
 
-                            {/* <button className="restaurant-search__submit" type="submit">Find Food</button> */}
-                            <a className="restaurant-search__submit" href={linkHref}>
-                                Find Food
-                            </a>
+                            <Link className="restaurant-search__submit" to={linkHref}>Find Food</Link>
                         </div>
                     </div>
                 </div>

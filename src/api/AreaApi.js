@@ -47,6 +47,27 @@ class AreaApi {
             }
         }
     }
+
+    async getAreaBySlug(slug) {
+        try {
+            const res = await this.baseApi.get(`/areas/getbyslug/${slug}`);
+
+            const item = res.data.data.doc;
+
+            return {
+                status: "success",
+                err: null,
+                data: item
+            }
+        } catch (err) {
+            // console.log(e);
+
+            return {
+                status: "fail",
+                err: err,
+            }
+        }
+    }
 }
 
 export default new AreaApi();

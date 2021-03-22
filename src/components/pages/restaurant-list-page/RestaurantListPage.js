@@ -23,11 +23,17 @@ class RestaurantListPage extends React.Component {
     }
 
     async componentDidMount() {
-        const defaultArea = (await areaApi.getAreaById("b6b087bf-6f7a-4902-8c59-b2b05f787812")).data;
-        // console.log(defaultArea); //Heliopolis
 
-        return this.populateAreaBranches(defaultArea);
+        /// Heliopolis is the default area
+        const areaResponse = await areaApi.getAreaBySlug("heliopolis");
+        if(areaResponse.err) {
+            return this.setState({ err: areaResponse.err});
+        } else {
+            return this.populateAreaBranches(areaResponse.data);
+        }
     }
+
+
 
     async onAreaChange(area) {
         return this.populateAreaBranches(area);

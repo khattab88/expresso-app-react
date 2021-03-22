@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 import cityApi from '../../../api/CityApi';
 
@@ -30,31 +31,6 @@ class HomeHeader extends React.Component {
                 locations: response.data
             });
         }
-
-        // this.setState({
-        //     locations: [
-        //         {
-        //             id: "1", name: "Cairo",
-        //             areas: [
-        //                 { id: "1", name: "Heliopolis" },
-        //                 { id: "2", name: "Zamalek" },
-        //                 { id: "3", name: "DownTown" },
-        //                 { id: "4", name: "Maadi" },
-        //                 { id: "5", name: "Nasr City" },
-        //             ]
-        //         },
-        //         {
-        //             id: "2", name: "Giza",
-        //             areas: [
-        //                 { id: "6", name: "Mohandessien" },
-        //                 { id: "7", name: "Dokki" },
-        //                 { id: "8", name: "Giza Square" },
-        //                 { id: "9", name: "Haram" },
-        //                 { id: "10", name: "6th October" },
-        //             ]
-        //         }
-        //     ]
-        // });
     }
 
     async getCities() {
@@ -84,7 +60,7 @@ class HomeHeader extends React.Component {
                                     selected={this.state.selectedLocation} select={this.selectLocation} />
                             </div>
 
-                            <a href="/restaurant-list" className="search__submit">Find Restaurant</a>
+                            <Link to="/restaurant-list" className="search__submit">Find Restaurant</Link>
                         </div>
                     </div>
                 </div>

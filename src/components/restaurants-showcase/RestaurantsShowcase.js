@@ -40,8 +40,9 @@ class RestaurantShowcase extends React.Component {
 
         };
 
-        const defaultArea = "b6b087bf-6f7a-4902-8c59-b2b05f787812"; // Heliopolis
-        const areaResponse = await this.getArea(defaultArea);
+        // const defaultArea = "b6b087bf-6f7a-4902-8c59-b2b05f787812"; // Heliopolis
+
+        const areaResponse = await this.getAreaBySlug("heliopolis");
         if (areaResponse.err) {
             this.setState({
                 err: areaResponse.err,
@@ -57,6 +58,11 @@ class RestaurantShowcase extends React.Component {
 
     async getArea(areaId) {
         const response = areaApi.getAreaById(areaId);
+        return response;
+    }
+
+    async getAreaBySlug(slug) {
+        const response = areaApi.getAreaBySlug(slug);
         return response;
     }
 
@@ -87,7 +93,7 @@ class RestaurantShowcase extends React.Component {
 
                     {restaurantCards}
 
-                    <LinkButton className="showcase__show-all" href="/restaurant-list" title="Show All Restaurants" />
+                    <Link className="showcase__show-all" to="/restaurant-list">Show All Restaurants</Link>
                 </div>
             </main>
         );
