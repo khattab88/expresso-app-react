@@ -1,10 +1,14 @@
 import React from 'react';
+
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
+
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 
 import './Test.scss';
 
@@ -13,6 +17,9 @@ import Accordion from './accordion/Accordion';
 import WikiSearch from './wiki-search/WikiSearch';
 import Dropdown from './dropdown/Dropdown';
 import Translator from './translator/Translator';
+
+import ShoppingCart from './shopping-cart/ShoppingCart';
+import reducers from './shopping-cart/redux/reducers';
 
 const navItemStyles = {
     fontSize: '1.5rem',
@@ -25,17 +32,10 @@ class TestPage extends React.Component {
     }
 
     render() {
-        console.log(process.env.NODE_ENV);
-        console.log(process.env.REACT_APP_APP_ENV);
-
+        
         return (
             <main className="main">
-                {/* <Search /> */}
-                {/* <Accordion /> */}
-                {/* <WikiSearch /> */}
-                {/* <Dropdown /> */}
-                {/* <Translator /> */}
-
+                
                 <Router>
                     <nav style={{ margin: "1rem" }}>
                         <ul style={{ listStyle: 'none', display: 'flex' }}>
@@ -54,6 +54,9 @@ class TestPage extends React.Component {
                             <li style={navItemStyles}>
                                 <Link to="/translator">Translator</Link>
                             </li>
+                            <li style={navItemStyles}>
+                                <Link to="/shopping-cart">Shopping Cart</Link>
+                            </li>
                         </ul>
                     </nav>
 
@@ -69,6 +72,11 @@ class TestPage extends React.Component {
                         </Route>
                         <Route path="/translator">
                             <Translator />
+                        </Route>
+                        <Route path="/shopping-cart">
+                            <Provider store={createStore(reducers)}>
+                                <ShoppingCart />
+                            </Provider>
                         </Route>
                         <Route path="/">
                             <React.Fragment>
