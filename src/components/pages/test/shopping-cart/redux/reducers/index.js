@@ -20,6 +20,24 @@ const selectedProductReducer = (selectedProduct = null, action) => {
 
 const cartReducer = (cart = [], action) => {
     if(action.type === "CART/ADD_CART_ITEM") {
+
+        /* check if cart item alreday exists, 
+            if true incremet item count
+            else add item to cart 
+        */
+
+        const cartItem = cart.find(item => item.id === action.payload.id);
+
+        if(cartItem) {
+            const newCount = cartItem.count + 1;
+
+            return cart.map(item =>
+                (item.id === action.payload.id)
+                    ? {...item, count: newCount}
+                    : item
+            );
+        }
+
         return [
             ...cart,
             action.payload
@@ -31,7 +49,7 @@ const cartReducer = (cart = [], action) => {
     else if(action.type === "CART/UPDATE_CART_ITEM_COUNT") {
         return cart.map(item =>
             (item.id === action.payload.id)
-                ? {...item, count: action.payload.count}
+                ? {...item, count: item.count + action.payload.count}
                 : item
         );
     }

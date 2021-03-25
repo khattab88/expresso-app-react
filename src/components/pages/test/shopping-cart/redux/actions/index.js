@@ -17,7 +17,7 @@ export const selectProduct = (product) => {
 export const addCartItem = (cartItem) => {
     return {
         type: "CART/ADD_CART_ITEM",
-        payload: cartItem
+        payload: { ...cartItem, count: 1}
     };
 };
 
