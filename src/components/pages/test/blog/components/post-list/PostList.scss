@@ -1,0 +1,22 @@
+.post-list {
+  list-style: none;
+
+  .post {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    position: relative;
+
+    &__content {}
+
+    &__title {
+      font-weight: 400;
+    }
+
+    &__body {
+        margin-top: .25rem;
+        font-style: italic;
+    }
+  }
+}

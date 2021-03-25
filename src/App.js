@@ -27,15 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App container">
-        {/* <HomePage /> */}
-        {/* <RestaurantListPage /> */}
-        {/* <RestaurantMenuPage /> */}
-        {/* <LoginPage /> */}
-        {/* <SignupPage /> */}
-        {/* <ContactUsPage /> */}
-        {/* <CheckoutPage /> */}
-        {/* <TestPage /> */}
-
+        
         <Router>
           <Switch>
             <Route path="/restaurant-list">
