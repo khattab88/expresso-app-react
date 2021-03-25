@@ -1,5 +1,6 @@
 .cart {
     padding: 1rem;
+    border: 1px solid #ccc;
     
     &--empty {
         .cart__msg {
@@ -19,14 +20,20 @@
         font-size: 1.5rem;
     }
 
+    &__total {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+
     .cart-item {
         padding: .5rem;
         display: flex;
-        // justify-content: space-between;
+        justify-content: space-between;
         align-items: center;
 
         &__content {
-            width: 60%;
+            width: 40%;
         }
 
         &__name {
@@ -36,6 +43,13 @@
 
         &__price {
             font-size: 1.25rem;
+        }
+
+        &__remove {
+            border: none;
+            color: #f00;
+            cursor: pointer;
+            background-color: #fff;
         }
     }
 
@@ -55,6 +69,7 @@
 
         &__count {
             font-size: 2rem;
+            min-width: 3rem;
         }
     }
 }

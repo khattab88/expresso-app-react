@@ -2,13 +2,23 @@ import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
 
-import { updateCartItemCount } from '../redux/actions';
+import { updateCartItemCount, removeCartItem } from '../redux/actions';
 
 import "./Cart.scss";
 
-function Cart({ cart, updateCartItemCount }) {
+function Cart({ cart, updateCartItemCount, removeCartItem }) {
 
     console.log(cart);
+
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        const total = cart.reduce((acc, curr) => {
+            return acc + (curr.price * curr.count);
+        }, 0);
+
+        setTotal(total);
+    });
 
     const onUpdateCount = (id, count) => {
         let itemCount = (cart.find(item => item.id === id).count) + count;
@@ -39,6 +49,7 @@ function Cart({ cart, updateCartItemCount }) {
                                 <p className="cart-item__name">{cartItem.name}</p>
                                 <p className="cart-item__price">price: {cartItem.price}</p>
                             </div>
+
                             <div className="cart-controls">
                                 <button className="cart-controls__btn" 
                                         onClick={() => onUpdateCount(cartItem.id ,-1)}
@@ -50,10 +61,14 @@ function Cart({ cart, updateCartItemCount }) {
                                 > +
                                 </button>
                             </div>
+
+                            <button className="cart-item__remove" onClick={() => removeCartItem(cartItem.id)}>Remove</button>
                         </article>
                     )
                 }
             </div>
+
+            <p className="cart__total">Total: {total}</p>
         </section>
     );
 }
@@ -64,4 +79,4 @@ const mapStateToProps = (state) => {
     return { cart: state.cart };
 };
 
-export default connect(mapStateToProps, { updateCartItemCount })(Cart);
+export default connect(mapStateToProps, { updateCartItemCount, removeCartItem })(Cart);
