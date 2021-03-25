@@ -8,7 +8,7 @@ import "./Cart.scss";
 
 function Cart({ cart, updateCartItemCount, removeCartItem }) {
 
-    console.log(cart);
+    // console.log(cart);
 
     const [total, setTotal] = useState(0);
 

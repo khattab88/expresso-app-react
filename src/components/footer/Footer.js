@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from "react-router-dom";
+
 import SecondaryNavItem from './secondary-nav-item/SecondaryNavItem';
 import SocialLink from './social-link/SocialLink';
 import AppDownloadButton from './app-download-button/AppDownloadButton';
@@ -68,6 +70,7 @@ class Footer extends React.Component {
                 </section>
 
                 <section className="copyright">{`© ${new Date().getFullYear()} Expresso App. All rights reserved.`}</section>
+                <Link to="/test">test</Link>
             </footer>
         );
     }
