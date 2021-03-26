@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import cityApi from '../../../api/CityApi';
 
 import LocationSelection from '../../location-selection/LocationSelection';
 
+import { selectArea } from '../../../store/actions';
 
 class HomeHeader extends React.Component {
     constructor(props) {
@@ -20,6 +22,22 @@ class HomeHeader extends React.Component {
     }
 
     async componentDidMount() {
+
+        const callback = () => {
+
+            let defaultArea = null;
+
+            if(Object.keys(this.props.selectedArea).length) {
+                defaultArea = this.props.selectedArea;
+            } else {
+                defaultArea = this.state.locations[0].areas[0];
+            }
+
+            this.props.selectArea(defaultArea);
+
+            this.setState({ selectedLocation: defaultArea })
+        };
+
         const response = await this.getCities();
         if(response.err) {
             this.setState({
@@ -29,7 +47,7 @@ class HomeHeader extends React.Component {
             // console.log(response.data);
             this.setState({
                 locations: response.data
-            });
+            }, callback);
         }
     }
 
@@ -40,6 +58,8 @@ class HomeHeader extends React.Component {
 
     selectLocation(selected) {
         // console.log(selected);
+
+        this.props.selectArea(selected);
 
         this.setState({
             selectedLocation: selected
@@ -69,4 +89,10 @@ class HomeHeader extends React.Component {
     }
 }
 
-export default HomeHeader;
+const mapStateToProps = state => {
+    // console.log(state);
+
+    return { selectedArea: state.selectedArea }
+}
+
+export default connect(mapStateToProps, { selectArea })(HomeHeader);

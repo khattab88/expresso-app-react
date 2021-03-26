@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import cityApi from '../../../api/CityApi';
 import branchApi from '../../../api/BranchApi';
 
 import LocationSelection from '../../location-selection/LocationSelection';
 import RestaurantSelection from '../../restaurant-selection/RestaurantSelection';
+
+import { selectArea } from '../../../store/actions';
 
 class RestaurantListHeader extends React.Component {
     constructor(props) {
@@ -25,15 +28,18 @@ class RestaurantListHeader extends React.Component {
     }
 
     async componentDidMount() {
+
         const callback = async () => {
-            const defaultArea = this.state.locations[0].areas[0]; //Heliopolis
-            const branchesResponse = await this.getBranchesByArea(defaultArea.id);
+            // const defaultArea = this.state.locations[0].areas[0]; //Heliopolis
+            const area = this.props.selectedArea;
+            const branchesResponse = await this.getBranchesByArea(area.id);
 
             if (branchesResponse.err) {
                 this.setState({ err: branchesResponse.err });
             } else {
                 // console.log(branchesResponse.data);
                 this.setState({
+                    selectedLocation: area,
                     branches: branchesResponse.data,
                     locationBranches: [...branchesResponse.data]
                 });
@@ -78,6 +84,9 @@ class RestaurantListHeader extends React.Component {
             this.setState({ err: branchesResponse.err });
         } else {
             // console.log(branchesResponse.data);
+
+            this.props.selectArea(selected);
+
             this.setState({
                 selectedLocation: selected,
                 locationBranches: branchesResponse.data
@@ -127,4 +136,10 @@ class RestaurantListHeader extends React.Component {
     }
 }
 
-export default RestaurantListHeader;
+const mapStateToProps = state => {
+    // console.log(state);
+
+    return { selectedArea: state.selectedArea }
+}
+
+export default connect(mapStateToProps, { selectArea })(RestaurantListHeader);
