@@ -52,7 +52,7 @@ class CategoriesShowcase extends React.Component {
     renderList() {
         const categoryList = this.state.categories.map((category) => {
             const active = category.id === this.props.selectedCategory.id;
-            console.log(`${category.name}: ${active}`);
+            // console.log(`${category.name}: ${active}`);
 
             return (<CategoryCard category={category} key={category.id} active={active} select={this.select} />);
         });
@@ -63,7 +63,7 @@ class CategoriesShowcase extends React.Component {
     select(selected) {
 
         this.props.selectCategory(selected);
-        console.log(selected);
+        // console.log(selected);
 
         this.setState({ selectedId: selected.id });
     }
@@ -89,7 +89,7 @@ class CategoriesShowcase extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.selectedCategory);
+    // console.log(state.selectedCategory);
 
     return { selectedCategory: state.selectedCategory }
 }

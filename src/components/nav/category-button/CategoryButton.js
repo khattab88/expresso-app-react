@@ -105,7 +105,7 @@ class CategoryButton extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.selectedCategory);
+    // console.log(state.selectedCategory);
 
     return { selectedCategory: state.selectedCategory }
 }
