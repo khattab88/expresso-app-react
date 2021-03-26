@@ -4,3 +4,10 @@ export const selectArea = (area) => {
         payload: area
     }
 }
+
+export const selectCountry = (country) => {
+    return {
+        type: 'COUNTRIES/SELECT_COUNTRY',
+        payload: country
+    }
+}

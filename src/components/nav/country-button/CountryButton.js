@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import CountryDropdown from '../../country-dropdown/CountryDropdown';
 import countryApi from '../../../api/CountryApi';
+
+import { selectCountry } from "../../../store/actions";
 
 class CountryBtn extends React.Component {
     constructor(props) {
@@ -10,7 +13,7 @@ class CountryBtn extends React.Component {
         this.state = {
             isOpen: false,
             countries: [],
-            selected: { name: '', image: ''},
+            selected: { id: "0", name: '', image: ''},
             err: null,
         };
 
@@ -23,10 +26,22 @@ class CountryBtn extends React.Component {
     }
 
     async componentDidMount() {
-        const callback = () => this.setState({ 
-            // selected: this.state.countries[0] 
-            selected: this.state.countries.find(country => country.name === "Egypt")
-        });
+        const callback = () => {
+
+            let selectedCountry = null;
+
+            if(Object.keys(this.props.selectedCountry).length) {
+                selectedCountry = this.props.selectedCountry;
+            } else {
+                selectedCountry = this.state.countries.find(country => country.name === "Egypt");
+            }
+
+            this.props.selectCountry(selectedCountry);
+
+            this.setState({ 
+                selected: selectedCountry
+            });
+        }
 
         const response = await this.getCountries();
         if(response.err) {
@@ -79,6 +94,8 @@ class CountryBtn extends React.Component {
     select(selected) {
         // console.log(selected);
 
+        this.props.selectCountry(selected);
+
         this.setState({
             selected: selected
         });
@@ -86,7 +103,7 @@ class CountryBtn extends React.Component {
 
     render() {
         const className = this.state.isOpen ? "country-btn country-btn--open" : "country-btn";
-        const selected = (this.state.selected.image !== '') ? this.state.selected : { name:"Egypt", image: "/assets/img/flags/eg.svg" };
+        const selected = (this.props.selectedCountry.image !== '') ? this.props.selectedCountry : { name:"Egypt", image: "/assets/img/flags/eg.svg" };
        
         return(
             <button className={className} onClick={this.toggleNavCountry} ref={this.ref}>
@@ -98,4 +115,10 @@ class CountryBtn extends React.Component {
     }
 }
 
-export default CountryBtn;
+const mapStateToProps = (state) => {
+    // console.log(state.selectedCountry);
+
+    return { selectedCountry: state.selectedCountry }
+}
+
+export default connect(mapStateToProps, { selectCountry })(CountryBtn);
