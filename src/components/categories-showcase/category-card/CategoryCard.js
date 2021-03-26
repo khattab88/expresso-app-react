@@ -12,8 +12,13 @@ class CategoryCard extends React.Component {
 
         const target = e.target.closest('.category-card');
 
-        const selectedId = target.dataset["id"];
-        this.props.select(selectedId);
+        const selected = {
+            id: target.dataset["id"],
+            name: target.dataset["name"],
+            image: target.dataset["image"],
+        };
+
+        this.props.select(selected);
     }
 
     render() {
@@ -22,7 +27,9 @@ class CategoryCard extends React.Component {
                             : "category-card";
 
         return (
-            <li className={className} data-id={this.props.category.id} data-active={this.props.active} onClick={this.onSelect}>
+            <li className={className} 
+                data-id={this.props.category.id} data-name={this.props.category.name} data-image={this.props.category.image}
+                data-active={this.props.active} onClick={this.onSelect}>
                 <div className="category-card__head">
                     <img className="category-card__icon" src={this.props.category.image} alt={this.props.category.name} />
                 </div>

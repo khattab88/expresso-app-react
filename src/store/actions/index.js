@@ -11,3 +11,10 @@ export const selectCountry = (country) => {
         payload: country
     }
 }
+
+export const selectCategory = (category) => {
+    return {
+        type: 'CATEGORIES/SELECT_CATEGORY',
+        payload: category
+    }
+}

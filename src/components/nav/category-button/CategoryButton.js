@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import CategoryDropdown from '../category-dropdown/CategoryDropdown';
 import categoryApi from '../../../api/CategoryApi';
+
+import { selectCategory } from '../../../store/actions';
 
 class CategoryButton extends React.Component {
     constructor(props) {
@@ -10,7 +13,7 @@ class CategoryButton extends React.Component {
         this.state = {
             isOpen: false,
             categories: [],
-            selected: {name: '', image: ''},
+            selected: {id: "0", name: '', image: ''},
             err: null
         };
 
@@ -23,10 +26,22 @@ class CategoryButton extends React.Component {
     }
 
     async componentDidMount() {
-        const callback = () => this.setState({ 
-            // selected: this.state.categories[0] 
-            selected: this.state.categories.find(category => category.name === "Restaurants")
-        });
+        const callback = () => {
+
+            let selectedCategory = null;
+
+            if(Object.keys(this.props.selectedCategory).length) {
+                selectedCategory = this.props.selectedCategory;
+            } else {
+                selectedCategory = this.state.categories.find(category => category.name === "Restaurants")
+            }
+
+            this.props.selectCategory(selectedCategory);
+
+            this.setState({
+                selected: selectedCategory
+            });
+        } 
 
         const response = await this.getCategories();
         if(response.err) {
@@ -64,6 +79,9 @@ class CategoryButton extends React.Component {
     }
 
     select(selected) {
+
+        this.props.selectCategory(selected);
+
         this.setState({ 
             selected ,
             isOpen: !this.state.isOpen
@@ -72,7 +90,7 @@ class CategoryButton extends React.Component {
 
     render() {
         const className = this.state.isOpen ? "category-btn category-btn--open" : "category-btn";
-        const selected = (this.state.selected.image !== '') ? this.state.selected : { name:"Restaurants", image: "/assets/img/icons/categories/restaurants_icon.svg" };
+        const selected = (this.props.selectedCategory.image !== '') ? this.props.selectedCategory : { name:"Restaurants", image: "/assets/img/icons/categories/restaurants_icon.svg" };
 
         return (
             <div className="CategoryButton" ref={this.ref}>
@@ -86,4 +104,10 @@ class CategoryButton extends React.Component {
     }
 }
 
-export default CategoryButton;
+const mapStateToProps = state => {
+    console.log(state.selectedCategory);
+
+    return { selectedCategory: state.selectedCategory }
+}
+
+export default connect(mapStateToProps, { selectCategory })(CategoryButton);

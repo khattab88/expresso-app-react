@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import CategoryCard from './category-card/CategoryCard';
 import categoryApi from '../../api/CategoryApi';
+
+import { selectCategory } from "../../store/actions";
 
 class CategoriesShowcase extends React.Component {
     constructor(props) {
@@ -19,28 +22,26 @@ class CategoriesShowcase extends React.Component {
 
     async componentDidMount() {
         const callback = () => { 
-            const selected = this.state.categories[0];
 
-            this.setState({ selectedId: selected.id });
+            let selectedCategory = null;
+
+            if(Object.keys(this.props.selectedCategory).length) {
+                selectedCategory = this.props.selectedCategory;
+            } else {
+                selectedCategory = this.state.categories[0];
+            }
+
+            this.setState({ selectedId: selectedCategory.id });
         };
 
         const response = await this.getCategories();
         if(response.err) {
             this.setState({ err: response.err});
         } else {
-            this.setState({ categories: response.data }, callback);
+            this.setState({ categories: response.data }
+            , callback);
         }
 
-        // this.setState({
-        //     categories: [
-        //         { id: "1", name: "Restaurants", img: "/assets/img/icons/categories/restaurants_icon.svg" },
-        //         { id: "2", name: "Groceries", img: "/assets/img/icons/categories/groceries_icon.svg" },
-        //         { id: "3", name: "Flowers", img: "/assets/img/icons/categories/flowers_icon.svg" },
-        //         { id: "4", name: "Cosmetics", img: "/assets/img/icons/categories/cosmetics_icon.svg" },
-        //         { id: "5", name: "Supplements", img: "/assets/img/icons/categories/supplements_icon.svg" },
-        //         { id: "6", name: "Electronics", img: "/assets/img/icons/categories/electronics_icon.svg" }
-        //     ]
-        // }, callback);
     }
 
     async getCategories() {
@@ -50,16 +51,21 @@ class CategoriesShowcase extends React.Component {
 
     renderList() {
         const categoryList = this.state.categories.map((category) => {
-            const active = category.id === this.state.selectedId;
-            // console.log(`${category.id}: ${active}`);
+            const active = category.id === this.props.selectedCategory.id;
+            console.log(`${category.name}: ${active}`);
+
             return (<CategoryCard category={category} key={category.id} active={active} select={this.select} />);
         });
 
         return categoryList;
     }
 
-    select(selectedId) {
-        this.setState({ selectedId });
+    select(selected) {
+
+        this.props.selectCategory(selected);
+        console.log(selected);
+
+        this.setState({ selectedId: selected.id });
     }
 
     render() {
@@ -82,4 +88,10 @@ class CategoriesShowcase extends React.Component {
     }
 }
 
-export default CategoriesShowcase;
+const mapStateToProps = state => {
+    console.log(state.selectedCategory);
+
+    return { selectedCategory: state.selectedCategory }
+}
+
+export default connect(mapStateToProps, { selectCategory })(CategoriesShowcase);
