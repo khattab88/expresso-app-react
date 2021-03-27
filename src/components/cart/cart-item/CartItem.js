@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { removeCartItem, updateCartItemCount } from '../../../store/actions';
 
 class CartItem extends React.Component {
     constructor(props) {
@@ -50,11 +53,17 @@ class CartItem extends React.Component {
     decreaseCount(e) {
         let count = this.state.count - 1;
         if (count > 0) this.setState({ count }, this.updateItemSubTotal);
+
+        const itemId = e.target.closest(".cart__item").dataset["itemId"];
+        this.props.updateCartItemCount(itemId, count);
     }
 
     increaseCount(e) {
         let count = this.state.count + 1;
         this.setState({ count }, this.updateItemSubTotal);
+
+        const itemId = e.target.closest(".cart__item").dataset["itemId"];
+        this.props.updateCartItemCount(itemId, count);
     }
 
     removeItem(e) {
@@ -116,4 +125,5 @@ class CartItem extends React.Component {
     }
 }
 
-export default CartItem;
+
+export default connect(null, { removeCartItem, updateCartItemCount })(CartItem);

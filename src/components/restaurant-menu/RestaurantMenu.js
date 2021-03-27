@@ -18,7 +18,6 @@ class RestaurantMenu extends React.Component {
             isMenuItemModalOpen: false,
             currentItem: {},
             isCartModalOpen: false,
-            cart: [],
             isToasterVisible: false
         };
 
@@ -27,7 +26,6 @@ class RestaurantMenu extends React.Component {
 
         this.toggleCartModal = this.toggleCartModal.bind(this);
         this.addItemToCart = this.addItemToCart.bind(this);
-        this.removeCartItem = this.removeCartItem.bind(this);
 
         this.toggleToaster = this.toggleToaster.bind(this);
     }
@@ -114,47 +112,17 @@ class RestaurantMenu extends React.Component {
         cartItem.options = optionSelection;
 
 
-        // let cart = [...this.state.cart];
         let cart = [...this.props.cart];
 
         /* check if cart item already exists
          if exists, remove it from cart items */
-
-        // const cartItemIndex = cart.findIndex(ci => ci.itemId === cartItem.itemId);
-        // if(cartItemIndex > -1) {
-        //     cart.splice(cartItemIndex, 1);
-        // }
-
         if(cart.find(ci => ci.itemId === cartItem.itemId)) {
             this.props.removeCartItem(cartItem.itemId);
         }
 
         // console.log(cart);
 
-        // cart.push(cartItem);
-        // this.setState({cart});
-
         this.props.addCartItem(cartItem)
-    }
-
-    removeCartItem(itemId) {
-        const callback = () => { 
-            // console.log(this.state.cart); 
-        };
-
-        // console.log("delete item" + itemId);
-
-        let cart = [...this.state.cart];
-
-        /* check if cart item already exists
-         if exists, remove it from cart items */
-
-        const cartItemIndex = cart.findIndex(ci => ci.itemId === itemId);
-        if(cartItemIndex > -1) {
-            cart.splice(cartItemIndex, 1);
-        }
-
-        this.setState({cart}, callback);
     }
 
     toggleToaster(e) {
@@ -186,9 +154,7 @@ class RestaurantMenu extends React.Component {
                                toggleToaster={this.toggleToaster} />
 
                 <CartModal isOpen={this.state.isCartModalOpen} toggleCartModal={this.toggleCartModal}
-                           restaurant={this.props.restaurant} 
-                           // cart={this.state.cart} 
-                           removeCartItem={this.removeCartItem} />
+                           restaurant={this.props.restaurant} />
 
                 <Toaster visible={this.state.isToasterVisible} msg="Item added to cart" toggleToaster={this.toggleToaster} />
             </main>

@@ -21,7 +21,7 @@ class Cart extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log(this.props.cart);
+        // console.log(this.props.cart);
     }
 
     onUpdateItemSubTotal(itemSubTotal) {
@@ -35,7 +35,7 @@ class Cart extends React.Component {
             });
         };
 
-        // const cartItemSubTotals = [...this.state.cartItemSubTotals];
+
         const cartItemSubTotals = this.state.cartItemSubTotals;
 
         const index = cartItemSubTotals.findIndex(cis => cis.itemId === itemSubTotal.itemId);
@@ -83,8 +83,7 @@ class Cart extends React.Component {
                             {
                                 this.props.cart.map((cartItem) =>
                                     <CartItem cartItem={cartItem} key={cartItem.itemId}
-                                        onUpdateItemSubTotal={this.onUpdateItemSubTotal}
-                                        removeCartItem={this.props.removeCartItem} />)
+                                        onUpdateItemSubTotal={this.onUpdateItemSubTotal} />)
                             }
                         </div>
 
