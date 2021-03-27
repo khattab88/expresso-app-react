@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import NavToggle from './nav-toggle/NavToggle';
 import NavLogo from './nav-logo/NavLogo';
@@ -19,17 +20,17 @@ class Nav extends React.Component {
         this.toggleMobileNav = this.toggleMobileNav.bind(this);
 
         this.state.navItems = {
-            login: { title: "Login", href:"/login" },
-            signUp: { title: "Sign Up", href:"/signup" },
-            contactUs: { title: "Contact Us", href:"/contact-us" },
-            lang: { title: "العربية", href:"#"},
-            country: { title: "", href:"#"},
-            cart: { title: "", href:"/checkout"},
-            category: { title: "", href:"#"}
+            login: { title: "Login", href: "/login" },
+            signUp: { title: "Sign Up", href: "/signup" },
+            contactUs: { title: "Contact Us", href: "/contact-us" },
+            lang: { title: "العربية", href: "#" },
+            country: { title: "", href: "#" },
+            cart: { title: "", href: "/checkout" },
+            category: { title: "", href: "#" }
         };
     }
 
-    componentDidMount() {}
+    componentDidMount() { }
 
     toggleMobileNav(e) {
         this.setState({
@@ -41,9 +42,9 @@ class Nav extends React.Component {
         return (
             <nav className="navbar">
                 <NavLogo />
-    
+
                 <div className="navigation">
-                    <ul className={`${this.state.isMobileNavOpen ?'navigation__items navigation__items--mobile-open' :'navigation__items'}`}>
+                    <ul className={`${this.state.isMobileNavOpen ? 'navigation__items navigation__items--mobile-open' : 'navigation__items'}`}>
                         <NavItem>
                             <NavLink href={this.state.navItems.login.href}>
                                 {this.state.navItems.login.title}
@@ -64,27 +65,36 @@ class Nav extends React.Component {
                                 {this.state.navItems.lang.title}
                             </NavLink>
                         </NavItem>
-                        
+
                         <NavItem>
                             <CountryBtn />
                         </NavItem>
-                        
-                        <NavItem>
-                            <NavLink href={this.state.navItems.cart.href}>
-                                <CartButton />
-                            </NavLink>
-                        </NavItem>
-                        
+
+                        {
+                            (Object.keys(this.props.selectedBranch).length)
+                                ? <NavItem>
+                                    <NavLink href={this.state.navItems.cart.href}>
+                                        <CartButton />
+                                    </NavLink>
+                                </NavItem>
+                                : null
+                        }
+
                         <NavItem>
                             <CategoryButton />
                         </NavItem>
+
                     </ul>
                 </div>
-    
+
                 <NavToggle toggleMobileNav={this.toggleMobileNav} />
             </nav>
         );
     }
 }
 
-export default Nav;
+const mapStateToProps = state => {
+    return { selectedBranch: state.selectedBranch }
+}
+
+export default connect(mapStateToProps)(Nav);

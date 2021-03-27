@@ -1,12 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class CartButton extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            count: 0
-        }
     }
 
     render() {
@@ -15,10 +12,14 @@ class CartButton extends React.Component {
                 <img alt="Cart" height="27" className="cart-btn__img"
                     src="/assets/img/icons/shopping_cart_icon.svg"
                     title="Cart" width="30" />
-                <em className="cart-btn__item-count">{this.state.count}</em>
+                <em className="cart-btn__item-count">{this.props.cartItemsCount}</em>
             </div>
         );
     }
 }
 
-export default CartButton;
+const mapStateToProps = state => {
+    return { cartItemsCount: state.cart.length }
+}
+
+export default connect(mapStateToProps)(CartButton);
