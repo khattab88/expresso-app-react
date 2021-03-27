@@ -71,7 +71,7 @@ class Nav extends React.Component {
                         </NavItem>
 
                         {
-                            (Object.keys(this.props.selectedBranch).length)
+                            (Object.keys(this.props.selectedBranch).length && this.props.cartItemsCount)
                                 ? <NavItem>
                                     <NavLink href={this.state.navItems.cart.href}>
                                         <CartButton />
@@ -94,7 +94,10 @@ class Nav extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { selectedBranch: state.selectedBranch }
+    return { 
+        selectedBranch: state.selectedBranch, 
+        cartItemsCount: state.cart.length
+    }
 }
 
 export default connect(mapStateToProps)(Nav);

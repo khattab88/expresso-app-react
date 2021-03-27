@@ -21,7 +21,7 @@ class CartModal extends React.Component {
                 <div className="vertical-alignment-helper">
                     <div className="modal-dailog">
                         <div className="cart-modal__content cart-modal__content--animated">
-                            <Cart toggleCartModal={this.props.toggleCartModal}
+                            <Cart submitBtnTitle="Checkout" toggleCartModal={this.props.toggleCartModal}
                                   branch={this.props.branch} />
                         </div>
                     </div>

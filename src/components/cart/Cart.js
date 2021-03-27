@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import CartItem from './cart-item/CartItem';
@@ -18,6 +19,8 @@ class Cart extends React.Component {
 
     componentDidMount() {
         // console.log(this.props);
+
+        console.log(this.props.submitBtnTitle);
     }
 
     componentDidUpdate(prevProps) {
@@ -50,8 +53,6 @@ class Cart extends React.Component {
     }
 
     submit(e) {
-        // TODO: checkout
-
         this.props.toggleCartModal();
     }
 
@@ -103,7 +104,15 @@ class Cart extends React.Component {
                         </div>
 
                         <div className="cart__submit">
-                            <button className="cart__submit-btn" onClick={this.submit}>{this.props.submitBtnTitle || 'Checkout'}</button>
+                            {
+                                (this.props.submitBtnTitle !== "Checkout")
+                                    ? <button className="cart__submit-btn" onClick={this.submit}>{this.props.submitBtnTitle}</button>
+                                    : <Link className="cart__submit-btn" to='/checkout'
+                                        style={{ display: 'inline-block', textDecoration: 'none' }}>
+                                        {this.props.submitBtnTitle}
+                                      </Link>
+                            }
+
                         </div>
                     </div>
                 }
@@ -116,7 +125,7 @@ class Cart extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     // console.log(state.cart);
 
-    return { 
+    return {
         branch: ownProps.branch || state.selectedBranch,
         cart: state.cart
     }
