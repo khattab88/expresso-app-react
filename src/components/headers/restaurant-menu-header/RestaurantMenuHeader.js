@@ -13,7 +13,7 @@ class RestaurantMenuHeader extends React.Component {
             <header className="header restaurant-menu-page__header" 
                 style={{ backgroundImage: `url(${this.props.branch.restaurant.image})` }} >
     
-                <Breadcrumb restaurantName={this.props.branch.restaurant.name} />
+                <Breadcrumb branch={this.props.branch} />
     
                 <RestaurantInfo branch={this.props.branch} toggleLocationModal={this.props.toggleLocationModal} />
     
