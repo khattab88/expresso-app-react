@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import MenuSidebar from './menu-sidebar/MenuSidebar';
 import List from './list/List';
@@ -6,6 +7,8 @@ import List from './list/List';
 import MenuItemModal from '../modals/menu-item-modal/MenuItemModal';
 import CartModal from '../modals/cart-modal/CartModal';
 import Toaster from '../shared/toaster/Toaster';
+
+import { addCartItem, removeCartItem } from '../../store/actions';
 
 class RestaurantMenu extends React.Component {
     constructor(props) {
@@ -33,8 +36,14 @@ class RestaurantMenu extends React.Component {
         // console.log(this.props.menu);
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         // console.log(this.state.currentItem);
+
+        // console.log("PREV PROPS: ");
+        // console.dir(prevProps.cart);
+
+        // console.log("CURRENT PROPS: ");
+        // console.dir(this.props.cart);
     }
 
     renderMenuItemModal(itemId) {
@@ -105,17 +114,27 @@ class RestaurantMenu extends React.Component {
         cartItem.options = optionSelection;
 
 
-        let cart = [...this.state.cart];
+        // let cart = [...this.state.cart];
+        let cart = [...this.props.cart];
+
         /* check if cart item already exists
          if exists, remove it from cart items */
-        const cartItemIndex = cart.findIndex(ci => ci.itemId === cartItem.itemId);
-        if(cartItemIndex > -1) {
-            cart.splice(cartItemIndex, 1);
+
+        // const cartItemIndex = cart.findIndex(ci => ci.itemId === cartItem.itemId);
+        // if(cartItemIndex > -1) {
+        //     cart.splice(cartItemIndex, 1);
+        // }
+
+        if(cart.find(ci => ci.itemId === cartItem.itemId)) {
+            this.props.removeCartItem(cartItem.itemId);
         }
 
-        cart.push(cartItem);
+        // console.log(cart);
 
-        this.setState({cart}, callback);
+        // cart.push(cartItem);
+        // this.setState({cart});
+
+        this.props.addCartItem(cartItem)
     }
 
     removeCartItem(itemId) {
@@ -126,8 +145,10 @@ class RestaurantMenu extends React.Component {
         // console.log("delete item" + itemId);
 
         let cart = [...this.state.cart];
+
         /* check if cart item already exists
          if exists, remove it from cart items */
+
         const cartItemIndex = cart.findIndex(ci => ci.itemId === itemId);
         if(cartItemIndex > -1) {
             cart.splice(cartItemIndex, 1);
@@ -161,10 +182,12 @@ class RestaurantMenu extends React.Component {
                 <List menu={this.props.menu} toggleMenuItemModal={this.toggleMenuItemModal} renderMenuItemModal={this.renderMenuItemModal} />
 
                 <MenuItemModal isOpen={this.state.isMenuItemModalOpen} toggleMenuItemModal={this.toggleMenuItemModal}
-                               item={this.state.currentItem} addItemToCart={this.addItemToCart} toggleToaster={this.toggleToaster} />
+                               item={this.state.currentItem} addItemToCart={this.addItemToCart} 
+                               toggleToaster={this.toggleToaster} />
 
                 <CartModal isOpen={this.state.isCartModalOpen} toggleCartModal={this.toggleCartModal}
-                           restaurant={this.props.restaurant} cart={this.state.cart}
+                           restaurant={this.props.restaurant} 
+                           // cart={this.state.cart} 
                            removeCartItem={this.removeCartItem} />
 
                 <Toaster visible={this.state.isToasterVisible} msg="Item added to cart" toggleToaster={this.toggleToaster} />
@@ -173,4 +196,10 @@ class RestaurantMenu extends React.Component {
     }
 }
 
-export default RestaurantMenu;
+const mapStateToProps = state => {
+    // console.log(state.cart);
+
+    return { cart: state.cart }
+}
+
+export default connect(mapStateToProps, { addCartItem, removeCartItem })(RestaurantMenu);

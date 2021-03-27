@@ -43,6 +43,7 @@ class MenuItemModal extends React.Component {
         this.state["itemId"] = this.props.item.id;
 
         // console.log(this.state.optionSelection);
+        // console.log(this.state);
 
         this.props.addItemToCart(this.state);
 

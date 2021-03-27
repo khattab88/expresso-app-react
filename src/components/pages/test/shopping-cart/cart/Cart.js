@@ -30,18 +30,18 @@ function Cart({ cart, updateCartItemCount, removeCartItem }) {
 
     if(cart.length === 0) {
         return(
-            <section className="cart cart--empty">
-                <h2 className="cart__title">Cart</h2>
-                <p className="cart__msg">Your cart is empty!</p>
+            <section className="my-cart cart--empty">
+                <h2 className="my-cart__title">Cart</h2>
+                <p className="my-cart__msg">Your cart is empty!</p>
             </section>
         );
     }
 
     return (
-        <section className="cart">
-            <h2 className="cart__title">Cart</h2>
+        <section className="my-cart">
+            <h2 className="my-cart__title">Cart</h2>
 
-            <div className="cart__box">
+            <div className="my-cart__box">
                 {
                     cart.map(cartItem =>
                         <article className="cart-item" data-id={cartItem.id} key={cartItem.id}>

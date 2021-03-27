@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import CartItem from './cart-item/CartItem';
 
@@ -11,7 +12,6 @@ class Cart extends React.Component {
             subtotal: 0
         };
 
-        this.renderCartItems = this.renderCartItems.bind(this);
         this.onUpdateItemSubTotal = this.onUpdateItemSubTotal.bind(this);
         this.submit = this.submit.bind(this);
     }
@@ -20,8 +20,8 @@ class Cart extends React.Component {
         // console.log(this.props);
     }
 
-    componentDidUpdate() {
-        // console.log(this.props);
+    componentDidUpdate(prevProps) {
+        console.log(this.props.cart);
     }
 
     onUpdateItemSubTotal(itemSubTotal) {
@@ -39,20 +39,14 @@ class Cart extends React.Component {
         const cartItemSubTotals = this.state.cartItemSubTotals;
 
         const index = cartItemSubTotals.findIndex(cis => cis.itemId === itemSubTotal.itemId);
-        if(index !== -1) {
+        if (index !== -1) {
             cartItemSubTotals.splice(index, 1);
         }
 
         cartItemSubTotals.push(itemSubTotal);
 
 
-        this.setState({cartItemSubTotals}, callback);
-    }
-
-    renderCartItems() {
-        return this.props.cart.map((cartItem) => 
-            <CartItem cartItem={cartItem} key={cartItem.itemId} onUpdateItemSubTotal={this.onUpdateItemSubTotal} removeCartItem={this.props.removeCartItem} />
-        );
+        this.setState({ cartItemSubTotals }, callback);
     }
 
     submit(e) {
@@ -86,7 +80,12 @@ class Cart extends React.Component {
                 {(this.props.cart.length > 0) &&
                     <div className="cart__content">
                         <div className="cart__items">
-                            {this.renderCartItems()}
+                            {
+                                this.props.cart.map((cartItem) =>
+                                    <CartItem cartItem={cartItem} key={cartItem.itemId}
+                                        onUpdateItemSubTotal={this.onUpdateItemSubTotal}
+                                        removeCartItem={this.props.removeCartItem} />)
+                            }
                         </div>
 
                         <div className="cart__pricing">
@@ -115,4 +114,10 @@ class Cart extends React.Component {
     }
 }
 
-export default Cart;
+const mapStateToProps = (state, ownProps) => {
+    // console.log(state.cart);
+
+    return { cart: state.cart }
+}
+
+export default connect(mapStateToProps)(Cart);
