@@ -94,11 +94,11 @@ class Cart extends React.Component {
                             </div>
                             <div className="cart__pricing-box cart__pricing-box-delivery">
                                 <p className="cart__pricing-box__title">Delivery fee</p>
-                                <p className="cart__pricing-box__value">{`${this.props.restaurant.deliveryFee}.00 EGP`}</p>
+                                <p className="cart__pricing-box__value">{`${this.props.branch.restaurant.deliveryFee}.00 EGP`}</p>
                             </div>
                             <div className="cart__pricing-box cart__pricing-box-total">
                                 <p className="cart__pricing-box__title">Total</p>
-                                <p className="cart__pricing-box__value">{`${this.state.subtotal + this.props.restaurant.deliveryFee}.00 EGP`}</p>
+                                <p className="cart__pricing-box__value">{`${this.state.subtotal + this.props.branch.restaurant.deliveryFee}.00 EGP`}</p>
                             </div>
                         </div>
 
@@ -116,7 +116,10 @@ class Cart extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     // console.log(state.cart);
 
-    return { cart: state.cart }
+    return { 
+        branch: ownProps.branch || state.selectedBranch,
+        cart: state.cart
+    }
 }
 
 export default connect(mapStateToProps)(Cart);

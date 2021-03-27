@@ -9,18 +9,13 @@ import Checkout from '../../checkout/Checkout';
 class CheckoutPage extends React.Component {
     constructor(props) {
         super(props);
-
-        this.restaurant = {
-            id: "1",
-            name: "Burger King"
-        };
     }
 
     render() {
         return (
             <div className="container checkout-page">
                 <Nav />
-                <CheckoutHeader restaurantName={this.restaurant.name} />
+                <CheckoutHeader />
                 <Checkout restaurant={this.restaurant} />
                 <Footer />
             </div>

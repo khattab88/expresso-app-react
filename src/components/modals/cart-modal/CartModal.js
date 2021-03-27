@@ -22,8 +22,7 @@ class CartModal extends React.Component {
                     <div className="modal-dailog">
                         <div className="cart-modal__content cart-modal__content--animated">
                             <Cart toggleCartModal={this.props.toggleCartModal}
-                                  restaurant={this.props.restaurant}
-                                  cart={this.props.cart} removeCartItem={this.props.removeCartItem} />
+                                  branch={this.props.branch} />
                         </div>
                     </div>
                 </div>

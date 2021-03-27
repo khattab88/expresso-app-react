@@ -121,7 +121,7 @@ class RestaurantMenuPage extends React.Component {
             <div className="container restaurant-menu-page">
                 <Nav />
                 <RestaurantMenuHeader branch={this.state.branch} toggleLocationModal={this.toggleLocationModal} />
-                <RestaurantMenu restaurant={this.state.branch.restaurant} menu={this.state.menu} getItem={this.getItem} />
+                <RestaurantMenu branch={this.state.branch} menu={this.state.menu} getItem={this.getItem} />
                 <Footer />
 
                 <LocationModal 

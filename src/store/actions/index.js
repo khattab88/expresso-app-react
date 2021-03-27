@@ -19,6 +19,13 @@ export const selectCategory = (category) => {
     }
 }
 
+export const selectBranch = (branch) => {
+    return {
+        type: 'BRANCHES_SELECT_BRANCH',
+        payload: branch
+    }
+}
+
 export const addCartItem = cartItem => {
     return {
         type: "CART/ADD_CART_ITEM",

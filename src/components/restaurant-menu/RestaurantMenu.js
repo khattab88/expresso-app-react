@@ -8,7 +8,7 @@ import MenuItemModal from '../modals/menu-item-modal/MenuItemModal';
 import CartModal from '../modals/cart-modal/CartModal';
 import Toaster from '../shared/toaster/Toaster';
 
-import { addCartItem, removeCartItem } from '../../store/actions';
+import { selectBranch, addCartItem, removeCartItem } from '../../store/actions';
 
 class RestaurantMenu extends React.Component {
     constructor(props) {
@@ -35,6 +35,8 @@ class RestaurantMenu extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+        // console.log(this.props.branch);
+
         // console.log(this.state.currentItem);
 
         // console.log("PREV PROPS: ");
@@ -70,10 +72,9 @@ class RestaurantMenu extends React.Component {
     }
 
     addItemToCart(cartItem) {
-        const callback = () => { 
-            // console.log(this.state.currentItem);
-            // console.log(cartItem);
-        };
+        
+        // set selectedBranch mapState
+        this.props.selectBranch(this.props.branch);
         
         let optionSelection = [];
         if(Object.keys(cartItem.optionSelection).length > 0) {
@@ -154,7 +155,7 @@ class RestaurantMenu extends React.Component {
                                toggleToaster={this.toggleToaster} />
 
                 <CartModal isOpen={this.state.isCartModalOpen} toggleCartModal={this.toggleCartModal}
-                           restaurant={this.props.restaurant} />
+                           branch={this.props.branch} />
 
                 <Toaster visible={this.state.isToasterVisible} msg="Item added to cart" toggleToaster={this.toggleToaster} />
             </main>
@@ -163,9 +164,9 @@ class RestaurantMenu extends React.Component {
 }
 
 const mapStateToProps = state => {
-    // console.log(state.cart);
+    // console.log(state);
 
     return { cart: state.cart }
 }
 
-export default connect(mapStateToProps, { addCartItem, removeCartItem })(RestaurantMenu);
+export default connect(mapStateToProps, { selectBranch, addCartItem, removeCartItem })(RestaurantMenu);

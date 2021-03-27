@@ -14,8 +14,6 @@ class Checkout extends React.Component {
         super(props);
 
         this.state = {
-            restaurant: {},
-            cart: [],
             user: {
                 name: '',
                 email: '',
@@ -44,111 +42,24 @@ class Checkout extends React.Component {
         this.updateDeliveryInfo = this.updateDeliveryInfo.bind(this);
         this.updatePaymentInfo = this.updatePaymentInfo.bind(this);
 
-        this.removeCartItem = this.removeCartItem.bind(this);
-
         this.toggleMapModal = this.toggleMapModal.bind(this);
     }
 
     componentDidMount() {
-        this.setState({
-            restaurant: {
-                id: "1",
-                name: "Pizza Hut",
-                img: "rest-00.jpg",
-                slogan: "I like it",
-                deliveryTime: 35,
-                deliveryFee: 20,
-                area: {
-                    id: "1",
-                    name: "Heliopolis"
-                }
-            }
-        });
-
-        this.setState({
-            cart: [
-                {
-                    count: 2,
-                    itemId: "1",
-                    itemName: "Double Cheese Burger",
-                    notes: "please romove any spices.",
-                    price: 70,
-                    options: [
-                        {
-                            id: "1",
-                            name: "Choice of bun or lettuce wrap",
-                            type: "Required",
-                            optionItems: [
-                                {
-                                    id: "1",
-                                    name: "Potato Bun",
-                                    value: 3
-                                },
-                                {
-                                    id: "2",
-                                    name: "Lettuce Wrap",
-                                    value: 6
-                                }
-                            ],
-                            selection: [
-                                {
-                                    id: "1",
-                                    name: "Potato Bun",
-                                    value: 3
-                                }
-                            ]
-                        },
-                        {
-                            id: "2",
-                            name: "Choice of cheese",
-                            type: "Optionl",
-                            optionItems: [
-                                {
-                                    id: "3",
-                                    name: "No Cheese",
-                                    value: 0,
-                                },
-                                {
-                                    id: "4",
-                                    name: "Regular",
-                                    value: 5,
-                                },
-                                {
-                                    id: "5",
-                                    name: "Cheddar",
-                                    value: 10,
-                                },
-                                {
-                                    id: "6",
-                                    name: "Spicy",
-                                    value: 15,
-                                },
-                            ],
-                            selection: [
-                                {
-                                    id: "4",
-                                    name: "Regular",
-                                    value: 5,
-                                },
-                                {
-                                    id: "5",
-                                    name: "Cheddar",
-                                    value: 10,
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    count: 1,
-                    itemId: "2",
-                    itemName: "Turkey Cheese Burger",
-                    notes: "extra cheese.",
-                    price: 60,
-                    options: []
-                }
-            ]
-        });
+        // this.setState({
+        //     restaurant: {
+        //         id: "1",
+        //         name: "Pizza Hut",
+        //         img: "rest-00.jpg",
+        //         slogan: "I like it",
+        //         deliveryTime: 35,
+        //         deliveryFee: 20,
+        //         area: {
+        //             id: "1",
+        //             name: "Heliopolis"
+        //         }
+        //     }
+        // });
     }
 
     componentDidUpdate() {
@@ -175,24 +86,6 @@ class Checkout extends React.Component {
         this.setState({ payment: updated });
     }
 
-    removeCartItem(itemId) {
-        const callback = () => { 
-            // console.log(this.state.cart); 
-        };
-
-        // console.log("delete item" + itemId);
-
-        let cart = [...this.state.cart];
-        /* check if cart item already exists
-         if exists, remove it from cart items */
-        const cartItemIndex = cart.findIndex(ci => ci.itemId === itemId);
-        if(cartItemIndex > -1) {
-            cart.splice(cartItemIndex, 1);
-        }
-
-        this.setState({cart}, callback);
-    }
-
     render() {
         return (
             <main className="main checkout-page__main">
@@ -209,8 +102,7 @@ class Checkout extends React.Component {
                     <section className="checkout-info-box order-info">
                         <Cart 
                             submitBtnTitle="Place Order"
-                            restaurant={this.state.restaurant}
-                            cart={this.state.cart} removeCartItem={this.removeCartItem} />
+                            restaurant={this.state.restaurant} />
                         <Disclaimer />
                     </section>
                 </div>
