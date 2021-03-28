@@ -9,11 +9,21 @@ import ContactUs from '../../contact-us/ContactUs';
 class ContactUsPage extends React.Component {
     constructor(props) {
         super(props);
+
+        this.ref = React.createRef();
+    }
+
+    componentDidMount() {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
     }
 
     render() {
         return (
-            <div className="container contact-us-page">
+            <div className="container contact-us-page" ref={this.ref} >
                 <Nav />
                 <ContactUsHeader />
                 <ContactUs />

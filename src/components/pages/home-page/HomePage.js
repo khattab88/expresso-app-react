@@ -9,11 +9,21 @@ import RestaurantsShowcase from "../../restaurants-showcase/RestaurantsShowcase"
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
+
+        this.ref = React.createRef();
+    }
+
+    componentDidMount() {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
     }
 
     render() {
         return(
-            <div className="Home">
+            <div className="Home" ref={this.ref} >
                 <Nav />
                 <HomeHeader />
                 <CategoriesShowcase />

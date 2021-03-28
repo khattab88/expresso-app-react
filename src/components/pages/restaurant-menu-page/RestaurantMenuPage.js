@@ -16,6 +16,8 @@ class RestaurantMenuPage extends React.Component {
     constructor(props) {
         super(props);
 
+        this.ref = React.createRef();
+
         this.state = {
             isLocationModalOpen: false,
             branch: {
@@ -40,6 +42,13 @@ class RestaurantMenuPage extends React.Component {
     }
 
     async componentDidMount() {
+
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+
         // const branchId = "d7403b9c-f063-4732-8591-13af0b8ac07f"; // McDonald's - Heliopolis
         // const { branchId } = useParams(); // A REACT HOOK, ONLY WORKS IN FUNCTION COMPONENTS
         const branchId = this.props.match.params.branchId;
@@ -118,7 +127,7 @@ class RestaurantMenuPage extends React.Component {
 
     render() {
         return (
-            <div className="container restaurant-menu-page">
+            <div className="container restaurant-menu-page" ref={this.ref} >
                 <Nav />
                 <RestaurantMenuHeader branch={this.state.branch} toggleLocationModal={this.toggleLocationModal} />
                 <RestaurantMenu branch={this.state.branch} menu={this.state.menu} getItem={this.getItem} />

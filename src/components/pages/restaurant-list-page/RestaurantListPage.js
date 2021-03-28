@@ -13,6 +13,8 @@ class RestaurantListPage extends React.Component {
     constructor(props) {
         super(props);
 
+        this.ref = React.createRef();
+
         this.state = {
             area: { id: 0 },
             branches: [],
@@ -23,6 +25,12 @@ class RestaurantListPage extends React.Component {
     }
 
     async componentDidMount() {
+
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
 
         /// Heliopolis is the default area
         const areaResponse = await areaApi.getAreaBySlug("heliopolis");
@@ -53,7 +61,7 @@ class RestaurantListPage extends React.Component {
 
     render() {
         return (
-            <div className="RestaurantList">
+            <div className="RestaurantList" ref={this.ref} >
                 <Nav />
                 <RestaurantListHeader onAreaChange={this.onAreaChange} />
                 <RestaurantList area={this.state.area} branches={this.state.branches} />
