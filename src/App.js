@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  // BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 
@@ -30,28 +30,28 @@ class App extends React.Component {
         
         <Router>
           <Switch>
-            <Route path="/restaurant-list">
+            <Route exact path="/restaurant-list">
               <RestaurantListPage />
             </Route>
             <Route path="/restaurant-menu/:branchId">
               <RestaurantMenuPage/>
             </Route>
-            <Route path="/login">
+            <Route exact path="/login">
               <LoginPage />
             </Route>
-            <Route path="/signup">
+            <Route exact path="/signup">
               <SignupPage />
             </Route>
-            <Route path="/contact-us">
+            <Route exact path="/contact-us">
               <ContactUsPage />
             </Route>
-            <Route path="/checkout">
+            <Route exact path="/checkout">
               <CheckoutPage />
             </Route>
             <Route path="/test">
               <TestPage />
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <HomePage />
             </Route>
           </Switch>
