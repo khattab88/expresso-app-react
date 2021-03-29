@@ -20,7 +20,7 @@ class Cart extends React.Component {
     componentDidMount() {
         // console.log(this.props);
 
-        console.log(this.props.submitBtnTitle);
+        // console.log(this.props.submitBtnTitle);
     }
 
     componentDidUpdate(prevProps) {
@@ -53,7 +53,12 @@ class Cart extends React.Component {
     }
 
     submit(e) {
-        this.props.toggleCartModal();
+        if(this.props.toggleCartModal) {
+            this.props.toggleCartModal();
+        }
+        else {
+            // TODO: Place Order()
+        }
     }
 
     render() {
@@ -106,7 +111,7 @@ class Cart extends React.Component {
                         <div className="cart__submit">
                             {
                                 (this.props.submitBtnTitle !== "Checkout")
-                                    ? <button className="cart__submit-btn" onClick={this.submit}>{this.props.submitBtnTitle}</button>
+                                    ? <button className="cart__submit-btn" onClick={this.submit} disabled={!this.props.auth.authenticated}>{this.props.submitBtnTitle}</button>
                                     : <Link className="cart__submit-btn" to='/checkout'
                                         style={{ display: 'inline-block', textDecoration: 'none' }}>
                                         {this.props.submitBtnTitle}
@@ -126,6 +131,7 @@ const mapStateToProps = (state, ownProps) => {
     // console.log(state.cart);
 
     return {
+        auth: state.auth,
         branch: ownProps.branch || state.selectedBranch,
         cart: state.cart
     }

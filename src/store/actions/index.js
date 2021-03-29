@@ -88,7 +88,11 @@ export const logout = () => {
 
 
 
-const _saveTokenIfExists = response =>  {
-    const token = response.data.data.token;
-    localStorage.setItem('expresso_token', token);
+const _saveTokenIfExists = response => {
+    try {
+        const token = response.data.data.token;
+        localStorage.setItem('expresso_token', token);
+    } catch (err) {
+        // console.error(err);
+    }
 }
