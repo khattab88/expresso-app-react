@@ -13,7 +13,7 @@ import reducers from './store/reducers';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={createStore(reducers)}>
+    <Provider store={createStore(reducers, applyMiddleware(thunk))}>
       <App />
     </Provider>
   </React.StrictMode>,

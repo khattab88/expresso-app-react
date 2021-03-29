@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { signUp } from '../../store/actions';
 
 class Signup extends React.Component {
     constructor(props) {
@@ -26,6 +29,15 @@ class Signup extends React.Component {
         console.log(`Password: ${this.state.password}`);
         console.log(`Confirm Password: ${this.state.confirmPassword}`);
         console.log(`Country: ${this.state.country}`);
+
+        this.props.signUp({
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password,
+            passwordConfirm: this.state.confirmPassword,
+            country: this.state.country
+        });
     }
 
     onInputChange(e) {
@@ -33,13 +45,15 @@ class Signup extends React.Component {
 
         const name = input.name;
         const value = (input.type === "checkbox" || input.type === "radio")
-                        ? input.checked
-                        : input.value;
+            ? input.checked
+            : input.value;
 
         this.setState({ [name]: value });
     }
 
     render() {
+        console.log(this.props.auth);
+
         return (
             <main className="main register-page__main">
 
@@ -54,7 +68,7 @@ class Signup extends React.Component {
 
                     <div className="register register-page__register">
                         <h3 className="register__heading">New to Expresso?</h3>
-                        
+
                         <form className="register__form" onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <input className="form-group__input-text" type="text" name="firstName" id="firstName" placeholder="First Name" required value={this.state.firstName} onChange={this.onInputChange} />
@@ -85,6 +99,11 @@ class Signup extends React.Component {
                             <button className="register__btn">Register</button>
                         </form>
 
+                        {(this.props.auth.err &&
+                            <p className="register__error-message">
+                                {this.props.auth.err.message}
+                            </p>
+                        )}
                     </div>
                 </div>
             </main>
@@ -92,4 +111,10 @@ class Signup extends React.Component {
     }
 }
 
-export default Signup;
+const mapStateToProps = state => {
+    console.log(state.auth);
+
+    return { auth: state.auth }
+}
+
+export default connect(mapStateToProps, { signUp })(Signup);

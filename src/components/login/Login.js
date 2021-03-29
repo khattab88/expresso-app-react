@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from "react-redux";
+
+import { login } from '../../store/actions';
 
 class Login extends React.Component {
     constructor(props) {
@@ -7,7 +10,8 @@ class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
+            err: null,
         };
 
         this.onEmailChange = this.onEmailChange.bind(this);
@@ -34,9 +38,16 @@ class Login extends React.Component {
         console.log(`Email:${this.state.email}`);
         console.log(`Password:${this.state.password}`);
         console.log(`Remember Me:${this.state.rememberMe}`);
+
+        this.props.login({
+            email: this.state.email,
+            password: this.state.password
+        });
     }
 
     render() {
+        console.log(this.props.auth);
+
         return (
             <main className="main login-page__main">
 
@@ -63,6 +74,11 @@ class Login extends React.Component {
                                 </div>
                             </form>
 
+                            {(this.props.auth.err &&
+                                <p className="login__error-message">
+                                    {this.props.auth.err.message}
+                                </p>
+                            )}
                         </div>
                     </div>
 
@@ -81,4 +97,10 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+const mapStateToProps = state => {
+    console.log(state.auth);
+
+    return { auth: state.auth }
+}
+
+export default connect(mapStateToProps, { login })(Login);

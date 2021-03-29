@@ -119,6 +119,13 @@
             text-decoration: underline;
         }
     }
+
+    &__error-message {
+        color: $color-red;
+        font-size: 1.75rem;
+        margin-top: 2rem;
+        margin-left: 1rem;
+    }
 }
 
 .form-group {

@@ -1,48 +1,73 @@
-export const selectArea = (area) => {
-    return {
-        type: 'AREAS/SELECT_AREA',
-        payload: area
-    }
-}
+import * as actionTypes from './actionTypes';
+import authApi from '../../api/AuthApi';
 
 export const selectCountry = (country) => {
     return {
-        type: 'COUNTRIES/SELECT_COUNTRY',
+        type: actionTypes.COUNTRIES_SELECT_COUNTRY,
         payload: country
+    }
+}
+
+export const selectArea = (area) => {
+    return {
+        type: actionTypes.AREAS_SELECT_AREA,
+        payload: area
     }
 }
 
 export const selectCategory = (category) => {
     return {
-        type: 'CATEGORIES/SELECT_CATEGORY',
+        type: actionTypes.CATEGORIES_SELECT_CATEGORY,
         payload: category
     }
 }
 
 export const selectBranch = (branch) => {
     return {
-        type: 'BRANCHES_SELECT_BRANCH',
+        type: actionTypes.BRANCHES_SELECT_BRANCH,
         payload: branch
     }
 }
 
 export const addCartItem = cartItem => {
     return {
-        type: "CART/ADD_CART_ITEM",
+        type: actionTypes.CART_ADD_CART_ITEM,
         payload: cartItem
     }
 }
 
 export const removeCartItem = id => {
     return {
-        type: "CART/REMOVE_CART_ITEM",
+        type: actionTypes.CART_REMOVE_CART_ITEM,
         payload: { id }
     }
 }
 
 export const updateCartItemCount = (id, count) => {
     return {
-        type: "CART/UPDATE_CART_ITEM_COUNT",
+        type: actionTypes.CART_UPDATE_CART_ITEM_COUNT,
         payload: { id, count }
     }
 }
+
+export const signUp = (signupData) =>
+    async dispatch => {
+        const response = await authApi.signUp(signupData);
+
+        dispatch({
+            type: actionTypes.AUTH_SIGNUP,
+            payload: response
+        });
+    }
+
+export const login = (loginData) =>
+    async dispatch => {
+        const response = await authApi.login(loginData);
+
+        // console.log(response);
+
+        dispatch({
+            type: actionTypes.AUTH_LOGIN,
+            payload: response
+        });
+    }
