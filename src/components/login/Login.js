@@ -35,9 +35,9 @@ class Login extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        console.log(`Email:${this.state.email}`);
-        console.log(`Password:${this.state.password}`);
-        console.log(`Remember Me:${this.state.rememberMe}`);
+        // console.log(`Email:${this.state.email}`);
+        // console.log(`Password:${this.state.password}`);
+        // console.log(`Remember Me:${this.state.rememberMe}`);
 
         this.props.login({
             email: this.state.email,
@@ -79,6 +79,10 @@ class Login extends React.Component {
                                     {this.props.auth.err.message}
                                 </p>
                             )}
+
+                            {(this.props.auth.authenticated &&
+                                <p className="login__success-message">Logged in successfully</p>
+                            )}
                         </div>
                     </div>
 
@@ -98,7 +102,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.auth);
+    // console.log(state.auth);
 
     return { auth: state.auth }
 }

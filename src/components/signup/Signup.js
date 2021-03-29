@@ -23,12 +23,12 @@ class Signup extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        console.log(`First Name: ${this.state.firstName}`);
-        console.log(`Last Name: ${this.state.lastName}`);
-        console.log(`Email: ${this.state.email}`);
-        console.log(`Password: ${this.state.password}`);
-        console.log(`Confirm Password: ${this.state.confirmPassword}`);
-        console.log(`Country: ${this.state.country}`);
+        // console.log(`First Name: ${this.state.firstName}`);
+        // console.log(`Last Name: ${this.state.lastName}`);
+        // console.log(`Email: ${this.state.email}`);
+        // console.log(`Password: ${this.state.password}`);
+        // console.log(`Confirm Password: ${this.state.confirmPassword}`);
+        // console.log(`Country: ${this.state.country}`);
 
         this.props.signUp({
             firstName: this.state.firstName,
@@ -112,7 +112,7 @@ class Signup extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.auth);
+    // console.log(state.auth);
 
     return { auth: state.auth }
 }
