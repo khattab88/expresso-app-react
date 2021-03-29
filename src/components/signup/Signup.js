@@ -104,6 +104,10 @@ class Signup extends React.Component {
                                 {this.props.auth.err.message}
                             </p>
                         )}
+
+                        {(this.props.auth.authenticated &&
+                                <p className="register__success-message">Logged in successfully</p>
+                        )}
                     </div>
                 </div>
             </main>
