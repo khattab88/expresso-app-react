@@ -265,6 +265,7 @@
     padding-bottom: 1rem;
     border-radius: $border-radius-small;
     cursor: pointer;
+    transform: translateY(3px);
   }
 
   &--open {
