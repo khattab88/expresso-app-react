@@ -3,18 +3,19 @@ import _ from "lodash";
 import jsonPlaceHolder from '../../api/jsonPlaceHolder';
 
 
-export const fetchPostsAndAuthors = () => async (dispatch, getState) => {
-    await dispatch(fetchPosts());
+export const fetchPostsAndAuthors = () =>
+    async (dispatch, getState) => {
+        await dispatch(fetchPosts());
 
-    // const authorIds = _.uniq(_.map(getState().posts, "userId"));
-    // authorIds.forEach(id => dispatch(fetchAuthor(id)));
+        // const authorIds = _.uniq(_.map(getState().posts, "userId"));
+        // authorIds.forEach(id => dispatch(fetchAuthor(id)));
 
-    _.chain(getState().posts)
-        .map("userId")
-        .uniq()
-        .forEach(id => dispatch(fetchAuthor(id)))
-        .value();
-};
+        _.chain(getState().posts)
+            .map("userId")
+            .uniq()
+            .forEach(id => dispatch(fetchAuthor(id)))
+            .value();
+    };
 
 export const fetchPosts = () =>
     async dispatch => {

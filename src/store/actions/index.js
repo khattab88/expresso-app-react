@@ -54,6 +54,10 @@ export const signUp = (signupData) =>
     async dispatch => {
         const response = await authApi.signUp(signupData);
 
+        // console.log(response.data.data.token);
+
+        _saveTokenIfExists(response);
+
         dispatch({
             type: actionTypes.AUTH_SIGNUP,
             payload: response
@@ -64,10 +68,27 @@ export const login = (loginData) =>
     async dispatch => {
         const response = await authApi.login(loginData);
 
-        // console.log(response);
+        // console.log(response.data.data.token);
+
+        _saveTokenIfExists(response);
 
         dispatch({
             type: actionTypes.AUTH_LOGIN,
             payload: response
         });
     }
+
+export const logout = () => {
+    localStorage.removeItem('expresso_token');
+
+    return {
+        type: actionTypes.AUTH_LOGOUT
+    }
+}
+
+
+
+const _saveTokenIfExists = response =>  {
+    const token = response.data.data.token;
+    localStorage.setItem('expresso_token', token);
+}
