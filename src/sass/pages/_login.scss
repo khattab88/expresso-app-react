@@ -120,11 +120,19 @@
         }
     }
 
-    &__error-message {
-        color: $color-red;
+    &__error-message,
+    &__success-message {
         font-size: 1.75rem;
         margin-top: 2rem;
         margin-left: 1rem;
+    }
+
+    &__error-message {
+        color: $color-state-error;
+    }
+
+    &__success-message {
+        color: $color-state-success;
     }
 }
 
