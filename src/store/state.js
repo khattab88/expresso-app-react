@@ -1,6 +1,6 @@
 export default {
     auth: {
-        authenticated: false,
+        isLoggedIn: false,
         err: null
     },
     selectedCountry: {},

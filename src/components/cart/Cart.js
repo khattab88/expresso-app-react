@@ -111,7 +111,7 @@ class Cart extends React.Component {
                         <div className="cart__submit">
                             {
                                 (this.props.submitBtnTitle !== "Checkout")
-                                    ? <button className="cart__submit-btn" onClick={this.submit} disabled={!this.props.auth.authenticated}>{this.props.submitBtnTitle}</button>
+                                    ? <button className="cart__submit-btn" onClick={this.submit} disabled={!this.props.auth.isLoggedIn}>{this.props.submitBtnTitle}</button>
                                     : <Link className="cart__submit-btn" to='/checkout'
                                         style={{ display: 'inline-block', textDecoration: 'none' }}>
                                         {this.props.submitBtnTitle}

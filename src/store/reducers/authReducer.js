@@ -19,14 +19,14 @@ const _createAuthResponse = action => {
 
     if(action.payload.status === "success") {
         return {
-            authenticated: true,
+            isLoggedIn: true,
             user: action.payload.data.data.user,
             token: action.payload.data.data.token,
             err: null
         }
     } else {
         return {
-            authenticated: false,
+            isLoggedIn: false,
             err: {
                 statusCode: action.payload.err.response.data.error.statusCode,
                 message: action.payload.err.response.data.message

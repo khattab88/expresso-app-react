@@ -80,7 +80,7 @@ class Login extends React.Component {
                                 </p>
                             )}
 
-                            {(this.props.auth.authenticated &&
+                            {(this.props.auth.isLoggedIn &&
                                 <p className="login__success-message">Logged in successfully</p>
                             )}
                         </div>
