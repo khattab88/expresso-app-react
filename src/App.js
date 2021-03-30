@@ -16,6 +16,8 @@ import LoginPage from './components/pages/login-page/LoginPage';
 import SignupPage from './components/pages/signup-page/SignupPage';
 import ContactUsPage from './components/pages/contact-us-page/ContactUsPage';
 import CheckoutPage from './components/pages/checkout-page/CheckoutPage';
+import ProfilePage from './components/pages/profile-page/ProfilePage';
+import OrdersPage from './components/pages/orders-page/OrdersPage';
 import TestPage from './components/pages/test/TestPage';
 
 
@@ -47,6 +49,12 @@ class App extends React.Component {
             </Route>
             <Route exact path="/checkout">
               <CheckoutPage />
+            </Route>
+            <Route exact path="/profile">
+              <ProfilePage />
+            </Route>
+            <Route exact path="/orders">
+              <OrdersPage />
             </Route>
             <Route path="/test">
               <TestPage />

@@ -8,6 +8,7 @@ import NavLink from './nav-link/NavLink';
 import CountryBtn from './country-button/CountryButton';
 import CartButton from './cart-button/CartButton';
 import CategoryButton from './category-button/CategoryButton';
+import AccountButton from './account-button/AccountButton';
 
 class Nav extends React.Component {
     constructor(props) {
@@ -82,6 +83,10 @@ class Nav extends React.Component {
 
                         <NavItem>
                             <CategoryButton />
+                        </NavItem>
+
+                        <NavItem>
+                            <AccountButton />
                         </NavItem>
 
                     </ul>

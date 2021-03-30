@@ -1,0 +1,97 @@
+.account-dropdown { 
+    display: none;
+    list-style: none;
+    position: static;
+    padding-bottom: .75rem;
+
+    &--open {
+        display: block;
+
+        @include respond(desktop) {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    @include respond(tab) {
+        position: absolute;
+        background-color: $color-white;
+        top: 4.5rem;
+        right: 0;
+        border-radius: $border-radius-small;
+        border-top-right-radius: 0;
+        width: 15rem;
+        box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+    }
+
+    @include respond(desktop) {
+        padding: 0;
+    }
+
+    &__item {
+        cursor: default;
+        transition: all .5s;
+
+        &:hover {
+            background-color: #f4f4f5;
+        }
+    }
+
+    &__header {
+        width: 100%;
+        margin-top: 1rem;
+        border-bottom: 1px solid $color-gray-light;
+        padding-left: 1.25rem;
+        margin-bottom: .5rem;
+
+        &:hover {
+            background-color: $color-white;
+        }
+
+        .user-detail {
+            color: $color-font-dark;
+            display: flex;
+            flex-direction: column;
+            padding-top: .5rem;
+            padding-bottom: 1rem;
+
+            &__name {
+                font-weight: 400;
+                font-size: 1.65rem;
+            }
+
+            &__email {
+                font-size: 1.3rem;
+                font-weight: 100;
+                margin-top: .25rem;
+            }
+        }
+    }
+
+    &__link:link,
+    &__link:visited {
+        display: flex;
+        align-items: center;
+        font-weight: 400;
+        font-size: 1.75rem;
+        color: $color-white;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        min-height: 4rem;
+
+        @include respond(tab) {
+            color: $color-font-dark;
+            letter-spacing: .5px;
+            font-size: 1.5rem;
+        }
+    }
+
+    &__icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin: 0 1rem 0 1rem;
+        transform: translateY(1px);
+    }
+
+}

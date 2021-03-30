@@ -316,3 +316,53 @@
     }
   }
 }
+
+.account-btn {
+  outline: none;
+  border: 1px solid $color-main;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+
+  @include respond(tab) {
+    padding-left: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    border-radius: $border-radius-small;
+    cursor: pointer;
+    transform: translateY(3px);
+  }
+
+  &--open {
+    @include respond(tab) {
+      border: 1px solid $color-font-light;
+      border-radius: .3rem;
+
+      .account-btn__caret--down {
+        color: $color-white;
+      }
+    }
+  }
+
+  &__img {
+    width: 2rem;
+    height: 2rem;
+    transform: scale(1.75);
+    margin-top: .5rem;
+    margin-right: 1rem;
+    border: 1.4px solid #fff;
+    border-radius: 50%;
+  }
+
+  &__caret--down {
+    font-size: 1.4rem;
+    margin-left: 1rem;
+    color: $color-white;
+
+    @include respond(tab) {
+      margin-top: 1.25rem;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+}

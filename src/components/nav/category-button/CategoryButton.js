@@ -93,7 +93,7 @@ class CategoryButton extends React.Component {
         const selected = (this.props.selectedCategory.image !== '') ? this.props.selectedCategory : { name:"Restaurants", image: "/assets/img/icons/categories/restaurants_icon.svg" };
 
         return (
-            <div className="CategoryButton" ref={this.ref}>
+            <div className="CategoryButton" style={{ position: "relative" }} ref={this.ref}>
                 <button className={className} onClick={this.toggle}>
                     <img className="category-btn__img" src={selected.image} alt={selected.name} />
                     <i className="category-btn__caret--down fa fa-caret-down"></i>
