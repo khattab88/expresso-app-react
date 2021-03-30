@@ -254,7 +254,8 @@
 
 .category-btn {
   outline: none;
-  border: none;
+  // border: none;
+  border: 1px solid $color-main;
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -274,7 +275,7 @@
       border-radius: .3rem;
 
       .category-btn__caret--down {
-        color: $color-main;
+        color: $color-white;
       }
     }
   }
