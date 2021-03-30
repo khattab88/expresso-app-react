@@ -15,10 +15,12 @@ export const authReducer = (auth = state.auth, action) => {
 }
 
 const _createAuthResponse = action => {
+    console.log(action.payload);
+
     if(action.payload.status === "success") {
         return {
             authenticated: true,
-            user: action.payload.data.data.data.user,
+            user: action.payload.data.data.user,
             token: action.payload.data.data.token,
             err: null
         }
