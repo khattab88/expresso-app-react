@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const AccountDropdown = (props) => {
 
     useEffect(() => {
-        console.log(props.isOpen);
+        // console.log(props.isOpen);
     });
 
     return (

@@ -254,8 +254,8 @@
 
 .category-btn {
   outline: none;
-  // border: none;
-  border: 1px solid $color-main;
+  border: none;
+  // border: 1px solid $color-main;
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -319,7 +319,8 @@
 
 .account-btn {
   outline: none;
-  border: 1px solid $color-main;
+  border: none;
+  // border: 1px solid $color-main;
   background-color: transparent;
   display: flex;
   align-items: center;
