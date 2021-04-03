@@ -46,20 +46,7 @@ class Checkout extends React.Component {
     }
 
     componentDidMount() {
-        // this.setState({
-        //     restaurant: {
-        //         id: "1",
-        //         name: "Pizza Hut",
-        //         img: "rest-00.jpg",
-        //         slogan: "I like it",
-        //         deliveryTime: 35,
-        //         deliveryFee: 20,
-        //         area: {
-        //             id: "1",
-        //             name: "Heliopolis"
-        //         }
-        //     }
-        // });
+        // console.log(this.state.delivery);
     }
 
     componentDidUpdate() {
