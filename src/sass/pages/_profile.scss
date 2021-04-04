@@ -1,4 +1,5 @@
 .profile-page {
+
   &__header {
     background-size: cover;
     background-position: center center;
@@ -11,8 +12,24 @@
     padding-top: 2%;
     padding-left: 2%;
 
+    @include respond(tab-land) {
+      height: 35rem;
+    }
+
+    @include respond(desktop) {
+      height: 30rem;
+    }
+
     .breadcrumb {
       padding-left: 3.5rem;
+
+      @include respond(tab) {
+        padding-top: 5rem;
+      }
+
+      @include respond(tab-land) {
+        padding-top: 9rem;
+      }
 
       @include respond(desktop) {
         padding-top: 12.5rem;
@@ -40,8 +57,14 @@
       padding-left: 2rem;
     }
 
+    @include respond(tab) {
+      padding-bottom: 5rem;
+      font-size: 3rem;
+    }
+
     @include respond(tab-land) {
       // padding-left: 15rem;
+      padding-bottom: 0;
     }
 
     @include respond(desktop) {
