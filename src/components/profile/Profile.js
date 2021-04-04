@@ -1,6 +1,8 @@
 import React from 'react';
 
 import AccountInfo from './account-info/AccountInfo';
+import DeliveryInfo from './delivery-info/DeliveryInfo';
+import PasswordInfo from './password-info/PasswordInfo';
 
 const Profile = (props) => {
     return (
@@ -9,13 +11,9 @@ const Profile = (props) => {
             <div className="profile">
                 <AccountInfo />
 
-                <section className="profile-info-box delivery-info">
-                    <h2>Delivery Info</h2>
-                </section>
+                <DeliveryInfo />
 
-                <section className="profile-info-box password-info">
-                    <h2>Password Info</h2>
-                </section>
+                <PasswordInfo />
             </div>
 
         </main>

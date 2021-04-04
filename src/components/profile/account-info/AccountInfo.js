@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const AccountInfo = (props) => {
 
-    const firstNameInput = useRef();
-
     const [firstName, setFirstName] = useState("ali");
     const [lastName, setLastName] = useState("omar");
     const [mobile, setMobile] = useState("0123456789");
@@ -42,10 +40,10 @@ const AccountInfo = (props) => {
 
     return (
         <section className="profile-info-box account-info">
-            <h3 className="user-info__heading-primary">Account Details</h3>
-            <p className="user-info__heading-secondary">Update your personal information and contact details.</p>
+            <h3 className="profile-info-box__heading-primary">Account Details</h3>
+            <p className="profile-info-box__heading-secondary">Update your personal information and contact details.</p>
             <form onSubmit={onSubmit}>
-                <div className="user-info__form">
+                <div className="account-info__form">
                     <div className="form-group">
                         <input className="form-group__input" type="text" name="firstName" id="firstName" size="30" required 
                                value={firstName} onChange={onInputChange} />
@@ -72,9 +70,8 @@ const AccountInfo = (props) => {
                         </select>
                         <label className="form-group__label" htmlFor="country">Country</label>
                     </div>
-
-                    <button className="form-group__submit">Update</button>
                 </div>
+                <button className="form-group__submit">Update</button>
             </form>
         </section>
     );
