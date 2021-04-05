@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Nav from '../../nav/Nav';
 import CheckoutHeader from '../../headers/checkout-header/CheckoutHeader';
@@ -22,6 +23,19 @@ class CheckoutPage extends React.Component {
     }
 
     render() {
+
+        if(!Object.keys(this.props.selectedBranch).length) {
+            return (
+                <div className="container checkout-page" ref={this.ref}>
+                    <Nav />
+                    <div style={{ height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <h1>Sorry, you must login to perform this action!</h1>
+                    </div>
+                    <Footer />
+                </div>
+            );
+        }
+
         return (
             <div className="container checkout-page" ref={this.ref} >
                 <Nav />
@@ -33,4 +47,8 @@ class CheckoutPage extends React.Component {
     }
 }
 
-export default CheckoutPage;
+const mapStateToProps = state => {
+    return { selectedBranch: state.selectedBranch }
+}
+
+export default connect(mapStateToProps)(CheckoutPage);
