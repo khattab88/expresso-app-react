@@ -10,12 +10,7 @@ class Logout extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.auth);
-
-        console.log("logout!");
         this.props.onLogout();
-
-        console.log(this.props.auth);
     }
 
     render() {

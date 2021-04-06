@@ -72,7 +72,7 @@ class UserInfo extends React.Component {
                         <Link className="profile-control__btn profile-control__btn--branded" to="/profile">Edit Profile</Link>
                     </li>
                     <li>
-                        <button className="profile-control__btn">Logout</button>
+                        <Link to="/logout" className="profile-control__btn">Logout</Link>
                     </li>
                 </ul>
             </section>
