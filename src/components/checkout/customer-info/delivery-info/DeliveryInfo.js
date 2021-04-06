@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class DeliveryInfo extends React.Component {
     constructor(props) {
@@ -53,7 +54,8 @@ class DeliveryInfo extends React.Component {
 
                 <form onSubmit={this.onSubmit}>
                     <h4 className="delivery-info__heading">Delivery Details</h4>
-                    <div className="delivery-info__form">
+
+                    <div className={`delivery-info__form ${this.props.auth.isLoggedIn ? 'delivery-info__form--hidden' : ''}`}>
                         <h5 className="delivery-info__form-title">
                             Add new - <span className="delivery-info__form-address">Heliopolis, Cairo</span>
                         </h5>
@@ -126,4 +128,8 @@ class DeliveryInfo extends React.Component {
     }
 }
 
-export default DeliveryInfo;
+const mapStateToProps = state => {
+    return { auth: state.auth }
+}
+
+export default connect(mapStateToProps)(DeliveryInfo);
