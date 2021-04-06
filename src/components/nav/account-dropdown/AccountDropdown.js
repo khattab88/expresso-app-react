@@ -31,10 +31,10 @@ const AccountDropdown = (props) => {
                 </Link>
             </li>
             <li className="account-dropdown__item">
-                <a href="#" className="account-dropdown__link">
+                <Link to="/logout" className="account-dropdown__link">
                     <img className="account-dropdown__icon" src="/assets/img/icons/user/logout_icon.svg" />
                     <p>Logout</p>
-                </a>
+                </Link>
             </li>
         </ul>
     );

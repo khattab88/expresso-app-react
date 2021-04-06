@@ -85,9 +85,14 @@ class Nav extends React.Component {
                             <CategoryButton />
                         </NavItem>
 
-                        <NavItem>
-                            <AccountButton />
-                        </NavItem>
+                        {
+                            (this.props.auth.isLoggedIn)
+                                ? <NavItem>
+                                    <AccountButton />
+                                  </NavItem>
+                                : null
+                        }
+
 
                     </ul>
                 </div>
@@ -99,8 +104,9 @@ class Nav extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { 
-        selectedBranch: state.selectedBranch, 
+    return {
+        auth: state.auth,
+        selectedBranch: state.selectedBranch,
         cartItemsCount: state.cart.length
     }
 }

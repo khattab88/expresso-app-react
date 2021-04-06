@@ -18,6 +18,7 @@ import ContactUsPage from './components/pages/contact-us-page/ContactUsPage';
 import CheckoutPage from './components/pages/checkout-page/CheckoutPage';
 import ProfilePage from './components/pages/profile-page/ProfilePage';
 import OrdersPage from './components/pages/orders-page/OrdersPage';
+import Logout from './components/logout/Logout';
 import TestPage from './components/pages/test/TestPage';
 
 
@@ -58,6 +59,9 @@ class App extends React.Component {
             </Route>
             <Route path="/test">
               <TestPage />
+            </Route>
+            <Route exact path="/logout">
+              <Logout />
             </Route>
             <Route exact path="/">
               <HomePage />
