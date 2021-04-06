@@ -15,10 +15,10 @@ export const authReducer = (auth = state.auth, action) => {
 }
 
 const _createAuthResponse = action => {
-    console.log(action.payload);
+    // console.log(action.payload);
 
     if(action.payload.status === "success") {
-        console.log(action.payload);
+        // console.log(action.payload);
 
         return {
             isLoggedIn: true,
