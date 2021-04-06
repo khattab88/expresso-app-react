@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   // BrowserRouter as Router,
   HashRouter as Router,
@@ -21,10 +22,21 @@ import OrdersPage from './components/pages/orders-page/OrdersPage';
 import Logout from './components/logout/Logout';
 import TestPage from './components/pages/test/TestPage';
 
+import { checkAuth } from "./store/actions";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    // console.log("onCheckAuth");
+
+    this.props.onCheckAuth();
+  }
+
+  componentDidUpdate() {
+    // console.log(this.props.auth);
   }
 
   render() {
@@ -74,4 +86,15 @@ class App extends React.Component {
   }
 }
 
-export default App;
+
+const mapStateToProps = state => {
+  return { auth: state.auth }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onCheckAuth: () => dispatch(checkAuth())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
