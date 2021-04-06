@@ -46,16 +46,27 @@ class Nav extends React.Component {
 
                 <div className="navigation">
                     <ul className={`${this.state.isMobileNavOpen ? 'navigation__items navigation__items--mobile-open' : 'navigation__items'}`}>
-                        <NavItem>
-                            <NavLink href={this.state.navItems.login.href}>
-                                {this.state.navItems.login.title}
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href={this.state.navItems.signUp.href}>
-                                {this.state.navItems.signUp.title}
-                            </NavLink>
-                        </NavItem>
+
+                        {
+                            (!this.props.auth.isLoggedIn)
+                                ? <NavItem>
+                                    <NavLink href={this.state.navItems.login.href}>
+                                        {this.state.navItems.login.title}
+                                    </NavLink>
+                                </NavItem>
+                                : null
+                        }
+
+                        {
+                            (!this.props.auth.isLoggedIn)
+                                ? <NavItem>
+                                    <NavLink href={this.state.navItems.signUp.href}>
+                                        {this.state.navItems.signUp.title}
+                                    </NavLink>
+                                </NavItem>
+                                : null
+                        }
+
                         <NavItem>
                             <NavLink href={this.state.navItems.contactUs.href}>
                                 {this.state.navItems.contactUs.title}
@@ -89,7 +100,7 @@ class Nav extends React.Component {
                             (this.props.auth.isLoggedIn)
                                 ? <NavItem>
                                     <AccountButton />
-                                  </NavItem>
+                                </NavItem>
                                 : null
                         }
 
