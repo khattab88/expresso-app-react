@@ -18,9 +18,11 @@ const _createAuthResponse = action => {
     console.log(action.payload);
 
     if(action.payload.status === "success") {
+        console.log(action.payload);
+
         return {
             isLoggedIn: true,
-            user: action.payload.data.data.user,
+            user: action.payload.data.data.data.user,
             token: action.payload.data.data.token,
             err: null
         }

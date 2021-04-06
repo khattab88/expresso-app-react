@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 
 class UserInfo extends React.Component {
     constructor(props) {
@@ -36,7 +38,7 @@ class UserInfo extends React.Component {
         });
     }
 
-    render() {
+    renderAnonymousView() {
         return (
             <section className="checkout-info-box user-info">
                 <h3 className="user-info__heading-primary">New to Expresso?</h3>
@@ -58,6 +60,36 @@ class UserInfo extends React.Component {
             </section>
         );
     }
+
+    renderLoggedInView() {
+        return(
+            <section className="checkout-info-box user-info">
+                <h3 className="user-info__heading-primary">{`Hello, ${this.props.auth.user.firstName} ${this.props.auth.user.lastName}`}</h3>
+                <p className="user-info__heading-secondary">{this.props.auth.user.email}</p>
+
+                <ul className="profile-control">
+                    <li className="profile-control__item">
+                        <Link className="profile-control__btn profile-control__btn--branded" to="/profile">Edit Profile</Link>
+                    </li>
+                    <li>
+                        <button className="profile-control__btn">Logout</button>
+                    </li>
+                </ul>
+            </section>
+        );
+    }
+
+    render() {
+        return (this.props.auth.isLoggedIn)
+                    ? this.renderLoggedInView()
+                    : this.renderAnonymousView();
+    }
 }
 
-export default UserInfo;
+const mapStateToProps = state => {
+    console.log(state.auth);
+
+    return { auth: state.auth }
+}
+
+export default connect(mapStateToProps)(UserInfo);
