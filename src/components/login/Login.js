@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { login } from '../../store/actions';
 
@@ -43,10 +44,15 @@ class Login extends React.Component {
             email: this.state.email,
             password: this.state.password
         });
+
     }
 
     render() {
         // console.log(this.props.auth);
+
+        if (this.props.auth.isLoggedIn) {
+            return (<Redirect to="/" />);
+        }
 
         return (
             <main className="main login-page__main">

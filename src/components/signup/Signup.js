@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from "react-router-dom";
 
 import { signUp } from '../../store/actions';
 
@@ -53,6 +54,10 @@ class Signup extends React.Component {
 
     render() {
         // console.log(this.props.auth);
+
+        if (this.props.auth.isLoggedIn) {
+            return (<Redirect to="/" />);
+        }
 
         return (
             <main className="main register-page__main">
