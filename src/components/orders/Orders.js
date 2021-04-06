@@ -19,7 +19,7 @@ const Orders = (props) => {
 
         return tabs.map(tab =>
             <li className={`orders__tab ${(tab.id === activeTab) ? "orders__tab--active" : ""}`}
-                data-id={tab.id} onClick={e => onTabClick(e)}>
+                key={tab.id} data-id={tab.id} onClick={e => onTabClick(e)}>
                 <a href="#">{tab.title}</a>
             </li>);
     }
