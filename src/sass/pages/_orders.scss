@@ -1,4 +1,5 @@
 .orders-page {
+
   &__header {
     background-size: cover;
     background-position: center center;
@@ -12,10 +13,6 @@
     padding-left: 2%;
 
     @include respond(tab-land) {
-      height: 35rem;
-    }
-
-    @include respond(desktop) {
       height: 30rem;
     }
 
@@ -53,7 +50,7 @@
     text-shadow: 2px 2px 1px $color-gray-dark;
 
     @include respond(phone-land) {
-      padding-left: 2rem;
+      padding-left: 1.25rem;
     }
 
     @include respond(tab) {
@@ -62,7 +59,7 @@
     }
 
     @include respond(tab-land) {
-      // padding-left: 15rem;
+      padding-left: .75rem;
       padding-bottom: 0;
     }
 
@@ -87,6 +84,22 @@
 .orders {
   width: 90%;
   margin: 3.5rem auto;
+
+  @include respond(phone-land) {
+    width: 96%;
+  }
+
+  @include respond(tab) {
+    width: 90%;
+  }
+
+  @include respond(tab-land) {
+    width: 76%;
+  }
+
+  @include respond(desktop) {
+    width: 70%;
+  }
 
   &__heading {
     border-bottom: 1px solid transparent;
@@ -115,6 +128,7 @@
     padding: 25px 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    cursor: pointer;
 
     a {
       text-decoration: none;
@@ -166,21 +180,40 @@
 .no-orders {
   color: $color-font-dark;
   background-color: #efefef;
-  width: 80%;
-  margin: 3rem auto;
-  padding: 2rem 2rem;
+  width: 100%;
+  margin: 1rem auto;
+  padding: 10rem 2rem;
   text-align: center;
   border: 5px solid #fff;
   border-radius: 7px;
+
+  @include respond(desktop) {
+    width: 76%;
+  }
 
   &__primary-title {
     font-size: 2rem;
     font-weight: 400;
     margin-bottom: 1.5rem;
+
+    @include respond(desktop) {
+      font-size: 2.6rem;
+    }
   }
 
   &__secondary-title {
     font-size: 1.5rem;
+
+    @include respond(tab) {
+      width: 42%;
+      margin: 0 auto;
+    }
+
+    @include respond(desktop) {
+      font-size: 1.75rem;
+      width: 46%;
+      line-height: 2.35rem;
+    }
   }
 }
 
