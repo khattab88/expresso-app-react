@@ -1,0 +1,45 @@
+.streamy {
+  width: 60%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1rem;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__nav {
+    border-bottom: 3px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      width: 65%;
+
+      li {
+        font-size: 2rem;
+
+        a {
+            text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.auth {
+    font-size: 1.5rem;
+
+    &__btn {
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: .5rem 1rem; 
+        background-color: #f55;
+        color: #fff;
+    }
+}

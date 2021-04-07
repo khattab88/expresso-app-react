@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 // Redux-related stuff
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
@@ -22,10 +22,12 @@ import Dropdown from './dropdown/Dropdown';
 import Translator from './translator/Translator';
 import ShoppingCart from './shopping-cart/ShoppingCart';
 import Blog from './blog/Blog';
+import Streamy from './streamy/Streamy';
 
 // Redux Reducers
 import shoppingCartReducers from './shopping-cart/redux/reducers';
 import blogReducers from './blog/store/reducers';
+import streamyReducers from './streamy/store/reducers';
 
 class TestPage extends React.Component {
     constructor(props) {
@@ -40,7 +42,7 @@ class TestPage extends React.Component {
     render() {
         return (
             <main className="main">
-                
+
                 <Router>
                     <nav style={{ margin: "1rem" }}>
                         <ul style={{ listStyle: 'none', display: 'flex' }}>
@@ -64,6 +66,9 @@ class TestPage extends React.Component {
                             </li>
                             <li style={this.navItemStyles}>
                                 <Link to="/blog">Blog</Link>
+                            </li>
+                            <li style={this.navItemStyles}>
+                                <Link to="/streamy">Streamy</Link>
                             </li>
                         </ul>
                     </nav>
@@ -89,6 +94,11 @@ class TestPage extends React.Component {
                         <Route path="/blog">
                             <Provider store={createStore(blogReducers, applyMiddleware(thunk))}>
                                 <Blog />
+                            </Provider>
+                        </Route>
+                        <Route path="/streamy">
+                            <Provider store={createStore(streamyReducers)}>
+                                <Streamy />
                             </Provider>
                         </Route>
                         <Route path="/">
