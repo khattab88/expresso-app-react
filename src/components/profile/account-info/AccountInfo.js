@@ -1,15 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
 
 const AccountInfo = (props) => {
 
-    const [firstName, setFirstName] = useState("ali");
-    const [lastName, setLastName] = useState("omar");
-    const [mobile, setMobile] = useState("0123456789");
-    const [birthDate, setBirthDate] = useState("01/01/2020");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [birthDate, setBirthDate] = useState("");
     const [country, setCountry] = useState("Egypt");
 
     useEffect(() => {
-        
+        setFirstName(props.user.firstName);
+        setLastName(props.user.lastName);
+        setMobile(props.user.mobile || "");
+        setBirthDate(props.user.birthDate.split("T")[0] || "");
+        setCountry("Egypt");
     }, []);
 
     const onInputChange = e => {
@@ -18,7 +23,7 @@ const AccountInfo = (props) => {
         const name = input.name;
         const value = input.value;
 
-        switch(name) {
+        switch (name) {
             case 'firstName':
                 setFirstName(value);
             case 'lastName':
@@ -36,6 +41,7 @@ const AccountInfo = (props) => {
         e.preventDefault();
 
         //TODO: update account info
+        console.log("UPDATE USER");
     }
 
     return (
@@ -45,24 +51,28 @@ const AccountInfo = (props) => {
             <form onSubmit={onSubmit}>
                 <div className="account-info__form">
                     <div className="form-group">
-                        <input className="form-group__input" type="text" name="firstName" id="firstName" size="30" required 
-                               value={firstName} onChange={onInputChange} />
+                        <input className="form-group__input" type="text" name="firstName" id="firstName" size="30" required
+                            value={firstName} onChange={onInputChange} />
                         <label className="form-group__label" htmlFor="firstName">First Name</label>
                     </div>
                     <div className="form-group">
-                        <input className="form-group__input" type="text" name="lastName" id="lastName" size="30" required value={lastName} onChange={onInputChange} />
+                        <input className="form-group__input" type="text" name="lastName" id="lastName" size="30" required 
+                            value={lastName} onChange={onInputChange} />
                         <label className="form-group__label" htmlFor="lastName">Last Name</label>
                     </div>
                     <div className="form-group">
-                        <input className="form-group__input" type="tel" name="mobile" id="mobile" size="30" required value={mobile} onChange={onInputChange} />
+                        <input className="form-group__input" type="tel" name="mobile" id="mobile" size="30" 
+                            value={mobile} onChange={onInputChange} />
                         <label className="form-group__label" htmlFor="mobile">Mobile</label>
                     </div>
                     <div className="form-group">
-                        <input className="form-group__input" type="date" name="birthDate" id="birthDate" size="30" required value={birthDate} onChange={onInputChange} />
+                        <input className="form-group__input" type="date" name="birthDate" id="birthDate" size="30" 
+                            value={birthDate} onChange={onInputChange} />
                         <label className="form-group__label" htmlFor="birthDate">Birth Date</label>
                     </div>
                     <div className="form-group">
-                        <select className="form-group__input" name="country" id="country" required value={country} onChange={onInputChange}>
+                        <select className="form-group__input" name="country" id="country" required 
+                            value={country} onChange={onInputChange} >
                             <option value="Egypt">Egypt</option>
                             <option value="UAE">UAE</option>
                             <option value="Saudi Arabia">Saudi Arabia</option>
@@ -71,10 +81,17 @@ const AccountInfo = (props) => {
                         <label className="form-group__label" htmlFor="country">Country</label>
                     </div>
                 </div>
-                <button className="form-group__submit">Update</button>
+                <button className="form-group__submit" style={{ cursor: 'pointer' }}>Update</button>
             </form>
         </section>
     );
 }
 
-export default AccountInfo;
+const mapStateToProps = state => {
+    return {
+        user: state.auth.user,
+        token: state.auth.token
+    }
+}
+
+export default connect(mapStateToProps)(AccountInfo);
