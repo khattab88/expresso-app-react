@@ -13,6 +13,8 @@ export const authReducer = (auth = state.auth, action) => {
             return _createSuccessResponse(action);
         case actionTypes.AUTH_FAILED:
             return _createFailResponse(action);
+        case actionTypes.AUTH_UPDATE_PROFILE:
+            return {...auth, user: action.payload.user };
         default:
             return auth;
     }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
+import { updateProfile } from '../../../store/actions';
+
 const AccountInfo = (props) => {
 
     const [firstName, setFirstName] = useState("");
@@ -13,7 +15,12 @@ const AccountInfo = (props) => {
         setFirstName(props.user.firstName);
         setLastName(props.user.lastName);
         setMobile(props.user.mobile || "");
-        setBirthDate(props.user.birthDate.split("T")[0] || "");
+        if(props.user.birthDate) {
+            setBirthDate(props.user.birthDate.split("T")[0]);
+        } else {
+            setBirthDate("");
+        }
+        
         setCountry("Egypt");
     }, []);
 
@@ -22,6 +29,8 @@ const AccountInfo = (props) => {
 
         const name = input.name;
         const value = input.value;
+
+        // console.log(`${name}: ${value}`);
 
         switch (name) {
             case 'firstName':
@@ -41,7 +50,12 @@ const AccountInfo = (props) => {
         e.preventDefault();
 
         //TODO: update account info
-        console.log("UPDATE USER");
+        props.updateProfile({
+            firstName,
+            lastName,
+            mobile,
+            birthDate
+        });
     }
 
     return (
@@ -94,4 +108,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(AccountInfo);
+export default connect(mapStateToProps, { updateProfile })(AccountInfo);

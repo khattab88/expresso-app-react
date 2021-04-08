@@ -140,6 +140,20 @@ export const checkAuth = () => {
     }
 }
 
+export const updateProfile = (profileData) =>
+    async dispatch => {
+        const response = await authApi.updateProfile(profileData);
+
+        console.log(response);
+
+        const user = response.data.data.data.updatedUser;
+        localStorage.setItem("expresso_user", JSON.stringify(user));
+
+        dispatch({
+            type: actionTypes.AUTH_UPDATE_PROFILE,
+            payload: { user }
+        });
+    }
 
 const _saveAuthData = response => {
     try {

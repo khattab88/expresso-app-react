@@ -48,6 +48,26 @@ class AuthApi {
         }
     }
 
+    async updateProfile(profileData) {
+        try {
+            const res = await this.baseApi.patch("/auth/updateMe", {...profileData});
+
+            const item = res;
+
+            return {
+                status: "success",
+                err: null,
+                data: item
+            }
+        } catch (err) {
+            // console.log(e);
+
+            return {
+                status: "fail",
+                err: err,
+            }
+        }
+    }
 }
 
 export default new AuthApi();

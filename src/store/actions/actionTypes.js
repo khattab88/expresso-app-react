@@ -28,3 +28,5 @@ export const AUTH_SUCCEEDED = "AUTH/SUCCEEDED";
 export const AUTH_FAILED = "AUTH/FAILED";
 
 export const AUTH_CHECK = "AUTH/CHECK";
+
+export const AUTH_UPDATE_PROFILE = "AUTH/UPDATE_PROFILE";
