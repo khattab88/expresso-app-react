@@ -55,7 +55,7 @@ class DeliveryInfo extends React.Component {
                 <form onSubmit={this.onSubmit}>
                     <h4 className="delivery-info__heading">Delivery Details</h4>
 
-                    <div className={`delivery-info__form ${this.props.auth.isLoggedIn ? 'delivery-info__form--hidden' : ''}`}>
+                    <div className={`delivery-info__form ${!this.props.auth.isLoggedIn ? 'delivery-info__form--hidden' : ''}`}>
                         <h5 className="delivery-info__form-title">
                             Add new - <span className="delivery-info__form-address">Heliopolis, Cairo</span>
                         </h5>
@@ -91,7 +91,7 @@ class DeliveryInfo extends React.Component {
                             </div>
                             <div className="form-group">
                                 <input className="form-group__input" type="text" name="instructions" id="instructions" size="30" required value={this.state.instructions} onChange={this.onInputChange} />
-                                <label className="form-group__label" htmlFor="instructions">INstructions</label>
+                                <label className="form-group__label" htmlFor="instructions">Instructions</label>
                             </div>
                             <div className="form-group">
                                 <input className="form-group__input" type="tel" name="mobile" id="mobile" size="30" pattern="[0-9]{6,20}" required value={this.state.mobile} onChange={this.onInputChange} />

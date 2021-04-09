@@ -1,0 +1,19 @@
+.address-form {
+  padding: 4rem;
+
+  &__submit {
+    width: 35%;
+    height: 5rem;
+    background-color: $color-main;
+    color: $color-white;
+    text-align: center;
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+    border-radius: $border-radius-small;
+    font-size: 1.7rem;
+    font-weight: 400;
+    padding: 1.5rem 1rem;
+    letter-spacing: 0.5px;
+  }
+}
