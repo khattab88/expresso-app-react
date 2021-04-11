@@ -1,0 +1,59 @@
+.address-list {
+
+  .address {
+    font-size: 1.6rem;
+    padding: 0 1rem 0 0;
+    display: inline-block;
+    margin-top: 3rem;
+    min-height: auto;
+    vertical-align: text-top;
+
+    &__name {
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
+
+    &__summary {
+      font-size: 1.8rem;
+      line-height: 2.4rem;
+      padding: 1.4rem 2rem 1rem 0;
+    }
+
+    &__detail {
+      margin-bottom: 1rem;
+      line-height: 2.2rem;
+      font-size: 1.6rem;
+
+      span {
+        font-weight: 400;
+        padding-right: 0.5rem;
+      }
+    }
+
+    &__control {
+      list-style: none;
+      border-top: 1px solid $color-gray-light;
+      padding: 1rem 0 0;
+
+      li {
+        display: inline-block;
+        margin-right: 0.75rem;
+      }
+    }
+
+    &__btn {
+        padding: 2px 10px;
+        border: 1px solid $color-gray-light;
+        border-radius: .4rem;
+        font-weight: 100;
+        background-color: transparent;
+    
+        &--brand {
+          color: $color-main;
+          border-color: $color-main;
+        }
+      }
+
+  }
+
+}

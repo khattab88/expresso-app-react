@@ -17,32 +17,32 @@ const AddressForm = props => {
         const name = input.name;
         const value = input.value;
 
-        console.log(`${name}: ${value}`);
+        // console.log(`${name}: ${value}`);
 
         switch (name) {
             case "area":
-                setArea(value);
+                return setArea(value);
             case "address":
-                setAddress(value);
+                return setAddress(value);
             case "street":
-                setStreet(value);
+                return setStreet(value);
             case "building":
-                setBuilding(value);
+                return setBuilding(value);
             case "apartment":
-                setApartment(value);
+                return setApartment(value);
             case "floor":
-                setFloor(value);
+                return setFloor(value);
             case "mobile":
-                setMobile(value);
+                return setMobile(value);
             default:
-                setInstructions(value);
+                return setInstructions(value);
         }
     };
 
     const onSubmit = e => {
         e.preventDefault();
 
-        console.log(`${area}, ${address}`);
+        //TODO: submit form
     };
 
     return (
@@ -74,27 +74,27 @@ const AddressForm = props => {
                 </div>
 
                 <div className="form-group">
-                    <input className="form-group__input" type="text" name="apartment" id="apartment" size="30" required 
-                        value={apartment} onChange={onInputChange} />
-                    <label className="form-group__label" htmlFor="apartment">Apartment/Office</label>
-                </div>
-
-                <div className="form-group">
                     <input className="form-group__input" type="text" name="floor" id="floor" size="30" required 
                         value={floor} onChange={onInputChange} />
                     <label className="form-group__label" htmlFor="floor">Floor</label>
                 </div>
 
                 <div className="form-group">
-                    <input className="form-group__input" type="text" name="instructions" id="instructions" size="30" required 
-                        value={instructions} onChange={onInputChange} />
-                    <label className="form-group__label" htmlFor="instructions">Instructions</label>
+                    <input className="form-group__input" type="text" name="apartment" id="apartment" size="30" required 
+                        value={apartment} onChange={onInputChange} />
+                    <label className="form-group__label" htmlFor="apartment">Apartment/Office</label>
                 </div>
 
                 <div className="form-group">
                     <input className="form-group__input" type="tel" name="mobile" id="mobile" size="30" pattern="[0-9]{6,20}" required 
                         value={mobile} onChange={onInputChange} />
                     <label className="form-group__label" htmlFor="mobile">Mobile</label>
+                </div>
+
+                <div className="form-group">
+                    <input className="form-group__input" type="text" name="instructions" id="instructions" size="30" 
+                        value={instructions} onChange={onInputChange} />
+                    <label className="form-group__label" htmlFor="instructions">Instructions</label>
                 </div>
 
             </div>
