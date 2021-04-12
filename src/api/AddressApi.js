@@ -48,6 +48,46 @@ class AddressApi {
         }
     }
 
+    async updateAddress(id, addressData) {
+        try {
+            const res = await this.baseApi.patch(`/addresses/${id}`, {...addressData});
+
+            const item = res.data.data.doc;
+
+            return {
+                status: "success",
+                err: null,
+                data: item
+            }
+        } catch (err) {
+            // console.log(e);
+
+            return {
+                status: "fail",
+                err: err,
+            }
+        }
+    }
+
+    async deleteAddress(id) {
+        try {
+            const res = await this.baseApi.delete(`/addresses/${id}`);
+
+            return {
+                status: "success",
+                err: null,
+                data: "SUCCESSFULLY DELETED!"
+            }
+        } catch (err) {
+            // console.log(e);
+
+            return {
+                status: "fail",
+                err: err,
+            }
+        }
+    }
+
 }
 
 export default new AddressApi();

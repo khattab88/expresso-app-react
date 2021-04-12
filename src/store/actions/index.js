@@ -192,3 +192,27 @@ export const createAddress = (addressData) =>
             payload: response.data
         })
     }
+
+export const updateAddress = (id, addressData) =>
+    async dispatch => {
+        const response = await addressApi.updateAddress(id, addressData);
+
+        console.log(response);
+
+        dispatch({
+            type: actionTypes.ADDRESSES_UPDATE_ADDRESS,
+            payload: response.data
+        })
+    }
+
+    export const deleteAddress = (id) =>
+    async dispatch => {
+        const response = await addressApi.deleteAddress(id);
+
+        console.log(response);
+
+        dispatch({
+            type: actionTypes.ADDRESSES_DELETE_ADDRESS,
+            payload: { id }
+        })
+    }
