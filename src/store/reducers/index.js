@@ -6,6 +6,7 @@ import { selectedCountryReducer } from './countriesReducer';
 import { selectedCategoryReducer } from "./categoriesReducer";
 import { selectedBranchReducer } from './branchesReducer';
 import { cartReducer } from "./cartReducer";
+import { addressesReducer } from './addressesReducer';
 
 export default combineReducers({
     auth: authReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
     selectedCountry: selectedCountryReducer,
     selectedCategory: selectedCategoryReducer,
     selectedBranch: selectedBranchReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    addresses: addressesReducer
 });

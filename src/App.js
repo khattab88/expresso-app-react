@@ -22,7 +22,7 @@ import OrdersPage from './components/pages/orders-page/OrdersPage';
 import Logout from './components/logout/Logout';
 import TestPage from './components/pages/test/TestPage';
 
-import { checkAuth } from "./store/actions";
+import { checkAuth, getUserAddresses } from "./store/actions";
 
 class App extends React.Component {
   constructor(props) {
@@ -30,9 +30,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("onCheckAuth");
 
+    /* Call Startup Actions */
     this.props.onCheckAuth();
+
+    setTimeout(() => {
+      // console.log(this.props.auth.user.id);
+
+      this.props.getUserAddresses(this.props.auth.user.id);
+    }, 500);
   }
 
   componentDidUpdate() {
@@ -42,14 +48,14 @@ class App extends React.Component {
   render() {
     return (
       <div className="App container">
-        
+
         <Router>
           <Switch>
             <Route exact path="/restaurant-list">
               <RestaurantListPage />
             </Route>
             <Route path="/restaurant-menu/:branchId">
-              <RestaurantMenuPage/>
+              <RestaurantMenuPage />
             </Route>
             <Route exact path="/login">
               <LoginPage />
@@ -93,7 +99,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onCheckAuth: () => dispatch(checkAuth())
+    onCheckAuth: () => dispatch(checkAuth()),
+    getUserAddresses: (userId) => dispatch(getUserAddresses(userId)),
   }
 }
 

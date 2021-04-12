@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import authApi from '../../api/AuthApi';
+import addressApi from "../../api/AddressApi";
 
 export const selectCountry = (country) => {
     return {
@@ -131,7 +132,7 @@ export const checkAuth = () => {
         const token = localStorage.getItem('expresso_token');
         const user = JSON.parse(localStorage.getItem('expresso_user'));
 
-        if(!token) {
+        if (!token) {
             dispatch(logout());
             // dispatch(onAuthFail());
         } else {
@@ -166,3 +167,16 @@ const _saveAuthData = response => {
         // console.error(err);
     }
 }
+
+
+export const getUserAddresses = (userId) =>
+    async dispatch => {
+        const response = await addressApi.getUserAddresses(userId);
+
+        const addresses = response.data;
+
+        dispatch({
+            type: actionTypes.ADDRESSES_GET_ADDRESSES,
+            payload: addresses
+        });
+    }

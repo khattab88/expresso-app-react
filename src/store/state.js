@@ -3,6 +3,7 @@ export default {
         isLoggedIn: false,
         err: null
     },
+    addresses: [],
     selectedCountry: {},
     selectedArea: {},
     selectedCategory: {},

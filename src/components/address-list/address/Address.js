@@ -2,7 +2,7 @@ import React from 'react';
 
 const Address = props => {
     return(
-        <article className="address" data-id={props.address.id}>
+        <article className="address" data-id={props.id}>
             <h4 className="address__name">{props.address.name}</h4>
             <p className="address__summary">
                {
@@ -10,8 +10,7 @@ const Address = props => {
                     Floor: ${props.address.floor},
                     Building: ${props.address.building},
                     Street: ${props.address.street},
-                    Area: ${props.address.area}.
-                   `
+                    Area: ${props.address.area}.`
                 } 
             </p>
             <p className="address__detail">
