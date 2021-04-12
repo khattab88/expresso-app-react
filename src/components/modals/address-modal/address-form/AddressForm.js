@@ -45,7 +45,7 @@ const AddressForm = props => {
     const onSubmit = e => {
         e.preventDefault();
 
-        console.log("On Submit");
+        // console.log("On Submit");
 
         // default coordinates (actual value comes from map modal)
         const coordinates = [31.200208,30.041311];

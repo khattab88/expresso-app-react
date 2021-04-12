@@ -185,7 +185,7 @@ export const createAddress = (addressData) =>
     async dispatch => {
         const response = await addressApi.createAddress(addressData);
 
-        console.log(response);
+        // console.log(response);
 
         dispatch({
             type: actionTypes.ADDRESSES_CREATE_ADDRESS,
