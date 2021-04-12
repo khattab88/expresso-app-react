@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { reset } from 'redux-form';
 
 import { createAddress } from "../../../../store/actions";
 
@@ -69,8 +70,21 @@ const AddressForm = props => {
 
         props.createAddress(addressData);
 
+        reset();
+
         props.onAddressEditComplete();
     };
+
+    const reset = () => {
+        setArea("");
+        setAddress("");
+        setStreet("");
+        setBuilding("");
+        setFloor("");
+        setApartment("");
+        setMobile("");
+        setInstructions("");
+    }
 
     return (
         <form className="address-form" onSubmit={onSubmit}>
