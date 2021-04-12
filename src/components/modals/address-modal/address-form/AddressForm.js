@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+
+import { createAddress } from "../../../../store/actions";
 
 const AddressForm = props => {
 
@@ -42,7 +45,31 @@ const AddressForm = props => {
     const onSubmit = e => {
         e.preventDefault();
 
-        //TODO: submit form
+        console.log("On Submit");
+
+        // default coordinates (actual value comes from map modal)
+        const coordinates = [31.200208,30.041311];
+
+        const user_id = props.user._id;
+
+        const addressData = {
+            user: user_id,
+            coordinates,
+            address: {
+                area,
+                name: address,
+                street,
+                building,
+                floor,
+                apartment,
+                mobile,
+                instructions
+            }
+        };
+
+        props.createAddress(addressData);
+
+        props.onAddressEditComplete();
     };
 
     return (
@@ -104,4 +131,10 @@ const AddressForm = props => {
     );
 }
 
-export default AddressForm;
+const mapStateToProps = state => {
+    return {
+        user: state.auth.user
+    }
+}
+
+export default connect(mapStateToProps, { createAddress })(AddressForm);

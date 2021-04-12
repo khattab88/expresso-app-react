@@ -4,7 +4,9 @@ import AddressForm from './address-form/AddressForm';
 
 const AddressModal = (props) => {
 
-    // console.log(props);
+    const onAddressEditComplete = () => {
+        props.toggle();
+    }
 
     return (
         <div className={(props.isOpen) ? "address-modal address-modal--open" : "address-modal"}>
@@ -16,7 +18,7 @@ const AddressModal = (props) => {
                     </p>
                 </div>
                 <div className="address-modal__body">
-                    <AddressForm />
+                    <AddressForm onAddressEditComplete={onAddressEditComplete} />
                 </div>
             </div>
         </div>
