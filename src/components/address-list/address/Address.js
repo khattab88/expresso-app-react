@@ -1,6 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { updateAddress, deleteAddress } from '../../../store/actions';
 
 const Address = props => {
+
+    const onDeleteAddress = e => {
+        const confirm =  window.confirm('Are you sure you want to delete?');
+        if(confirm) {
+            const id = e.target.dataset["id"];
+            console.log(id);
+            props.deleteAddress(id);
+            return;
+        } else {
+            return;
+        }
+    }
+
     return(
         <article className="address" data-id={props.id}>
             <h4 className="address__name">{props.address.name}</h4>
@@ -23,14 +39,14 @@ const Address = props => {
             </p>
             <ul className="address__control">
                 <li>
-                    <button className="address__btn address__btn--brand">Edit</button>
+                    <button className="address__btn address__btn--brand" data-id={props.id}>Edit</button>
                 </li>
                 <li>
-                    <button className="address__btn">Delete</button>
+                    <button className="address__btn" data-id={props.id} onClick={e => onDeleteAddress(e)}>Delete</button>
                 </li>
             </ul>
         </article>
     );
 }
 
-export default Address;
+export default connect(null, { updateAddress, deleteAddress })(Address);
