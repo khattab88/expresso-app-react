@@ -197,7 +197,7 @@ export const updateAddress = (id, addressData) =>
     async dispatch => {
         const response = await addressApi.updateAddress(id, addressData);
 
-        console.log(response);
+        // console.log(response);
 
         dispatch({
             type: actionTypes.ADDRESSES_UPDATE_ADDRESS,
@@ -209,7 +209,7 @@ export const updateAddress = (id, addressData) =>
     async dispatch => {
         const response = await addressApi.deleteAddress(id);
 
-        console.log(response);
+        // console.log(response);
 
         dispatch({
             type: actionTypes.ADDRESSES_DELETE_ADDRESS,

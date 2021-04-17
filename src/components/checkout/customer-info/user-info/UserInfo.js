@@ -87,7 +87,7 @@ class UserInfo extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.auth);
+    // console.log(state.auth);
 
     return { auth: state.auth }
 }

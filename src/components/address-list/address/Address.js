@@ -9,7 +9,7 @@ const Address = props => {
         const confirm =  window.confirm('Are you sure you want to delete?');
         if(confirm) {
             const id = e.target.dataset["id"];
-            console.log(id);
+            // console.log(id);
             props.deleteAddress(id);
             return;
         } else {
