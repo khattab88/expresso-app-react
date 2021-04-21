@@ -1,0 +1,118 @@
+.order-list {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+
+  @include respond(tab) {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  @include respond(tab-land) {
+    width: 90%;
+  }
+
+  .order {
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+    letter-spacing: 0.5px;
+    color: $color-font-dark;
+
+    @include respond(tab) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding-top: 1.5rem;
+      padding-bottom: 2rem;
+    }
+
+    &__summary {
+      display: flex;
+    }
+
+    &__restaurant-logo {
+      width: 5.8rem;
+      height: 4.8rem;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    &__details {
+      margin-left: 1rem;
+      margin-top: 0.3rem;
+
+      @include respond(desktop) {
+          margin-left: 2rem;
+      }
+    }
+
+    &__restaurant-name {
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    &__date {
+      font-size: 1.3rem;
+    }
+
+    &__info {
+      display: flex;
+      margin-top: 1rem;
+      font-size: 1.3rem;
+    }
+
+    &__status {
+      color: $color-main;
+      margin-left: 0.75rem;
+    }
+
+    &__actions {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &__btn {
+      display: flex;
+      width: 8rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      padding-top: 0.85rem;
+      background: transparent;
+      color: $color-font-dark;
+      margin-left: 1rem;
+      font-size: 1.4rem;
+      cursor: pointer;
+
+      @include respond(desktop) {
+          padding-top: 1rem;
+      }
+
+      &__icon {
+        height: 2rem;
+        margin-inline-end: 0.5rem;
+
+        &::before {
+          content: "";
+          display: inline-block;
+          height: 20px;
+          width: 20px;
+        }
+
+        &--rate::before {
+          background: url(../../assets/svg/rate-order-icon.svg) center top
+            no-repeat;
+        }
+
+        &--view::before {
+          background: url(../../assets/svg/reorder-icon.svg) center top
+            no-repeat;
+        }
+      }
+    }
+  }
+}
