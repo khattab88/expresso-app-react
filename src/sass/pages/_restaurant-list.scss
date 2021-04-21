@@ -442,8 +442,10 @@
   grid-template-columns: repeat(2, 1fr);
 }
 .grid-cols-three {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  @include respond(tab-land) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .restaurant-info-card {
