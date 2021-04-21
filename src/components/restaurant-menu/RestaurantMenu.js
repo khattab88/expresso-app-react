@@ -107,6 +107,7 @@ class RestaurantMenu extends React.Component {
         }
 
         /* format cart item */
+        cartItem.item_id = this.state.currentItem._id;
         cartItem.itemName = this.state.currentItem.name;
         cartItem.price = this.state.currentItem.price;
         delete cartItem.optionSelection;

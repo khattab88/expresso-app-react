@@ -1,4 +1,6 @@
 import React from 'react';
+import { Redirect } from "react-router-dom";
+import { withRouter } from 'react-router';
 
 import UserInfo from './customer-info/user-info/UserInfo';
 import DeliveryInfo from './customer-info/delivery-info/DeliveryInfo';
@@ -36,6 +38,7 @@ class Checkout extends React.Component {
                 agreed: false,
             },
             isMapModalOpen: false,
+            isCheckoutCompleted: false
         };
 
         this.updateUserInfo = this.updateUserInfo.bind(this);
@@ -43,6 +46,8 @@ class Checkout extends React.Component {
         this.updatePaymentInfo = this.updatePaymentInfo.bind(this);
 
         this.toggleMapModal = this.toggleMapModal.bind(this);
+
+        this.onCheckoutCompleted = this.onCheckoutCompleted.bind(this);
     }
 
     componentDidMount() {
@@ -73,7 +78,16 @@ class Checkout extends React.Component {
         this.setState({ payment: updated });
     }
 
+    onCheckoutCompleted() {
+        const callback = () => console.log('Checkout completed: ' + this.state.isCheckoutCompleted);
+
+        this.setState({ isCheckoutCompleted: true }, callback);
+
+        this.props.history.push('/orders');
+    }
+
     render() {
+
         return (
             <main className="main checkout-page__main">
 
@@ -89,7 +103,8 @@ class Checkout extends React.Component {
                     <section className="checkout-info-box order-info">
                         <Cart 
                             submitBtnTitle="Place Order"
-                            restaurant={this.state.restaurant} />
+                            restaurant={this.state.restaurant}
+                            onCheckoutCompleted={this.onCheckoutCompleted} />
                         <Disclaimer />
                     </section>
                 </div>
@@ -100,4 +115,4 @@ class Checkout extends React.Component {
     }
 }
 
-export default Checkout;
+export default withRouter(Checkout);

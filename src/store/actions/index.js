@@ -2,6 +2,7 @@ import * as actionTypes from './actionTypes';
 import authApi from '../../api/AuthApi';
 import addressApi from "../../api/AddressApi";
 
+/* Selected Country */
 export const selectCountry = (country) => {
     return {
         type: actionTypes.COUNTRIES_SELECT_COUNTRY,
@@ -9,6 +10,7 @@ export const selectCountry = (country) => {
     }
 }
 
+/* Selected Area */
 export const selectArea = (area) => {
     return {
         type: actionTypes.AREAS_SELECT_AREA,
@@ -16,6 +18,7 @@ export const selectArea = (area) => {
     }
 }
 
+/* Selected Category */
 export const selectCategory = (category) => {
     return {
         type: actionTypes.CATEGORIES_SELECT_CATEGORY,
@@ -23,6 +26,7 @@ export const selectCategory = (category) => {
     }
 }
 
+/* Selected Branch */
 export const selectBranch = (branch) => {
     return {
         type: actionTypes.BRANCHES_SELECT_BRANCH,
@@ -30,6 +34,13 @@ export const selectBranch = (branch) => {
     }
 }
 
+export const clearBranch = () => {
+    return {
+        type: actionTypes.BRANCHES_CLEAR_BRANCH
+    }
+}
+
+/* Cart */
 export const addCartItem = cartItem => {
     return {
         type: actionTypes.CART_ADD_CART_ITEM,
@@ -51,6 +62,14 @@ export const updateCartItemCount = (id, count) => {
     }
 }
 
+export const clearCart = () => {
+    return {
+        type: actionTypes.CART_CLEAR_CART
+    }
+}
+
+
+/* Auth */
 export const signUp = (signupData) =>
     async dispatch => {
         const response = await authApi.signUp(signupData);
@@ -169,6 +188,7 @@ const _saveAuthData = response => {
 }
 
 
+/* Addresses */
 export const getUserAddresses = (userId) =>
     async dispatch => {
         const response = await addressApi.getUserAddresses(userId);
@@ -205,7 +225,7 @@ export const updateAddress = (id, addressData) =>
         })
     }
 
-    export const deleteAddress = (id) =>
+export const deleteAddress = (id) =>
     async dispatch => {
         const response = await addressApi.deleteAddress(id);
 

@@ -12,6 +12,8 @@ export const cartReducer = (cart = state.cart, action) => {
                 (cartItem.itemId === action.payload.id)
                     ? {...cartItem, count: action.payload.count}
                     : cartItem)
+        case actionTypes.CART_CLEAR_CART:
+            return state.cart;
         default:
             return cart;
     }

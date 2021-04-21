@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 
 import CartItem from './cart-item/CartItem';
 
+import orderApi from '../../api/OrderApi';
+
+import { clearCart, clearBranch } from '../../store/actions';
+
 class Cart extends React.Component {
     constructor(props) {
         super(props);
@@ -52,18 +56,57 @@ class Cart extends React.Component {
         this.setState({ cartItemSubTotals }, callback);
     }
 
-    submit(e) {
+    async submit(e) {
         if(this.props.toggleCartModal) {
             this.props.toggleCartModal();
         }
         else {
-            // TODO: Place Order()
+            // Place Order()
+
+            const orderItemsData = this.props.cart.map(ci => {
+                return {
+                    menuItem: ci.item_id,
+                    quantity: ci.count,
+                    notes: ci.notes,
+                    options: ci.options.map(opt => {
+                        return {
+                            option: opt._id,
+                            selection: opt.selection.map(s => {
+                                return { optionItem: s._id }
+                            })
+                        }
+                    })
+                }
+            });
+
+            const orderData = {
+                user: this.props.auth.user._id,
+                branch: this.props.branch._id,
+                deliveryAddress: this.props.addresses[0]._id,
+                subTotal: this.state.subtotal,
+                deliveryFee: this.props.branch.restaurant.deliveryFee,
+                total: this.state.subtotal + this.props.branch.restaurant.deliveryFee,
+                orderItems: orderItemsData
+            };
+
+            // console.log(orderData);
+
+            const response = await orderApi.createOrder(orderData);
+            // console.log(response);
+
+            if(!response.err) {
+                this.props.clearCart();
+                this.props.clearBranch();
+
+                this.props.onCheckoutCompleted();
+            } else {
+                return alert("Sorry, something went wrong!!!")
+            }
+
         }
     }
 
     render() {
-        // console.log(this.props.restaurant);
-        // console.log(this.props.cart);
 
         return (
             <section className="cart">
@@ -133,8 +176,9 @@ const mapStateToProps = (state, ownProps) => {
     return {
         auth: state.auth,
         branch: ownProps.branch || state.selectedBranch,
-        cart: state.cart
+        cart: state.cart,
+        addresses: state.addresses
     }
 }
 
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps, { clearCart, clearBranch })(Cart);

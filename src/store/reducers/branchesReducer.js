@@ -5,6 +5,8 @@ export const selectedBranchReducer = (selectedBranch = state.selectedBranch, act
     switch (action.type) {
         case actionTypes.BRANCHES_SELECT_BRANCH:
             return action.payload;
+        case actionTypes.BRANCHES_CLEAR_BRANCH:
+            return state.selectedBranch;
         default:
             return selectedBranch;
     }
